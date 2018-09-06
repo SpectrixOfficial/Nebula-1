@@ -1,5 +1,5 @@
 { "bot":{
-     "discordapitoken" : "discord-api-token-here",
+     "discordapitoken" : "NDg3MTY0MDExNjgzNzc0NDY0.DnJrTg.X9UGcI7reFXHZo1hmMMh4HIBsX0",
      "cogs" : [
             "cogs.main",
             "other-cogs-can-be-added-here",
