@@ -20,7 +20,7 @@ class MainCommands:
             user = ctx.author
         permissions = '\n'.join(permission for permission, value in user.guild_permissions if value)
         embed = discord.Embed(title="Total Permissions For:", description=ctx.guild.name, color=user.color)
-        embed.set_author(icon_url=user.avater_url, name=str(user))
+        embed.set_author(icon_url=user.avatar_url, name=str(user))
         embed.add_field(name="\uFEFF", value=permissions)
         await ctx.send(embed=embed, content=None)
 

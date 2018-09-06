@@ -18,7 +18,7 @@ class Handler:
         elif isinstance(error, commands.CheckFailure):
             return await ctx.send(":x: This is Only For My Owner :)")
         else:
-            print("\n" + error + "\n")
+            print(error)
     
     async def on_ready(self):
         print("Handler Is Loaded")

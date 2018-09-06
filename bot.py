@@ -6,7 +6,7 @@ with open("data.json") as f:
     config = json.load(f)
 
 def get_prefix(bot, command):
-    return commands.when_mentioned_or(config["bot"]["prefix"])
+    return config["bot"]["prefix"]
 
 bot = commands.Bot(command_prefix=get_prefix, case_insensitive=True, pm_help=False)
 bot.remove_command('help')
