@@ -9,6 +9,7 @@ def get_prefix():
     return config["bot"]["prefix"]
 
 bot = commands.Bot(command_prefix=get_prefix, case_insensitive=True, pm_help=False)
+bot.remove_command('help')
 cogs = config["bot"]["cogs"]
 
 @bot.event
