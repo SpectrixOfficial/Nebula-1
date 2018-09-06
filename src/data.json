@@ -1,0 +1,12 @@
+{ "bot":{
+     "discordapitoken" : "discord-api-token-here",
+     "cogs" : [
+            "cogs.main",
+            "other-cogs-can-be-added-here",
+            "cogs.framework.owner",
+            "cogs.framework.handler"    
+              ]
+    
+        }   
+
+}
