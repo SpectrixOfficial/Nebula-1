@@ -6,7 +6,7 @@ with open("data.json") as f:
     config = json.load(f)
 
 def get_prefix(bot, command):
-    return config["bot"]["prefix"]
+    return commands.when_mentioned_or(config["bot"]["prefix"])
 
 bot = commands.Bot(command_prefix=get_prefix, case_insensitive=True, pm_help=False)
 bot.remove_command('help')
@@ -25,6 +25,6 @@ async def on_ready():
 if __name__ == '__main__':
     for module in cogs:
         bot.load_extension(module)
-    print("\nLoaded Extensions")
+    print("\nAll Extensions Loaded")
     
-bot.run(config["bot"]["discordapitoken"])
+bot.run(config["bot"]["discordapitoken"], bot=True, reconnect=False)

@@ -3,6 +3,9 @@ from time import ctime
 from contextlib import redirect_stdout
 from discord.ext import commands
 
+with open("data.json") as f:
+    config = json.load(f)
+
 class Developers:
     def __init__(self, bot):
         self.bot = bot
@@ -70,6 +73,19 @@ class Developers:
             else:
                 self._last_result = ret
                 await ctx.send(f'```py\n{value}{ret}\n```')
+
+    @commands.command()
+    async def reload(self, ctx, cog):
+        try:
+            self.bot.unload_extension(f"cogs.{cog}")
+            self.bot.load_extension(f"cogs.{cog}")
+            await ctx.send("Done")
+        except Exception as e:
+            await ctx.send(f"```fix\n{e}\n```")
+    
+    
+    
+
     
 def setup(bot):
     bot.add_cog(Developers(bot))
