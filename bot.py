@@ -2,8 +2,8 @@ import discord, asyncio, json, pkg_resources, time
 from discord.ext import commands
 from time import ctime
 
-with open("data.json") as data:
-    config = json.load(data)
+with open("\data.json") as f:
+    config = json.load(f)
 
 def get_prefix():
     return config["bot"]["prefix"]
@@ -25,3 +25,5 @@ async def on_ready():
 if __name__ == '__main__':
     for module in cogs:
         bot.load_extension(module)
+    
+bot.run(config["bot"]["discordapitoken"])
