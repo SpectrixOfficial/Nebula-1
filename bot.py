@@ -1,4 +1,4 @@
-import discord, asyncio, json, pkg_resources, time, datetime
+import discord, asyncio, json, pkg_resources, time, datetime, os
 from discord.ext import commands
 from time import ctime
 
@@ -25,6 +25,8 @@ async def on_ready():
 if __name__ == '__main__':
     for module in cogs:
         bot.load_extension(module)
-    print("\nAll Extensions Loaded")
+    print("\nLoading Bot Extensions...")
+    print(os.system("cls"))
+    print("\nBot Extensions Are Loaded")
     
 bot.run(config["bot"]["discordapitoken"], bot=True, reconnect=False)

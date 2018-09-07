@@ -25,7 +25,7 @@ class MainCommands:
         embed.add_field(name="\uFEFF", value=permissions)
         await ctx.send(embed=embed, content=None)
 
-    @commands.cooldown(2, 10, BucketType.channel)
+    @commands.cooldown(1, 10, BucketType.channel)
     @commands.command()
     async def ping(self, ctx):
         pong = time.perf_counter()
