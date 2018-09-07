@@ -12,7 +12,7 @@ class MainCommands:
     async def help(self, ctx):
         embed = discord.Embed(color=discord.Color(value=0x877c1f))
         embed.set_author(name="Commands Currently Available")
-        embed.add_field(name="Developing New Ones", value="There Is None ATM")
+        embed.add_field(name="Redeveloping Commands", value="[Click Here For The Site](https://enternewname.github.io/home)")
         await ctx.send(embed=embed)
 
     @commands.command()
@@ -34,6 +34,10 @@ class MainCommands:
         pingbinding = pong2 - pong
         result = (round(pingbinding * 1000))
         await msg.edit(content=f":ping_pong:Pong, My Ping Was {result}ms, My Latency is {round(self.bot.latency * 1000)}ms")
+
+    @commands.command()
+    async def support(self, ctx):
+        await ctx.send("Here Is The Official Support Server\nhttps://discord.gg/dg8D5GW")
 
 
 def setup(bot):
