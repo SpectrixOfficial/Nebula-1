@@ -79,11 +79,22 @@ class Developers:
         try:
             self.bot.unload_extension(f"cogs.{cog}")
             self.bot.load_extension(f"cogs.{cog}")
-            await ctx.send("Done")
+            await ctx.send(f"***Reloaded Cog `cogs.{cog}`***")
         except Exception as e:
             await ctx.send(f"```fix\n{e}\n```")
     
-    
+    @commands.command()
+    async def load(self, ctx, cog):
+        try:
+            self.bot.load_extension(f"cogs.{cog}")
+            await ctx.send(f"***Loaded Cog `cogs.{cog}`***")
+        except Exception as e:
+            await ctx.send(f"```fix\n{e}\n```")
+
+    @commands.command()
+    async def unload(self, ctx, cog):
+        self.bot.unload_extension(f"cogs.{cog}")
+        await ctx.send(f"***Unloaded Cog `cogs.{cog}`***")
     
 
     
