@@ -10,18 +10,25 @@ class Handler:
             if ctx.author.id == 373256462211874836:
                 return await ctx.reinvoke()
             else:
-                return await ctx.send(f":x: ***Sorry, But You Have No Permission(s) for {ctx.command} Command***")
+                return await ctx.send(f":x: ***Sorry, But You Have No Permission(s) for The `{ctx.command}` Command***")
         elif isinstance(error, commands.BotMissingPermissions):
-            return await ctx.send(f":x: ***Sorry, But I Don't Have No Permission(s) To Run {ctx.command} ***")
+            return await ctx.send(f":x: ***Sorry, But I Don't Have No Permission(s) To Run The `{ctx.command}` Command***")
         elif isinstance(error, commands.NoPrivateMessage):
             return await ctx.send(f"Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please")
         elif isinstance(error, commands.CheckFailure):
-            return await ctx.send("***:x: These Commands are Only For My Developers***")
+            return await ctx.send("***<:tickNo:483288678437879808> These Commands are Only For My Developers***")
         elif isinstance(error, commands.CommandNotFound):
             pass
+        elif isinstance(error, commands.MissingRequiredArgument):
+            return await ctx.send("***<:tickNo:483288678437879808> Command Is Missing An Argument***")
         else:
-            print(f"\n{error}\n")
-            return await ctx.send(f"***:x: {error}***")
+            return await ctx.send(f"***{error}***")
+        
+    async def on_guild_join(self, guild):
+        try:
+            await guild.system_channel.send("Hi And Thanks For Inviting Me\nMy Prefix is `.`\nIf You Need Any Help Or Support Please Do `.help` or `.support`")
+        except:
+            pass
             
     
     async def on_ready(self):
