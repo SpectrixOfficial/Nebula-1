@@ -1,6 +1,7 @@
-import discord, asyncio, json, time
+import discord, asyncio, json, time, datetime
 from time import ctime
 from discord.ext import commands
+from discord.ext.commands.cooldowns import BucketType
 
 class MainCommands:
     def __init__(self, bot):
@@ -23,6 +24,17 @@ class MainCommands:
         embed.set_author(icon_url=user.avatar_url, name=str(user))
         embed.add_field(name="\uFEFF", value=permissions)
         await ctx.send(embed=embed, content=None)
+
+    @commands.cooldown(2, 10, BucketType.channel)
+    @commands.command()
+    async def ping(self, ctx):
+        pong = time.perf_counter()
+        msg = await ctx.send("Pinging..")
+        pong2 = time.perf_counter()
+        pingbinding = pong2 - pong
+        result = (round(pingbinding * 1000))
+        await msg.edit(content=f":ping_pong:Pong, My Ping Was {result}ms, My Latency is {round(self.bot.latency * 1000)}ms")
+
 
 def setup(bot):
     bot.add_cog(MainCommands(bot))

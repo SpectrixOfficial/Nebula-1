@@ -16,10 +16,12 @@ class Handler:
         elif isinstance(error, commands.NoPrivateMessage):
             return await ctx.send(f"Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please")
         elif isinstance(error, commands.CheckFailure):
-            return await ctx.send(":x: This is Only For My Owner :)")
+            return await ctx.send("***:x: These Commands are Only For My Developers***")
+        elif isinstance(error, commands.CommandNotFound):
+            pass
         else:
             print(f"\n{error}\n")
-            return await ctx.send(f"x: {error}")
+            return await ctx.send(f"***:x: {error}***")
             
     
     async def on_ready(self):
