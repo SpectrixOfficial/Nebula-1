@@ -6,23 +6,29 @@ class Handler:
         self.bot = bot
     
     async def on_command_error(self, ctx, error):
-        if ctx.author.id == 373256462211874836:
-            return await ctx.reinvoke()
-        elif isinstance (error, commands.MissingPermissions):
-            if ctx.guild.owner:
-                return await ctx.reinvoke()
-            return await ctx.send(f":x: ***Sorry, But You Have No Permission(s) for The `{ctx.command}` Command***")
+        if isinstance (error, commands.MissingPermissions):
+            if ctx.author.id == 373256462211874836:
+                try:
+                    return await ctx.reinvoke()
+                except Exception as e:
+                    return await ctx.send(f"```fix\n{e}\n```")
+            elif ctx.guild.owner:
+                try:
+                    return await ctx.reinvoke()
+                except Exception as e:
+                    return await ctx.send(f"<:tickNo:483288678437879808> ***{e}***")
+            return await ctx.send(f"<:tickNo:483288678437879808> ***Sorry, But You Have No Permission(s) for The `{ctx.command}` Command***")
         elif isinstance(error, commands.BotMissingPermissions):
-            return await ctx.send(f":x: ***Sorry, But I Don't Have No Permission(s) To Run The `{ctx.command}` Command***")
+            return await ctx.send(f"<:tickNo:483288678437879808> ***Sorry, But I Don't Have No Permission(s) To Run The `{ctx.command}` Command***")
         elif isinstance(error, commands.NoPrivateMessage):
-            return await ctx.send(f"Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please")
+            return await ctx.send(f"<:tickNo:483288678437879808> Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please")
         elif isinstance(error, commands.CheckFailure):
             return await ctx.send("***<:tickNo:483288678437879808> These Commands are Only For My Developers***")
         elif isinstance(error, commands.CommandNotFound):
             pass
         else:
             return await ctx.send(f"*** <:tickNo:483288678437879808> {error}***")
-        
+
     async def on_guild_join(self, guild):
         await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
         try:

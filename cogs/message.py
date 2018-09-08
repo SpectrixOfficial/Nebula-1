@@ -5,6 +5,7 @@ class MessageManagement:
     def __init__(self, bot):
         self.bot = bot
     
+    @commands.guild_only()
     @commands.bot_has_permissions(manage_messages=True)
     @commands.has_permissions(manage_messages=True)
     @commands.command(aliases=["purge", "c"])
