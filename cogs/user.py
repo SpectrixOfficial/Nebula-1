@@ -8,9 +8,10 @@ class UserManagement:
      
     async def on_ready(self):
         print("User Management Is Loaded")
-    
+   
+     
     @commands.has_permissions(kick_members=True)
-    @commands.bot_has_permissions(kick_members=True)
+    @commands.bot_has_permissions(kick_members=True)   
     @commands.command(aliases=['k'])
     async def kick(self, ctx, user : discord.Member, reason=None):
         if ctx.author.top_role > user.top_role:
