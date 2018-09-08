@@ -11,7 +11,6 @@ class MainCommands:
         print("MainCommands Is Loaded")
 
     @commands.command()
-    @commands.has_permissions(ban_members=True) 
     async def help(self, ctx):
         embed = discord.Embed(color=discord.Color(value=0x877c1f))
         embed.set_author(name="Commands Currently Available")
@@ -28,7 +27,7 @@ class MainCommands:
         embed.add_field(name="\uFEFF", value=permissions)
         await ctx.send(embed=embed, content=None)
 
-    @commands.cooldown(1, 10, BucketType.channel)
+    @commands.cooldown(1, 20, BucketType.channel)
     @commands.command()
     async def ping(self, ctx):
         pong = time.perf_counter()
@@ -38,9 +37,10 @@ class MainCommands:
         result = (round(pingbinding * 1000))
         await msg.edit(content=f":ping_pong:Pong, My Ping Was {result}ms, My Latency is {round(self.bot.latency * 1000)}ms")
 
-    @commands.command()
+    @commands.command(aliases=['server'])
     async def support(self, ctx):
-        await ctx.send("Here Is The Official Support Server\nhttps://discord.gg/dg8D5GW")
+        await ctx.author.send("Here Is The Official Support Server\nhttps://discord.gg/tpHG7NC")
+        await ctx.send("***Check DMs For Support Server <:tickYes:483288647823523841>***")
 
 
 def setup(bot):

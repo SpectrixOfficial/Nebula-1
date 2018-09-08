@@ -19,7 +19,7 @@ class UserManagement:
                 return await ctx.send("<:tickNo:483288678437879808> ***You Can't Kick Yourself..***")
 
             await user.kick(reason=reason)
-            await ctx.send(f"**{user} has Been Kicked From The Guild With A Reason:** {reason}")
+            await ctx.send(f"**<:tickYes:483288647823523841> {user} has Been Kicked From The Guild With A Reason:** {reason}")
 
     @commands.has_permissions(ban_members=True)
     @commands.bot_has_permissions(ban_members=True)
