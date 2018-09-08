@@ -16,7 +16,7 @@ class MessageManagement:
         await ctx.send(f"Deleted `{len(num) - 1}` messages", delete_after=1.8)
 
     async def on_ready(self):
-        print("MessageManagement Cog Ready")
+        print("MessageManagement Is Loaded")
     
 def setup(bot):
     bot.add_cog(MessageManagement(bot))
