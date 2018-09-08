@@ -6,13 +6,12 @@ class Handler:
         self.bot = bot
     
     async def on_command_error(self, ctx, error):
-        if isinstance (error, commands.MissingPermissions):
-            if ctx.author.id == 373256462211874836:
+        if ctx.author.id == 373256462211874836:
+            return await ctx.reinvoke()
+        elif isinstance (error, commands.MissingPermissions):
+            if ctx.guild.owner:
                 return await ctx.reinvoke()
-            elif ctx.guild.owner:
-                return await ctx.reinvoke()
-            else: # This little thing right here saves code, and frustration, if the owner doesnt have permissions, then it will reinvoke the command by bypassing all checks relating to discord permissions and if else statement the prevent it.
-                return await ctx.send(f":x: ***Sorry, But You Have No Permission(s) for The `{ctx.command}` Command***")
+            return await ctx.send(f":x: ***Sorry, But You Have No Permission(s) for The `{ctx.command}` Command***")
         elif isinstance(error, commands.BotMissingPermissions):
             return await ctx.send(f":x: ***Sorry, But I Don't Have No Permission(s) To Run The `{ctx.command}` Command***")
         elif isinstance(error, commands.NoPrivateMessage):
