@@ -17,7 +17,7 @@ async def on_ready():
     print(f"Discord.py Version : " + pkg_resources.get_distribution("discord.py").version)
     print(f"{bot.user} Is Online At {datetime.datetime.utcnow()}")
     print(f"Guild Count : {len(bot.guilds)}\n")
-    print("Bot Version : 0.0.1\n")
+    print("Bot Version : 0.0.2\n")
     
 if __name__ == '__main__':
     for module in cogs:
