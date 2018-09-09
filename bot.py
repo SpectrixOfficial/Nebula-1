@@ -5,9 +5,9 @@ from time import ctime
 with open("data.json") as f:
     config = json.load(f)
 
-bot = commands.Bot(command_prefix=commands.when_mentioned_or(config["bot"]["prefix"]), case_insensitive=True, pm_help=False, clean_content=False)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(config["prefix"]), case_insensitive=True, pm_help=False, clean_content=False)
 bot.remove_command('help')
-cogs = config["bot"]["cogs"]
+cogs = config["cogs"]
 
 @bot.event
 async def on_ready():
@@ -23,6 +23,6 @@ if __name__ == '__main__':
     for module in cogs:
         print("\nLoading Bot Extension")
         bot.load_extension(module)
-    print("\nBot Extensions Are Loaded")
+    print("\nBot Extensions Are Ready, Loading Bot And Connecting Extensions..")
     
-bot.run(config["bot"]["discordapitoken"], bot=True, reconnect=True)
+bot.run(config["discordapitoken"], bot=True, reconnect=True)

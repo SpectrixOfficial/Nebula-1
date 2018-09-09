@@ -17,6 +17,7 @@ class MainCommands:
         embed.add_field(name="Redeveloping Commands", value="[Click Here For The Site](https://enternewname.github.io/home)")
         await ctx.send(embed=embed)
 
+    @commands.guild_only()
     @commands.command()
     async def perms(self, ctx, *, user : discord.Member=None):
         if not user:
@@ -37,11 +38,11 @@ class MainCommands:
         result = (round(pingbinding * 1000))
         await msg.edit(content=f":ping_pong:Pong, My Ping Was {result}ms, My Latency is {round(self.bot.latency * 1000)}ms")
 
+    @commands.guild_only()
     @commands.command(aliases=['server'])
     async def support(self, ctx):
         await ctx.author.send("Here Is The Official Support Server\nhttps://discord.gg/tpHG7NC")
         await ctx.send("***Check DMs For Support Server <:tickYes:483288647823523841>***")
-
 
 def setup(bot):
     bot.add_cog(MainCommands(bot))

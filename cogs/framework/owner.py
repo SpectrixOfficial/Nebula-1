@@ -1,4 +1,5 @@
 import discord, asyncio, json, time, io, traceback, inspect, textwrap, datetime, os
+import hastebin
 from time import ctime
 from contextlib import redirect_stdout
 from discord.ext import commands
@@ -18,7 +19,7 @@ class Developers:
         return message.strip(' \n')
     
     async def __local_check(self, ctx):
-        return ctx.author.id == config["bot"]["developer"]["enternewname"] or ctx.author.id == config["bot"]["developer"]["banii"]
+        return await self.bot.is_owner(ctx.author)
 
     def get_syntax_error(self, e):
         if e.text is None:

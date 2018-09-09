@@ -10,7 +10,7 @@ class Handler:
     
     async def on_command_error(self, ctx, error):
         if isinstance (error, commands.MissingPermissions):
-            if ctx.author.id == config["bot"]["developer"]["enternewname"]:
+            if ctx.author.id == 373256462211874836:
                 try:
                     return await ctx.reinvoke()
                 except Exception as e:
