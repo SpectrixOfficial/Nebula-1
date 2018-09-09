@@ -14,7 +14,7 @@ class MessageManagement:
             number = 1000
         num = await ctx.channel.purge(limit=number + 1)
         await asyncio.sleep(1)
-        await ctx.send(f"Deleted `{len(num) - 1}` messages", delete_after=1.8)
+        await ctx.send(f"Deleted `{len(num) - 1}` messages <:tickYes:483288647823523841>", delete_after=1.8)
 
     async def on_ready(self):
         print("MessageManagement Is Loaded")
