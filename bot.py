@@ -25,4 +25,4 @@ if __name__ == '__main__':
         bot.load_extension(module)
     print("\nBot Extensions Are Loaded")
     
-bot.run(config["bot"]["discordapitoken"], bot=True, reconnect=False)
+bot.run(config["bot"]["discordapitoken"], bot=True, reconnect=True)

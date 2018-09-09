@@ -1,5 +1,8 @@
-import discord, asyncio, logging, aiohttp, requests
+import discord, asyncio, logging, aiohttp, requests, json
 from discord.ext import commands
+
+with open("data.json") as f:
+    config = json.load(f)
 
 class Handler:
     def __init__(self, bot):
@@ -7,7 +10,7 @@ class Handler:
     
     async def on_command_error(self, ctx, error):
         if isinstance (error, commands.MissingPermissions):
-            if ctx.author.id == 373256462211874836:
+            if ctx.author.id == config["bot"]["owner"]:
                 try:
                     return await ctx.reinvoke()
                 except Exception as e:
@@ -27,7 +30,9 @@ class Handler:
         elif isinstance(error, commands.CommandNotFound):
             pass
         else:
+            print(error)
             return await ctx.send(f"*** <:tickNo:483288678437879808> {error}***")
+            
 
     async def on_guild_join(self, guild):
         await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
