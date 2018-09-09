@@ -1,4 +1,4 @@
-import discord, asyncio, json, time, io, traceback, inspect, textwrap, datetime
+import discord, asyncio, json, time, io, traceback, inspect, textwrap, datetime, os
 from time import ctime
 from contextlib import redirect_stdout
 from discord.ext import commands
@@ -18,7 +18,7 @@ class Developers:
         return message.strip(' \n')
     
     async def __local_check(self, ctx):
-        return await self.bot.is_owner(ctx.author)
+        return ctx.author.id == config["bot"]["developer"]["enternewname"] or ctx.author.id == config["bot"]["developer"]["banii"]
 
     def get_syntax_error(self, e):
         if e.text is None:
@@ -74,7 +74,7 @@ class Developers:
                 self._last_result = ret
                 await ctx.send(f'```py\n{value}{ret}\n```')
 
-    @commands.command()
+    @commands.command(aliases=['rl'])
     async def reload(self, ctx, cog):
         try:
             self.bot.unload_extension(f"cogs.{cog}")
@@ -83,7 +83,7 @@ class Developers:
         except Exception as e:
             await ctx.send(f"```fix\n{e}\n```")
     
-    @commands.command()
+    @commands.command(aliases=['l'])
     async def load(self, ctx, cog):
         try:
             self.bot.load_extension(f"cogs.{cog}")
@@ -91,7 +91,7 @@ class Developers:
         except Exception as e:
             await ctx.send(f"```fix\n{e}\n```")
 
-    @commands.command()
+    @commands.command(aliases=['ul'])
     async def unload(self, ctx, cog):
         self.bot.unload_extension(f"cogs.{cog}")
         await ctx.send(f"***Unloaded Cog `cogs.{cog}`***")
