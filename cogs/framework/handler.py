@@ -37,11 +37,11 @@ class Handler:
             pass
         
     async def on_guild_remove(self):
-        await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
+        await self.bot.change_presence(activity=discord.Activity(name=f" 0.0.2 | {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
             
     async def on_ready(self):
         print("Handler Is Loaded")
-        await self.bot.change_presence(activity=discord.Activity(name=f" 0.0.2 | {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
+        await self.bot.change_presence(activity=discord.Activity(name=f"0.0.2 | {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
     
     async def on_message(self, message):
         if message.author.bot:
