@@ -41,8 +41,12 @@ class MainCommands:
     @commands.guild_only()
     @commands.command(aliases=['server'])
     async def support(self, ctx):
-        await ctx.author.send("Here Is The Official Support Server\nhttps://discord.gg/tpHG7NC")
-        await ctx.send("***Check DMs For Support Server <:tickYes:483288647823523841>***")
+        try:
+            await ctx.author.send("Here Is The Official Support Server\nhttps://discord.gg/tpHG7NC")
+            await ctx.send("***Check DMs For Support Server <:tickYes:483288647823523841>***")
+        except:
+            await ctx.send("Here Is The Official Support Server\nhttps://discord.gg/tpHG7NC")
+
 
 def setup(bot):
     bot.add_cog(MainCommands(bot))

@@ -1,5 +1,6 @@
-import discord, asyncio, logging, aiohttp, requests, json
+import discord, asyncio, logging, aiohttp, requests, json, time, datetime
 from discord.ext import commands
+from time import ctime
 
 with open("data.json") as f:
     config = json.load(f)
@@ -7,7 +8,7 @@ with open("data.json") as f:
 class Handler:
     def __init__(self, bot):
         self.bot = bot
-    
+ 
     async def on_command_error(self, ctx, error):
         if isinstance (error, commands.MissingPermissions):
             if ctx.author.id == 373256462211874836:
@@ -32,26 +33,27 @@ class Handler:
         else:
             print(error)
             return await ctx.send(f"*** <:tickNo:483288678437879808> {error}***")
-            
 
-    async def on_guild_join(self, guild):
+    async def status_updater(self, ctx):
         await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
+            
+    async def on_guild_join(self, guild):
         try:
             await guild.system_channel.send("Hi And Thanks For Inviting Me\nMy Prefix is `.`\nIf You Need Any Help Or Support Please Do `.help` or `.support`")
         except:
             pass
+        await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
         
-    async def on_guild_remove(self):
-        await self.bot.change_presence(activity=discord.Activity(name=f" 0.0.2 | {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
-            
+    async def on_guild_remove(self, guild):
+        await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
+
     async def on_ready(self):
         print("Handler Is Loaded")
-        await self.bot.change_presence(activity=discord.Activity(name=f"0.0.2 | {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
+        await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
     
     async def on_message(self, message):
         if message.author.bot:
             return
         # Restricts Bot Users to Use Commands, This is Why This is the Core Of Nebula
-
 def setup(bot):
     bot.add_cog(Handler(bot))

@@ -26,7 +26,7 @@ class Developers:
             return f'```py\n{e.__class__.__name__}: {e}\n```'
         return f'```py\n{e.text}{"^":>{e.offset}}\n{e.__class__.__name__}: {e}```'
 
-    @commands.command()
+    @commands.command(hidden=True)
     async def eval(self, ctx, *, body: str):
         env = {
             'bot': self.bot,
