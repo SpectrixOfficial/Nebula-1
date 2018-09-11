@@ -9,7 +9,6 @@ class FunCommands:
     async def rps(self, ctx):
         await ctx.send(f"**I Choose.... `{random.choice(['Rocks', 'Paper', 'Scissors'])}`**")
 
-    
     @commands.command(aliases=['ld'])
     async def liedetector(self, ctx, *, input):
         lieresult = random.randint(0, 100)
@@ -39,6 +38,30 @@ class FunCommands:
         emb.add_field(name=f"Result: ", value=result, inline=False)
         emb.add_field(name="Lie Percentage Result: ", value=f"{lieresult}% Percent", inline=False)
         await ctx.send(embed=emb)
+
+    @commands.command()
+    async def poll(self, ctx, * ,PollMessage : str):
+        embed = discord.Embed(color=discord.Color(value=0x186391))
+        embed.set_author(icon_url=ctx.author.avatar_url, name=f"Poll Made By {ctx.author}")
+        embed.add_field(name="\uFEFF", value=PollMessage)
+        pollmsg = await ctx.send(embed=embed)
+        await ctx.message.delete()
+        try:
+            await pollmsg.add_reaction(emoji=":tickYes:483288647823523841")
+            await pollmsg.add_reaction(emoji=":tickNo:483288678437879808")
+        except:
+            await ctx.send("***Make Sure I have `add_reactions` so I can make the poll***")
+
+    @commands.guild_only()
+    @commands.command()
+    async def perms(self, ctx, *, user : discord.Member=None):
+        if not user:
+            user = ctx.author
+        permissions = '\n'.join(permission for permission, value in user.guild_permissions if value)
+        embed = discord.Embed(title="Total Permissions For Server:", description=ctx.guild.name, color=user.color)
+        embed.set_author(icon_url=user.avatar_url, name=str(user))
+        embed.add_field(name="\uFEFF", value=permissions)
+        await ctx.send(embed=embed, content=None)
 
 def setup(bot):
     bot.add_cog(FunCommands(bot))

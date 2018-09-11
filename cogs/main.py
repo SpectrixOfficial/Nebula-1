@@ -17,17 +17,6 @@ class MainCommands:
         embed.add_field(name="Redeveloping Commands", value="[Click Here For The Site](https://enternewname.github.io/home)")
         await ctx.send(embed=embed)
 
-    @commands.guild_only()
-    @commands.command()
-    async def perms(self, ctx, *, user : discord.Member=None):
-        if not user:
-            user = ctx.author
-        permissions = '\n'.join(permission for permission, value in user.guild_permissions if value)
-        embed = discord.Embed(title="Total Permissions For Server:", description=ctx.guild.name, color=user.color)
-        embed.set_author(icon_url=user.avatar_url, name=str(user))
-        embed.add_field(name="\uFEFF", value=permissions)
-        await ctx.send(embed=embed, content=None)
-
     @commands.cooldown(1, 20, BucketType.channel)
     @commands.command()
     async def ping(self, ctx):
@@ -84,7 +73,6 @@ class MainCommands:
             await ctx.message.delete()
         except:
             pass
-
 # no <:tickNo:483288678437879808> 
 #yes <:tickYes:483288647823523841>
 
