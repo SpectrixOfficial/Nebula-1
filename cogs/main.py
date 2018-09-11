@@ -62,9 +62,10 @@ class MainCommands:
             owner = self.bot.get_user(373256462211874836)
             await owner.send(f"{owner}, We Have A Problem With The Feedback Command,\nAuthor Profile: {ctx.author.id}\nName: {ctx.author}\nHeres The Error:\n```fix\n{e}\n```")
 
-        
+    @commands.has_permissions(manage_channels=True)
+    @commands.guild_only()
     @commands.command(aliases=['a'])
-    async def annouce(self, ctx, channel : discord.TextChannel ,body : str):
+    async def annouce(self, ctx, channel : discord.TextChannel, * ,body : str):
         embed = discord.Embed(color=discord.Color(value=0x186391))
         embed.set_author(icon_url=ctx.author.avatar_url, name=ctx.author)
         embed.add_field(name="Update:\n", value=body)
