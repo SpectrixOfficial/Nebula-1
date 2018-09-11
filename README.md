@@ -1,13 +1,19 @@
-# Nebula Bot
+# Nebula
 
-## A Discord Bot Rewritten With Discord.py
+A Discord Bot Created By `discord.py` and Maintained And Owned By [@EnterNewName](https://github.com/EnterNewName)
 
-An Rewritten Version Of Alpha Bot Being Simplified And Better, And Looking
-I am planning as a developer to maximize my development on nebula
-thats all lol
+## What Is Nebula Anyways?
 
-### [Website](enternewname.me)
+Nebula is A Discord bot That Serves All Purposes, Moderation, Fun, Server Utilities, You Name It, We Need It
 
-### [Server](https://discord.gg/tpHG7NC)
+## Looks Sweet, How Can I Invite It
 
-### [Invite Nebula](https://discordapp.com/oauth2/authorize?client_id=487164011683774464&permissions=8&scope=bot)
+Invite It To Your Discord Server, thats Great!, You Can Invite The Bot By Simply Going [Here](https://discordapp.com/oauth2/authorize?client_id=487164011683774464&permissions=8&scope=bot)
+
+## Is There Any Help Or Documentation?
+
+Indeed There Is, You Can See The Website By Going Here : [https://enternewname.me](enternewname.me), And If You Need Assistance, then Goto Our [Discord Server](https://discord.gg/tpHG7NC)
+
+## Theres A Pesky Bug, How Do We Get Rid of?
+
+Awesome, Its Nice To See Some People Helping Our Bot, you Can Make Create an Issue relating to all things Nebula
