@@ -55,6 +55,26 @@ class MainCommands:
         except:
             await ctx.send("https://discordapp.com/oauth2/authorize?client_id=487164011683774464&permissions=8&scope=bot")
 
+    @commands.guild_only()
+    @commands.command()
+    async def feedback(self, ctx, *, body : str):
+        try:
+            feedback = self.bot.get_channel(488912067756294146)
+            embed = discord.Embed(color=discord.Color(value=0x186391))
+            embed.set_author(name="Feedback")
+            embed.add_field(name="Guild ID And Name: ", value=f"ID: {ctx.guild.id}, Name: {ctx.guild}", inline=False)
+            embed.add_field(name="User", value=f"Name: {ctx.author}, ID: {ctx.author.id}", inline=False)
+            embed.add_field(name="Channel ID And Name", value=f"ID: {ctx.channel.id}, Name: #{ctx.channel}", inline=False)
+            embed.add_field(name="Response: ", value=body, inline=True)
+            await feedback.send(embed=embed)
+            await ctx.send("**Your Response Has Been Sent, You Might Recieve A Response Later On**")
+        except Exception as e:
+            await ctx.send("***Your Feedback Could Not Be Sent <:tickNo:483288678437879808>, Notifying Owner***")
+            owner = self.bot.get_user(373256462211874836)
+            await owner.send(f"{owner}, We Have A Problem With The Feedback Command,\nAuthor Profile: {ctx.author.id}\nName: {ctx.author}\nHeres The Error:\n```fix\n{e}\n```")
+
+# no <:tickNo:483288678437879808> 
+#yes <:tickYes:483288647823523841>
 
 def setup(bot):
     bot.add_cog(MainCommands(bot))

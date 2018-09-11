@@ -1,11 +1,12 @@
 import discord, asyncio, json, pkg_resources, time, datetime, os
 from discord.ext import commands
 from time import ctime
+from discord.ext.commands import clean_content
 
 with open("data.json") as f:
     config = json.load(f)
 
-bot = commands.Bot(command_prefix=commands.when_mentioned_or(config["prefix"]), case_insensitive=True, pm_help=False, clean_content=False)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(config["prefix"]), case_insensitive=True, pm_help=False, clean_content=True)
 bot.remove_command('help')
 cogs = config["cogs"]
 
