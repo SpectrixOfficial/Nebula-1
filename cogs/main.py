@@ -49,7 +49,11 @@ class MainCommands:
 
     @commands.command()
     async def invite(self, ctx):
-        await ctx.send("https://discordapp.com/oauth2/authorize?client_id=487164011683774464&permissions=8&scope=bot")
+        try:
+            await ctx.author.send("https://discordapp.com/oauth2/authorize?client_id=487164011683774464&permissions=8&scope=bot")
+            await ctx.send("**Check Your DMs For The Nebula Invite!**")
+        except:
+            await ctx.send("https://discordapp.com/oauth2/authorize?client_id=487164011683774464&permissions=8&scope=bot")
 
 
 def setup(bot):
