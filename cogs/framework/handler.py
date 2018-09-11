@@ -32,10 +32,7 @@ class Handler:
             pass
         else:
             print(error)
-            return await ctx.send(f"*** <:tickNo:483288678437879808> {error}***")
-
-    async def status_updater(self, ctx):
-        await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
+            await ctx.send(f"*** <:tickNo:483288678437879808> {error}***")
             
     async def on_guild_join(self, guild):
         try:
