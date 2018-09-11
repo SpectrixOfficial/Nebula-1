@@ -23,6 +23,6 @@ if __name__ == '__main__':
     for module in cogs:
         print("\nLoading Bot Extension")
         bot.load_extension(module)
-    print("\nBot Extensions Are Ready, Loading Bot And Connecting Extensions..")
+    print("\nBot Extensions Are Ready,\nLoading Bot And Connecting Extensions..")
     
-bot.run(config["discordapitoken"], bot=True, reconnect=True)
+bot.run(config["bottoken"], bot=True, reconnect=True)

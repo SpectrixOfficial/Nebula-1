@@ -22,7 +22,7 @@ class MainCommands:
     async def perms(self, ctx, *, user : discord.Member=None):
         if not user:
             user = ctx.author
-        permissions = ', '.join(permission for permission, value in user.guild_permissions if value)
+        permissions = '\n'.join(permission for permission, value in user.guild_permissions if value)
         embed = discord.Embed(title="Total Permissions For Server:", description=ctx.guild.name, color=user.color)
         embed.set_author(icon_url=user.avatar_url, name=str(user))
         embed.add_field(name="\uFEFF", value=permissions)
@@ -46,6 +46,10 @@ class MainCommands:
             await ctx.send("***Check DMs For Support Server <:tickYes:483288647823523841>***")
         except:
             await ctx.send("Here Is The Official Support Server\nhttps://discord.gg/tpHG7NC")
+
+    @commands.command()
+    async def invite(self, ctx):
+        await ctx.send("https://discordapp.com/oauth2/authorize?client_id=487164011683774464&permissions=8&scope=bot")
 
 
 def setup(bot):
