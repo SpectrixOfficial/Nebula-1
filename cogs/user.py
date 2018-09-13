@@ -29,7 +29,7 @@ class UserManagement:
     @commands.guild_only()
     @commands.has_permissions(ban_members=True)
     @commands.bot_has_permissions(ban_members=True)
-    @commands.command()
+    @commands.command(aliases=['b'])
     async def ban(self, ctx, user : discord.Member, *, reason=None):
         if ctx.author.top_role > user.top_role:
             if user == ctx.author:
@@ -47,7 +47,7 @@ class UserManagement:
     @commands.has_permissions(ban_members=True)
     @commands.has_permissions(kick_members=True)
     @commands.bot_has_permissions(ban_members=True)
-    @commands.command()
+    @commands.command(aliases=['sb'])
     async def softban(self, ctx, user : discord.Member, *, reason=None):
         if ctx.author.top_role > user.top_role:
             if user == ctx.author:

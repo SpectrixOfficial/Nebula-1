@@ -19,7 +19,7 @@ class MainCommands:
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
         await ctx.send(f"I have been running for **{days}**d, **{hours}**h, **{minutes}**m, **{seconds}**s")
-
+        
     @commands.command()
     async def help(self, ctx):
         embed = discord.Embed(color=discord.Color(value=0x1c407a))
