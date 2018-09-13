@@ -12,10 +12,14 @@ class MainCommands:
 
     @commands.command()
     async def help(self, ctx):
-        embed = discord.Embed(color=discord.Color(value=0x877c1f))
-        embed.set_author(name="Commands Currently Available")
-        embed.add_field(name="Redeveloping Commands", value="[Click Here For The Site](https://enternewname.github.io/home)")
+        embed = discord.Embed(color=discord.Color(value=0x1c407a))
+        embed.set_author(name="Nebula Bot Commands:")
+        embed.add_field(name="List of All Commands:", value="[Click Here For The Site](https://enternewname.me/nebula/commands)")
         await ctx.send(embed=embed)
+
+    @commands.command()
+    async def prefix(self, ctx):
+        ctx.send("My Prefix is `.` and Cannot Be Changed")
 
     @commands.cooldown(1, 20, BucketType.channel)
     @commands.command()
@@ -49,7 +53,7 @@ class MainCommands:
     async def feedback(self, ctx, *, body : str):
         try:
             feedback = self.bot.get_channel(488912067756294146)
-            embed = discord.Embed(color=discord.Color(value=0x186391))
+            embed = discord.Embed(color=discord.Color(value=0x1c407a))
             embed.set_author(name="Feedback")
             embed.add_field(name="Guild ID And Name: ", value=f"ID: {ctx.guild.id}, Name: {ctx.guild}", inline=False)
             embed.add_field(name="User", value=f"Name: {ctx.author}, ID: {ctx.author.id}", inline=False)
@@ -66,7 +70,7 @@ class MainCommands:
     @commands.guild_only()
     @commands.command(aliases=['a'])
     async def annouce(self, ctx, channel : discord.TextChannel, * ,body : str):
-        embed = discord.Embed(color=discord.Color(value=0x186391))
+        embed = discord.Embed(color=discord.Color(value=0x1c407a))
         embed.set_author(icon_url=ctx.author.avatar_url, name=ctx.author)
         embed.add_field(name="Update:\n", value=body)
         await channel.send(embed=embed)

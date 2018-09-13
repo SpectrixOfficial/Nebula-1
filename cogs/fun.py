@@ -10,7 +10,7 @@ class FunCommands:
 
     @commands.command()
     async def rps(self, ctx):
-        await ctx.send(f"**I Choose.... `{random.choice(['Rocks', 'Paper', 'Scissors'])}`**")
+        await ctx.send(f"**I Choose.... `{random.choice(['rocks', 'paper', 'scissors'])}`**")
 
     @commands.command(aliases=['ld'])
     async def liedetector(self, ctx, *, input):
@@ -35,7 +35,7 @@ class FunCommands:
             result = "Damn, you lie so much, even the devil won't accept you"
         elif lieresult <= 90 <= 100:
             result = f"<:Kermit:488902339416293387> WE ALL KNOW YOU ARE LYING!"
-        emb = discord.Embed(color=discord.Color(value=0x186391))
+        emb = discord.Embed(color=discord.Color(value=0x1c407a))
         emb.set_author(name="Lie Detector Test")
         emb.add_field(name="Lie Checker", value=input, inline=False)
         emb.add_field(name=f"Result: ", value=result, inline=False)
@@ -44,7 +44,7 @@ class FunCommands:
 
     @commands.command()
     async def poll(self, ctx, * ,PollMessage : str):
-        embed = discord.Embed(color=discord.Color(value=0x186391))
+        embed = discord.Embed(color=discord.Color(value=0x1c407a))
         embed.set_author(icon_url=ctx.author.avatar_url, name=f"Poll Made By {ctx.author}")
         embed.add_field(name="\uFEFF", value=PollMessage)
         pollmsg = await ctx.send(embed=embed)

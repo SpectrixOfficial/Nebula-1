@@ -41,6 +41,6 @@ class RoleCommands:
         elif ctx.guild.owner:
             await user.remove_roles(role)
             await ctx.send(f"***<:tickYes:483288647823523841> Removed {user.mention} From role: `{role}`***")
-
+        
 def setup(bot):
     bot.add_cog(RoleCommands(bot))
