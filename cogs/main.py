@@ -55,7 +55,7 @@ class MainCommands:
     @commands.command()
     async def feedback(self, ctx, *, body : str):
         try:
-            feedback = self.bot.get_channel(488912067756294146)
+            feedback = self.bot.get_channel(490608601950322702)
             embed = discord.Embed(color=discord.Color(value=0x1c407a))
             embed.set_author(name="Feedback")
             embed.add_field(name="Guild ID And Name: ", value=f"ID: {ctx.guild.id}, Name: {ctx.guild}", inline=False)
@@ -65,7 +65,7 @@ class MainCommands:
             await feedback.send(embed=embed)
             await ctx.send("**Your Response Has Been Sent, You Might Recieve A Response Later On**")
         except Exception as e:
-            await ctx.send("***Your Feedback Could Not Be Sent <:tickNo:483288678437879808>, Notifying Owner***")
+            await ctx.send("***Your Feedback Could Not Be Sent <:tickNo:490591987477643264>, Notifying Owner***")
             owner = self.bot.get_user(373256462211874836)
             await owner.send(f"{owner}, We Have A Problem With The Feedback Command,\nAuthor Profile: {ctx.author.id}\nName: {ctx.author}\nHeres The Error:\n```fix\n{e}\n```")
 
