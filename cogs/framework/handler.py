@@ -20,19 +20,19 @@ class Handler:
                 try:
                     return await ctx.reinvoke()
                 except Exception as e:
-                    return await ctx.send(f"<:tickNo:483288678437879808> ***{e}***")
-            return await ctx.send(f"<:tickNo:483288678437879808> ***Sorry, But You Have No Permission(s) for The `{ctx.command}` Command***")
+                    return await ctx.send(f"<:tickNo:490607198443929620> ***{e}***")
+            return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But You Have No Permission(s) for The `{ctx.command}` Command***")
         elif isinstance(error, commands.BotMissingPermissions):
-            return await ctx.send(f"<:tickNo:483288678437879808> ***Sorry, But I Don't Have No Permission(s) To Run The `{ctx.command}` Command***")
+            return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But I Don't Have No Permission(s) To Run The `{ctx.command}` Command***")
         elif isinstance(error, commands.NoPrivateMessage):
-            return await ctx.send(f"<:tickNo:483288678437879808> Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please")
+            return await ctx.send(f"<:tickNo:490607198443929620> Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please")
         elif isinstance(error, commands.CheckFailure):
-            return await ctx.send("***<:tickNo:483288678437879808> These Commands are Only For My Developers***")
+            return await ctx.send("***<:tickNo:490607198443929620> These Commands are Only For My Developers***")
         elif isinstance(error, commands.CommandNotFound):
             pass
         else:
             print(error)
-            await ctx.send(f"*** <:tickNo:483288678437879808> {error}***")
+            await ctx.send(f"*** <:tickNo:490607198443929620> {error}***")
             
     async def on_guild_join(self, guild):
         try:

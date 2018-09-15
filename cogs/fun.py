@@ -34,7 +34,7 @@ class FunCommands:
         elif lieresult <= 61 <= 89:
             result = "Damn, you lie so much, even the devil won't accept you"
         elif lieresult <= 90 <= 100:
-            result = f"<:Kermit:490607198443929620> WE ALL KNOW YOU ARE LYING!"
+            result = f"<:Kermit:490607143771439116> WE ALL KNOW YOU ARE LYING!"
         emb = discord.Embed(color=discord.Color(value=0x1c407a))
         emb.set_author(name="Lie Detector Test")
         emb.add_field(name="Lie Checker", value=input, inline=False)
