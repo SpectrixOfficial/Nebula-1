@@ -16,9 +16,9 @@ class MainCommands:
     async def help(self, ctx):
         try:
             await ctx.send("**Check DMs For Official Help Page <:tickYes:483288647823523841>**")
-            await ctx.author.send("Heres A List Of Commands\nhttps://enternewname.me/nebula/commands")
+            await ctx.author.send("Heres A List Of Commands\nhttp://enternewname.me/nebula/commands")
         except:
-            await ctx.send("Heres A List Of Commands\nhttps://enternewname.me/nebula/commands")
+            await ctx.send("Heres A List Of Commands\nhttp://enternewname.me/nebula/commands")
 
     @commands.command()
     async def prefix(self, ctx):
@@ -38,10 +38,10 @@ class MainCommands:
     @commands.command(aliases=['server'])
     async def support(self, ctx):
         try:
-            await ctx.author.send("Here Is The Official Support Server\nhttps://discord.gg/tpHG7NC")
+            await ctx.author.send("Here Is The Official Support Server\nhttps://discord.gg/Xgt67WV")
             await ctx.send("***Check DMs For Support Server <:tickYes:483288647823523841>***")
         except:
-            await ctx.send("Here Is The Official Support Server\nhttps://discord.gg/tpHG7NC")
+            await ctx.send("Here Is The Official Support Server\nhttps://discord.gg/Xgt67WV")
 
     @commands.command()
     async def invite(self, ctx):
