@@ -3,7 +3,7 @@ from time import ctime
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
 
-lt = datetime.datetime.utcnow()
+
 
 class MainCommands:
     def __init__(self, bot):
@@ -11,14 +11,6 @@ class MainCommands:
 
     async def on_ready(self):
         print("MainCommands Is Loaded")
-
-    @commands.command()
-    async def uptime(self, ctx):
-        delta_uptime = datetime.datetime.utcnow() - lt
-        hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
-        minutes, seconds = divmod(remainder, 60)
-        days, hours = divmod(hours, 24)
-        await ctx.send(f"I have been running for **{days}**d, **{hours}**h, **{minutes}**m, **{seconds}**s")
         
     @commands.command()
     async def help(self, ctx):
