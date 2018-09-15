@@ -21,7 +21,6 @@ async def on_ready():
     print(f"Guild Count : {len(bot.guilds)}\n")
     print("Bot Version : 0.0.7\n")
 
-
 @bot.command()
 async def uptime(ctx):
     delta_uptime = datetime.datetime.utcnow() - lt
