@@ -54,13 +54,13 @@ class Developers:
             value = stdout.getvalue()
             await ctx.send(f'```py\n{value}{traceback.format_exc()}\n```')
             try:
-                await ctx.message.add_reaction(':tickNo:483288678437879808')
+                await ctx.message.add_reaction(':tickNo:490607198443929620')
             except:
                 pass
         else:
             value = stdout.getvalue()
             try:
-                await ctx.message.add_reaction(':tickYes:483288647823523841')
+                await ctx.message.add_reaction(':tickYes:490607198443929620')
             except:
                 pass
 

@@ -34,7 +34,7 @@ class FunCommands:
         elif lieresult <= 61 <= 89:
             result = "Damn, you lie so much, even the devil won't accept you"
         elif lieresult <= 90 <= 100:
-            result = f"<:Kermit:488902339416293387> WE ALL KNOW YOU ARE LYING!"
+            result = f"<:Kermit:490607198443929620> WE ALL KNOW YOU ARE LYING!"
         emb = discord.Embed(color=discord.Color(value=0x1c407a))
         emb.set_author(name="Lie Detector Test")
         emb.add_field(name="Lie Checker", value=input, inline=False)
@@ -50,8 +50,8 @@ class FunCommands:
         pollmsg = await ctx.send(embed=embed)
         await ctx.message.delete()
         try:
-            await pollmsg.add_reaction(emoji=":tickYes:483288647823523841")
-            await pollmsg.add_reaction(emoji=":tickNo:483288678437879808")
+            await pollmsg.add_reaction(emoji=":tickYes:490607182010777620")
+            await pollmsg.add_reaction(emoji=":tickNo:490607198443929620")
         except:
             await ctx.send("***Make Sure I have `add_reactions` so I can make the poll***")
 
