@@ -60,7 +60,7 @@ class Developers:
         else:
             value = stdout.getvalue()
             try:
-                await ctx.message.add_reaction(':tickYes:490607198443929620')
+                await ctx.message.add_reaction(':tickYes:490607182010777620')
             except:
                 pass
 

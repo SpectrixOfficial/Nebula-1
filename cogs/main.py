@@ -15,7 +15,7 @@ class MainCommands:
     @commands.command()
     async def help(self, ctx):
         try:
-            await ctx.send("**Check DMs For Official Help Page <:tickYes:483288647823523841>**")
+            await ctx.send("**Check DMs For Official Help Page <:tickYes:490607182010777620>**")
             await ctx.author.send("Heres A List Of Commands\nhttp://enternewname.me/nebula/commands")
         except:
             await ctx.send("Heres A List Of Commands\nhttp://enternewname.me/nebula/commands")
@@ -82,7 +82,7 @@ class MainCommands:
         except:
             pass
 # no <:tickNo:483288678437879808> 
-#yes <:tickYes:483288647823523841>
+#yes <:tickYes:490607182010777620>
 
 def setup(bot):
     bot.add_cog(MainCommands(bot))
