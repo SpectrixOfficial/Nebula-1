@@ -1,11 +1,7 @@
 import discord, asyncio, json, time, io, traceback, inspect, textwrap, datetime, os
-import hastebin
 from time import ctime
 from contextlib import redirect_stdout
 from discord.ext import commands
-
-with open("data.json") as f:
-    config = json.load(f)
 
 class Developers:
     def __init__(self, bot):
@@ -96,8 +92,6 @@ class Developers:
     async def unload(self, ctx, cog):
         self.bot.unload_extension(f"cogs.{cog}")
         await ctx.send(f"***Unloaded Cog `cogs.{cog}`***")
-    
-
     
 def setup(bot):
     bot.add_cog(Developers(bot))
