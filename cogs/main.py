@@ -14,10 +14,11 @@ class MainCommands:
         
     @commands.command()
     async def help(self, ctx):
-        embed = discord.Embed(color=discord.Color(value=0x1c407a))
-        embed.set_author(name="Nebula Bot Commands:")
-        embed.add_field(name="List of All Commands:", value="[Click Here For The Site](https://enternewname.me/nebula/commands)")
-        await ctx.send(embed=embed)
+        try:
+            await ctx.send("**Check DMs For Official Help Page <:tickYes:483288647823523841>**")
+            await ctx.author.send("Heres A List Of Commands\nhttps://enternewname.me/nebula/commands")
+        except:
+            await ctx.send("Heres A List Of Commands\nhttps://enternewname.me/nebula/commands")
 
     @commands.command()
     async def prefix(self, ctx):
