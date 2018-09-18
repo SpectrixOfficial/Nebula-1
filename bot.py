@@ -1,4 +1,4 @@
-import discord, asyncio, json, pkg_resources, time, datetime, os
+import discord, asyncio, json, pkg_resources, time, datetime, os, psutil
 from discord.ext import commands
 from time import ctime
 from discord.ext.commands import clean_content
