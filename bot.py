@@ -19,8 +19,7 @@ async def on_ready():
     print(f"Discord.py Version : " + pkg_resources.get_distribution("discord.py").version)
     print(f"{bot.user} Is Online At {datetime.datetime.utcnow()}")
     print(f"Guild Count : {len(bot.guilds)}\n")
-    print("Bot Version : 0.0.7\n")
-
+    
 @bot.command()
 async def uptime(ctx):
     delta_uptime = datetime.datetime.utcnow() - lt
