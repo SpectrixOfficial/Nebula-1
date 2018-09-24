@@ -11,7 +11,8 @@ class MainCommands:
 
     async def on_ready(self):
         print("MainCommands Is Loaded")
-        
+       
+    @commands.guild_only()
     @commands.command()
     async def help(self, ctx):
         try:
@@ -23,7 +24,7 @@ class MainCommands:
     @commands.command()
     async def prefix(self, ctx):
         ctx.send("My Prefix is `.` and Cannot Be Changed")
-
+        
     @commands.cooldown(1, 20, BucketType.channel)
     @commands.command()
     async def ping(self, ctx):
@@ -43,6 +44,7 @@ class MainCommands:
         except:
             await ctx.send("Here Is The Official Support Server\nhttps://discord.gg/Xgt67WV")
 
+    @commands.guild_only()
     @commands.command()
     async def invite(self, ctx):
         try:
