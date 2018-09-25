@@ -6,7 +6,7 @@ from discord.ext.commands import clean_content
 with open("data.json") as f:
     config = json.load(f)
 
-bot = commands.Bot(command_prefix=commands.when_mentioned_or(config["prefix"]), case_insensitive=True, pm_help=False, clean_content=True, max_messages=100)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(config["prefix"]), case_insensitive=True, clean_content=True, max_messages=300)
 bot.remove_command('help')
 cogs = config["cogs"]
 lt = datetime.datetime.utcnow()
