@@ -16,4 +16,4 @@ Indeed There Is, You Can See The Website By Going Here : [http://enternewname.me
 
 ## Theres A Pesky Bug, How Do We Get Rid of?
 
-Awesome, Its Nice To See Some People Helping Our Bot, you Can Make Create an Issue relating to all things Nebula
+Awesome, Its Nice To See Some People Helping Our Bot, you Can [Create an Issue](https://github.com/EnterNewName/Nebula/issues/new) relating to all things Nebula
