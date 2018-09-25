@@ -1,6 +1,6 @@
 # Nebula
 
-A Discord Bot Created By `discord.py` and Maintained And Owned By [@EnterNewName](https://github.com/EnterNewName)
+A Discord Bot Created By [`discord.py`](https://discordpy.readthedocs.io/en/rewrite/api.html) and Maintained And Owned By [@EnterNewName](https://github.com/EnterNewName)
 
 ## What Is Nebula Anyways?
 
