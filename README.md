@@ -12,7 +12,7 @@ Invite It To Your Discord Server, thats Great!, You Can Invite The Bot By Simply
 
 ## Is There Any Help Or Documentation?
 
-Indeed There Is, You Can See The Website By Going Here : [https://enternewname.me](https://enternewname.me), And If You Need Assistance, then Goto Our [Discord Server](https://discord.gg/tpHG7NC)
+Indeed There Is, You Can See The Website By Going Here : [http://enternewname.me](http://enternewname.me), And If You Need Assistance, then Goto Our [Discord Server](https://discord.gg/tpHG7NC)
 
 ## Theres A Pesky Bug, How Do We Get Rid of?
 
