@@ -55,6 +55,9 @@ class Handler:
     async def on_message(self, message):
         if message.author.bot:
             return
+
+    async def on_message_edit(self, old, new):
+        await self.bot.process_commands(new)
         # Restricts Bot Users to Use Commands, This is Why This is the Core Of Nebula
 def setup(bot):
     bot.add_cog(Handler(bot))

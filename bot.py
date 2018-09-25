@@ -1,4 +1,4 @@
-import discord, asyncio, json, pkg_resources, time, datetime, os, psutil
+import discord, asyncio, json, pkg_resources, time, datetime, os
 from discord.ext import commands
 from time import ctime
 from discord.ext.commands import clean_content
@@ -26,7 +26,7 @@ async def uptime(ctx):
     hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
     minutes, seconds = divmod(remainder, 60)
     days, hours = divmod(hours, 24)
-    await ctx.send(f"I have been running for **{days}**d, **{hours}**h, **{minutes}**m, **{seconds}**s")
+    await ctx.send(f"I have been running for **{days}** days, **{hours}** hours, **{minutes}** minutes, **{seconds}** seconds!")
     
 if __name__ == '__main__':
     for module in cogs:
