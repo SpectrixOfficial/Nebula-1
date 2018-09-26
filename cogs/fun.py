@@ -1,5 +1,7 @@
 import discord, asyncio, json, random, math, os
 from discord.ext import commands
+from discord.ext.commands import clean_content
+
 
 class FunCommands:
     def __init__(self, bot):
@@ -43,7 +45,7 @@ class FunCommands:
         await ctx.send(embed=emb)
 
     @commands.command()
-    async def poll(self, ctx, * ,PollMessage : str):
+    async def poll(self, ctx, * ,PollMessage : clean_content):
         embed = discord.Embed(color=discord.Color(value=0x1c407a))
         embed.set_author(icon_url=ctx.author.avatar_url, name=f"Poll Made By {ctx.author}")
         embed.add_field(name="\uFEFF", value=PollMessage)

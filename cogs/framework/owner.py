@@ -92,6 +92,17 @@ class Developers:
     async def unload(self, ctx, cog):
         self.bot.unload_extension(f"cogs.{cog}")
         await ctx.send(f"***Unloaded Cog `cogs.{cog}`***")
+
+    @commands.group(invoke_without_command=True)
+    async def devtools(self, ctx):
+        await ctx.send("Developer Tools For Use Of the Bot In General")
+
+    @devtools.command()
+    async def presence(self, ctx, typ : int, *, presencegame=None):
+        if presencegame is None:
+            await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
+        else:
+            await self.bot.change_presence(activity=discord.Activity(name=f"{presencegame} | {len(self.bot.guilds)} Guilds!", type=typ, url="https://twitch.tv/ninja"))
     
 def setup(bot):
     bot.add_cog(Developers(bot))
