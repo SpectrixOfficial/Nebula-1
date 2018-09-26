@@ -101,8 +101,20 @@ class Developers:
     async def presence(self, ctx, typ : int, *, presencegame=None):
         if presencegame is None:
             await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
+            await ctx.send(f"Changed Presence to `Default Presence`")
         else:
             await self.bot.change_presence(activity=discord.Activity(name=f"{presencegame} | {len(self.bot.guilds)} Guilds!", type=typ, url="https://twitch.tv/ninja"))
+            if typ == 0:
+                typtype = "Playing"
+            elif typ == 1:
+                typtype = "Streaming"
+            elif typ == 2:
+                typtype = "Listening to"
+            elif typ == 3:
+                typtype = "Watching"
+            else:
+                typtype = "Unknown Type"
+            await ctx.send(f"Changed Presence To `{typtype}` | `{typ}`\nGame Status: `{presencegame} | {len(self.bot.guilds)} Guilds!`")
     
 def setup(bot):
     bot.add_cog(Developers(bot))
