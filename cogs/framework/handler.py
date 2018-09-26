@@ -38,19 +38,18 @@ class Handler:
         try:
             embed = discord.Embed(color=discord.Color(value=0x1c407a))
             embed.set_author(name="Thanks For Inviting Nebula")
-            embed.add_field(name="My Prefix is `.`", value="[Support](https://discord.gg/tpHG7NC)")
+            embed.add_field(name="My Prefix is `.`", value=f"[Support](https://discord.gg/Xgt67WV)")
             embed.add_field(name="Need Help?", value="[Click here](https://enternewname.me/nebula/commands)")
             await guild.system_channel.send(embed=embed)
         except:
             pass
-        await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
-        
-    async def on_guild_remove(self, guild):
-        await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
 
     async def on_ready(self):
         print("Handler Is Loaded")
-        await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
+        while True:
+            await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
+            await asyncio.sleep(15)
+
         
     async def on_message(self, message):
         if message.author.bot:

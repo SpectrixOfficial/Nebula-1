@@ -40,7 +40,7 @@ class MainCommands:
     async def support(self, ctx):
         try:
             await ctx.author.send("Here Is The Official Support Server\nhttps://discord.gg/Xgt67WV")
-            await ctx.send("***Check DMs For Support Server <:tickYes:483288647823523841>***")
+            await ctx.send("***Check DMs For Support Server <:tickYes:490607182010777620>***")
         except:
             await ctx.send("Here Is The Official Support Server\nhttps://discord.gg/Xgt67WV")
 

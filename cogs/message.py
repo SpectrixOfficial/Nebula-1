@@ -10,11 +10,15 @@ class MessageManagement:
     @commands.has_permissions(manage_messages=True)
     @commands.command(aliases=["purge", "c"])
     async def clear(self, ctx, *, number : int):
+        msg = "message"
         if number > 1000:
             number = 1000
+        if number > 1:
+          msg += 's'
+
         num = await ctx.channel.purge(limit=number + 1)
         await asyncio.sleep(.7)
-        await ctx.send(f"Deleted `{len(num) - 1}` messages <:tickYes:490607198443929620>", delete_after=1)
+        await ctx.send(f"Deleted `{len(num) - 1}` {msg} <:tickYes:490607182010777620>", delete_after=1)
 
 
     @commands.guild_only()
@@ -31,7 +35,7 @@ class MessageManagement:
             else:    
                 numofmessages = "seconds"
             await ctx.channel.edit(slowmode_delay=(seconds))
-            await ctx.send(f"Channel is On Slowmode for `{seconds}` {numofmessages}!")
+            await ctx.send(f"Channel is On Slowmode for `{seconds}` {numofmessages} <:tickYes:490607182010777620>")
     
     
     async def on_ready(self):
