@@ -1,0 +1,12 @@
+{
+    "bottoken": "NDg3MTY0MDExNjgzNzc0NDY0.DnJrTg.X9UGcI7reFXHZo1hmMMh4HIBsX0",
+    "cogs": [
+      "cogs.main",
+      "cogs.framework.owner",
+      "cogs.framework.handler",
+      "cogs.message",
+      "cogs.user",
+      "cogs.role",
+      "cogs.fun"],
+    "prefix" : "."
+  }

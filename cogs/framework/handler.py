@@ -25,11 +25,25 @@ class Handler:
         elif isinstance(error, commands.BotMissingPermissions):
             return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But I Don't Have No Permission(s) To Run The `{ctx.command}` Command***")
         elif isinstance(error, commands.NoPrivateMessage):
-            return await ctx.send(f"<:tickNo:490607198443929620> Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please")
+            if ctx.author.id == 373256462211874836:
+                try:
+                    return await ctx.reinvoke()
+                except Exception as e:
+                    return await ctx.send(f"```fix\n{e}\n```")
+            else:
+                return await ctx.send(f"<:tickNo:490607198443929620> Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please")
         elif isinstance(error, commands.CheckFailure):
             return await ctx.send("***<:tickNo:490607198443929620> These Commands are Only For My Developers***")
         elif isinstance(error, commands.CommandNotFound):
             pass
+        elif isinstance(error, commands.CommandOnCooldown):
+            if ctx.author.id == 373256462211874836:
+                try:
+                    return await ctx.reinvoke()
+                except Exception as e:
+                    return await ctx.send(f"```fix\n{e}\n```")
+            else:
+                await ctx.send(f"*** <:tickNo:490607198443929620> {error}***")
         else:
             print(error)
             await ctx.send(f"*** <:tickNo:490607198443929620> {error}***")
