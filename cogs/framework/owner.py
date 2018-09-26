@@ -52,7 +52,7 @@ class Developers:
                 ret = await func()
         except Exception as e:
             value = stdout.getvalue()
-            await ctx.send(f'```py\n{value}{traceback.format_exc()}\n```')
+            await ctx.send(f'```py\n{value}{traceback.format_exc()}```')
             try:
                 await ctx.message.add_reaction(':tickNo:490607198443929620')
             except:

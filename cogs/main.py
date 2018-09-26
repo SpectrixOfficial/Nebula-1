@@ -3,8 +3,6 @@ from time import ctime
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
 
-
-
 class MainCommands:
     def __init__(self, bot):
         self.bot = bot
