@@ -14,10 +14,9 @@ class MainCommands:
     @commands.command()
     async def help(self, ctx):
         try:
-            await ctx.send("**Check DMs For Official Help Page <:tickYes:490607182010777620>**")
-            await ctx.author.send("Heres A List Of Commands\nhttp://enternewname.me/nebula/commands")
+            await ctx.send("Heres My Website For Me\nhttp://enternewname.me/nebula/commands")
         except:
-            await ctx.send("Heres A List Of Commands\nhttp://enternewname.me/nebula/commands")
+            await ctx.author.send("Heres My Website For Me\nhttp://enternewname.me/nebula/commands")
 
     @commands.command()
     async def prefix(self, ctx):
@@ -37,19 +36,22 @@ class MainCommands:
     @commands.command(aliases=['server'])
     async def support(self, ctx):
         try:
-            await ctx.author.send("Here Is The Official Support Server\nhttps://discord.gg/Xgt67WV")
-            await ctx.send("***Check DMs For Support Server <:tickYes:490607182010777620>***")
+            await ctx.send("Here Is The Official Support Server<:tickYes:490607182010777620>\nhttps://discord.gg/Xgt67WV")
         except:
-            await ctx.send("Here Is The Official Support Server\nhttps://discord.gg/Xgt67WV")
+            await ctx.author.send("Here Is The Official Support Server\nhttps://discord.gg/Xgt67WV")
+            
 
     @commands.guild_only()
     @commands.command()
     async def invite(self, ctx):
         try:
-            await ctx.author.send("https://discordapp.com/oauth2/authorize?client_id=487164011683774464&permissions=8&scope=bot")
-            await ctx.send("**Check Your DMs For The Nebula Invite!**")
+            embed = discord.Embed(color=discord.Color(value=0x1c407a))
+            embed.add_field(name="Nebula's Invite", value="[Click Here](https://discordapp.com/oauth2/authorize?client_id=487164011683774464&permissions=8&scope=bot)")
+            await ctx.send(embed=embed)
         except:
-            await ctx.send("https://discordapp.com/oauth2/authorize?client_id=487164011683774464&permissions=8&scope=bot")
+            embed = discord.Embed(color=discord.Color(value=0x1c407a))
+            embed.add_field(name="Nebula's Invite", value="[Click Here](https://discordapp.com/oauth2/authorize?client_id=487164011683774464&permissions=8&scope=bot)")
+            await ctx.send(embed=embed)
 
     @commands.guild_only()
     @commands.command()

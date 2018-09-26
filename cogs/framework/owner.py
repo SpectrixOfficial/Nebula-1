@@ -115,6 +115,11 @@ class Developers:
             else:
                 typtype = "Unknown Type"
             await ctx.send(f"Changed Presence To `{typtype}` | `{typ}`\nGame Status: `{presencegame} | {len(self.bot.guilds)} Guilds!`")
+
+    @devtools.command()
+    async def logoff(self, ctx):
+        await ctx.send("Logged Out")
+        await self.bot.logout()
     
 def setup(bot):
     bot.add_cog(Developers(bot))
