@@ -1,4 +1,4 @@
-import discord, asyncio, json, time, io, traceback, inspect, textwrap, datetime, os
+import discord, asyncio, json, time, io, traceback, inspect, textwrap, datetime, os, sqlite3
 from time import ctime
 from contextlib import redirect_stdout
 from discord.ext import commands

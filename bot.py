@@ -1,10 +1,23 @@
-import discord, asyncio, json, pkg_resources, time, datetime, os, aiosqlite
+import discord, asyncio, json, pkg_resources, time, datetime, os, sqlite3
 from discord.ext import commands
 from time import ctime
 from discord.ext.commands import clean_content
 
 with open("database/data.json") as f:
     config = json.load(f)
+
+#The following unselected is still in testing, im too lazy to care right now
+"""def get_prefix(msg):
+    default_prefix = ["<@487164011683774464>", "."]
+    connection = sqlite3.connect('database/data.db')
+    db = connection.cursor()
+    try:
+        db.execute("SELECT * FROM guilddata SELECT ?=? SELECT prefix", msg.guild.id)
+        connection.close()
+    except:
+        return default_prefix
+    connection.close()"""
+        
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(config["prefix"]), case_insensitive=True, clean_content=True, max_messages=300)
 bot.remove_command('help')

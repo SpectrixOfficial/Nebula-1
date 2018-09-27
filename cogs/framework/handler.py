@@ -2,7 +2,7 @@ import discord, asyncio, logging, aiohttp, requests, json, time, datetime
 from discord.ext import commands
 from time import ctime
 
-with open("databases/data.json") as f:
+with open("database/data.json") as f:
     config = json.load(f)
 
 class Handler:
