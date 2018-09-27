@@ -26,7 +26,7 @@ async def uptime(ctx):
     hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
     minutes, seconds = divmod(remainder, 60)
     days, hours = divmod(hours, 24)
-    await ctx.send(f"I have been running for **{days}** days, **{hours}** hours, **{minutes}** minutes, **{seconds}** seconds!")
+    await ctx.send(f"I have been running for **{days}** day(s), **{hours}** hour(s), **{minutes}** minute(s), **{seconds}** second(s)!")
     
 if __name__ == '__main__':
     for module in cogs:
