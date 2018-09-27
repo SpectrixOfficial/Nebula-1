@@ -3,7 +3,7 @@ from discord.ext import commands
 from time import ctime
 from discord.ext.commands import clean_content
 
-with open("databases/data.json") as f:
+with open("database/data.json") as f:
     config = json.load(f)
 
 bot = commands.Bot(command_prefix=commands.when_mentioned_or(config["prefix"]), case_insensitive=True, clean_content=True, max_messages=300)
