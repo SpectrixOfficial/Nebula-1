@@ -4,6 +4,9 @@ from discord.ext import commands
 class MessageManagement:
     def __init__(self, bot):
         self.bot = bot
+
+    async def bbot(self, user):
+        return await user.author == self.bot.user
     
     @commands.guild_only()
     @commands.bot_has_permissions(manage_messages=True)
@@ -36,8 +39,7 @@ class MessageManagement:
                 numofmessages = "seconds"
             await ctx.channel.edit(slowmode_delay=(seconds))
             await ctx.send(f"Channel is On Slowmode for `{seconds}` {numofmessages} <:tickYes:490607182010777620>")
-    
-    
+
     async def on_ready(self):
         print("MessageManagement Is Loaded")
 

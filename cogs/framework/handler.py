@@ -8,6 +8,13 @@ with open("database/data.json") as f:
 class Handler:
     def __init__(self, bot):
         self.bot = bot
+
+    # Logs Error That Might Clog The Stdout
+    logger = logging.getLogger('discord')
+    logger.setLevel(logging.DEBUG)
+    handler = logging.FileHandler(filename='bot.log', encoding='utf-8', mode='w')
+    handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+    logger.addHandler(handler)
  
     async def on_command_error(self, ctx, error):
         if isinstance (error, commands.MissingPermissions):
@@ -63,14 +70,10 @@ class Handler:
         while True:
             await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
             await asyncio.sleep(15)
-
         
     async def on_message(self, message):
         if message.author.bot:
             return
 
-    async def on_message_edit(self, old, new):
-        await self.bot.process_commands(new)
-        # Restricts Bot Users to Use Commands, This is Why This is the Core Of Nebula
 def setup(bot):
     bot.add_cog(Handler(bot))

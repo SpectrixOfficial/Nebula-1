@@ -2,7 +2,6 @@ import discord, asyncio, json, pkg_resources, time, datetime
 import logging
 from discord.ext import commands
 from time import ctime
-from discord.ext.commands import clean_content
 
 with open("database/data.json") as f:
     config = json.load(f)
@@ -12,20 +11,13 @@ bot.remove_command('help')
 cogs = config["cogs"]
 lt = datetime.datetime.utcnow()
 
-# Logs Error That Might Clog The Stdout
-logger = logging.getLogger('discord')
-logger.setLevel(logging.DEBUG)
-handler = logging.FileHandler(filename='bot.log', encoding='utf-8', mode='w')
-handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-logger.addHandler(handler)
-
 @bot.event
 async def on_ready():
     print("========================")
     print("Connected To Discord API")
     print("========================\nStats:\n")
     print(f"Discord.py Version : " + pkg_resources.get_distribution("discord.py").version)
-    print(f"{bot.user} Is Online At {datetime.datetime.utcnow()}")
+    print(f"{bot.user} Is Online A5t {datetime.datetime.utcnow()}")
     print(f"Guild Count : {len(bot.guilds)}\n")
         
 @bot.command()
