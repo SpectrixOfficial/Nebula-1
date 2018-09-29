@@ -46,11 +46,11 @@ class MainCommands:
     async def invite(self, ctx):
         try:
             embed = discord.Embed(color=discord.Color(value=0x1c407a))
-            embed.add_field(name="Nebula's Invite", value="[Click Here](https://discordapp.com/oauth2/authorize?client_id=487164011683774464&permissions=8&scope=bot)")
+            embed.add_field(name="Nebula's Invite", value="[Click Here](https://discordapp.com/oauth2/authorize?client_id=487164011683774464&permissions=2146958591&scope=bot)")
             await ctx.send(embed=embed)
         except:
             embed = discord.Embed(color=discord.Color(value=0x1c407a))
-            embed.add_field(name="Nebula's Invite", value="[Click Here](https://discordapp.com/oauth2/authorize?client_id=487164011683774464&permissions=8&scope=bot)")
+            embed.add_field(name="Nebula's Invite", value="[Click Here](https://discordapp.com/oauth2/authorize?client_id=487164011683774464&permissions=2146958591&scope=bot)")
             await ctx.send(embed=embed)
 
     @commands.guild_only()
