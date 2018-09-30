@@ -52,7 +52,7 @@ class Handler:
             else:
                 await ctx.send(f"*** <:tickNo:490607198443929620> {error}***")
         else:
-            print(f"\nUser Name And ID: {ctx.author} {ctx.author.id}\nError: {error}")
+            print(f"\nUser Name And ID: {ctx.author}| {ctx.author.id}\nError: {error}")
 
     async def on_guild_join(self, guild):
         try:
