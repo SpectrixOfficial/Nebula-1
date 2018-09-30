@@ -11,40 +11,23 @@ class Handler:
  
     async def on_command_error(self, ctx, error):
         if isinstance (error, commands.MissingPermissions):
-            if ctx.author.id == 373256462211874836:
-                try:
-                    return await ctx.reinvoke()
-                except Exception as e:
-                    return await ctx.send(f"```fix\n{e}\n```")
-            elif ctx.guild.owner:
-                try:
-                    return await ctx.reinvoke()
-                except Exception as e:
-                    return await ctx.send(f"<:tickNo:490607198443929620> ***{e}***")
-            else:
+            if ctx.author.id != 373256462211874836:
                 return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But You Have No Permission(s) for The `{ctx.command}` Command***")
+            else:
+                await ctx.reinvoke()
         elif isinstance(error, commands.BotMissingPermissions):
             return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But I Don't Have No Permission(s) To Run The `{ctx.command}` Command***")
         elif isinstance(error, commands.NoPrivateMessage):
-            if ctx.author.id == 373256462211874836:
-                try:
-                    return await ctx.reinvoke()
-                except Exception as e:
-                    return await ctx.send(f"```fix\n{e}\n```")
-            else:
-                return await ctx.send(f"<:tickNo:490607198443929620> Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please")
+            return await ctx.send(f"<:tickNo:490607198443929620> Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please")
         elif isinstance(error, commands.CheckFailure):
             return await ctx.send("***<:tickNo:490607198443929620> These Commands are Only For My Developers***")
         elif isinstance(error, commands.CommandNotFound):
             pass
         elif isinstance(error, commands.CommandOnCooldown):
-            if ctx.author.id == 373256462211874836:
-                try:
-                    return await ctx.reinvoke()
-                except Exception as e:
-                    return await ctx.send(f"```fix\n{e}\n```")
+            if ctx.author.id != 373256462211874836:
+                return await ctx.send(f"*** <:tickNo:490607198443929620> {error}***")
             else:
-                await ctx.send(f"*** <:tickNo:490607198443929620> {error}***")
+                await ctx.reinvoke()
         else:
             print(f"\nUser Name And ID: {ctx.author}| {ctx.author.id}\nError: {error}")
 

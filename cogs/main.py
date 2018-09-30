@@ -40,7 +40,6 @@ class MainCommands:
         except:
             await ctx.author.send("Here Is The Official Support Server\nhttps://discord.gg/Xgt67WV")
             
-
     @commands.guild_only()
     @commands.command()
     async def invite(self, ctx):
