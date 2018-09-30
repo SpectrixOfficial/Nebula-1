@@ -8,13 +8,6 @@ with open("database/data.json") as f:
 class Handler:
     def __init__(self, bot):
         self.bot = bot
-
-    # Logs Error That Might Clog The Stdout
-    logger = logging.getLogger('discord')
-    logger.setLevel(logging.DEBUG)
-    handler = logging.FileHandler(filename='bot.log', encoding='utf-8', mode='w')
-    handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-    logger.addHandler(handler)
  
     async def on_command_error(self, ctx, error):
         if isinstance (error, commands.MissingPermissions):
