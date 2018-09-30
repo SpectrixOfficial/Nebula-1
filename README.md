@@ -20,7 +20,7 @@ Awesome, Its Nice To See Some People Helping Our Bot, you Can [Create an Issue](
 
 ## Wheres the JSON File, And What is It For?
 
-The JSON File is pretty much like the sacred file to keep away, but if you want to clone the repo, nevertheless here is it:
+The JSON File is pretty much like the login file, but if you want to clone the repo, nevertheless here is it:
 
 >&nbsp;{	
 >&nbsp;"bottoken": "token",<br />	
