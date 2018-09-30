@@ -6,7 +6,6 @@ class MessageManagement:
         self.bot = bot
     
     @commands.guild_only()
-    @commands.bot_has_permissions(manage_messages=True)
     @commands.has_permissions(manage_messages=True)
     @commands.command(aliases=["purge", "c"])
     async def clear(self, ctx, *, number : int):
@@ -23,7 +22,6 @@ class MessageManagement:
 
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
-    @commands.bot_has_permissions(manage_messages=True)
     @commands.command(aliases=['slowmo'])
     async def slowmode(self, ctx, seconds: int=0):
         if seconds > 120:

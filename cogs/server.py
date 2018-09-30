@@ -6,7 +6,7 @@ class ServerExclusive:
         self.bot = bot
 
     async def __local_check(self, ctx):
-        return if ctx.guild.id == 490591987477643264
+        return ctx.guild.id == 490591987477643264
 
     @commands.command()
     async def test(self, ctx):
