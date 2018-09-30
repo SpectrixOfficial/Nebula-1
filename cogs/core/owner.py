@@ -100,10 +100,10 @@ class Developers:
     @devtools.command()
     async def presence(self, ctx, typ : int, *, presencegame=None):
         if presencegame is None:
-            await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
+            await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/Enter%20New%20Name", type=1))
             await ctx.send(f"Changed Presence to `Default Presence`")
         else:
-            await self.bot.change_presence(activity=discord.Activity(name=f"{presencegame} | {len(self.bot.guilds)} Guilds!", type=typ, url="https://twitch.tv/ninja"))
+            await self.bot.change_presence(activity=discord.Activity(name=f"{presencegame} | {len(self.bot.guilds)} Guilds!", type=typ, url="https://www.twitch.tv/Enter%20New%20Name"))
             if typ == 0:
                 typtype = "Playing"
             elif typ == 1:

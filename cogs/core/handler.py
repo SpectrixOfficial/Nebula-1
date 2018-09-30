@@ -67,7 +67,7 @@ class Handler:
     async def on_ready(self):
         print("Handler Is Loaded")
         while True:
-            await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/ninja", type=1))
+            await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/Enter%20New%20Name", type=1))
             await asyncio.sleep(15)
         
     async def on_message(self, message):
