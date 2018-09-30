@@ -4,9 +4,6 @@ from discord.ext import commands
 class MessageManagement:
     def __init__(self, bot):
         self.bot = bot
-
-    async def bbot(self, user):
-        return await user.author == self.bot.user
     
     @commands.guild_only()
     @commands.bot_has_permissions(manage_messages=True)
@@ -29,6 +26,8 @@ class MessageManagement:
     @commands.bot_has_permissions(manage_messages=True)
     @commands.command(aliases=['slowmo'])
     async def slowmode(self, ctx, seconds: int=0):
+        if seconds > 120:
+            return await ctx.send("Slowmode Rate Cannot Be Over 120 Seconds")
         if seconds == 0:
             await ctx.channel.edit(slowmode_delay=seconds)
             await ctx.send("Slowmode is off for this channel!")

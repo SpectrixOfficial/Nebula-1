@@ -17,7 +17,7 @@ async def on_ready():
     print("Connected To Discord API")
     print("========================\nStats:\n")
     print(f"Discord.py Version : " + pkg_resources.get_distribution("discord.py").version)
-    print(f"{bot.user} Is Online A5t {datetime.datetime.utcnow()}")
+    print(f"{bot.user} Is Online At {datetime.datetime.utcnow()}")
     print(f"Guild Count : {len(bot.guilds)}\n")
         
 @bot.command()

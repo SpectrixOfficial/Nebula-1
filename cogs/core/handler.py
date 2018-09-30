@@ -18,7 +18,7 @@ class Handler:
  
     async def on_command_error(self, ctx, error):
         if isinstance (error, commands.MissingPermissions):
-            if ctx.author.id == 373256462211874836:
+            if ctx.author.id == self.bot.owner_id:
                 try:
                     return await ctx.reinvoke()
                 except Exception as e:
@@ -32,7 +32,7 @@ class Handler:
         elif isinstance(error, commands.BotMissingPermissions):
             return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But I Don't Have No Permission(s) To Run The `{ctx.command}` Command***")
         elif isinstance(error, commands.NoPrivateMessage):
-            if ctx.author.id == 373256462211874836:
+            if ctx.author.id == self.bot.owner_id:
                 try:
                     return await ctx.reinvoke()
                 except Exception as e:
@@ -44,7 +44,7 @@ class Handler:
         elif isinstance(error, commands.CommandNotFound):
             pass
         elif isinstance(error, commands.CommandOnCooldown):
-            if ctx.author.id == 373256462211874836:
+            if ctx.author.id == self.bot.owner_id:
                 try:
                     return await ctx.reinvoke()
                 except Exception as e:
@@ -52,9 +52,8 @@ class Handler:
             else:
                 await ctx.send(f"*** <:tickNo:490607198443929620> {error}***")
         else:
-            print(error)
-            await ctx.send(f"*** <:tickNo:490607198443929620> {error}***")
-            
+            print(f"\nUser Name And ID: {ctx.author} {ctx.author.id}\nError: {error}")
+
     async def on_guild_join(self, guild):
         try:
             embed = discord.Embed(color=discord.Color(value=0x1c407a))
@@ -74,6 +73,9 @@ class Handler:
     async def on_message(self, message):
         if message.author.bot:
             return
+    
+    async def on_command_completion(self, ctx):
+        print(f"Command {ctx.command}\nCommand Invoker: {ctx.author} | {ctx.author.id} ")
 
 def setup(bot):
     bot.add_cog(Handler(bot))
