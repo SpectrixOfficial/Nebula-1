@@ -17,3 +17,20 @@ Indeed There Is, You Can See The Website By Going Here : [http://enternewname.me
 ## There is an Bug, How Do We Get Rid of?
 
 Awesome, Its Nice To See Some People Helping Our Bot, you Can [Create an Issue](https://github.com/EnterNewName/Nebula/issues/new) relating to all things Nebula
+
+## Wheres the JSON File, And What is It For?
+
+The JSON File is pretty much like the sacred file to keep away, but if you want to clone the repo, nevertheless here is it:
+
+>&nbsp;{	
+>&nbsp;"bottoken": "token",<br />	
+>&nbsp;&nbsp;"cogs": [<br />	
+>&nbsp;&nbsp;"cogs.main",<br />	
+>&nbsp;&nbsp;"cogs.core.owner",<br />	
+>&nbsp;&nbsp;"cogs.core.handler",<br />	
+>&nbsp;&nbsp;"cogs.message",<br />	
+>&nbsp;&nbsp;"cogs.user",<br />	
+>&nbsp;&nbsp;"cogs.role",<br />	
+>&nbsp;&nbsp;"cogs.fun"],<br />	
+>&nbsp;"prefix" : "."<br />	
+>&nbsp;} 
