@@ -14,9 +14,9 @@ class MainCommands:
     @commands.command()
     async def help(self, ctx):
         try:
-            await ctx.send("**Heres my website**\nhttp://enternewname.me/nebula/commands")
+            await ctx.author.send("**Here's my website**\nhttp://enternewname.me/nebula/commands")
         except:
-            await ctx.author.send("**Heres my website**\nhttp://enternewname.me/nebula/commands")
+            await ctx.send("**Here's my website**\nhttp://enternewname.me/nebula/commands")
 
     @commands.command()
     async def prefix(self, ctx):
@@ -36,21 +36,17 @@ class MainCommands:
     @commands.command(aliases=['server'])
     async def support(self, ctx):
         try:
-            await ctx.send("Here Is The Official Support Server<:tickYes:490607182010777620>\nhttps://discord.gg/Xgt67WV")
+            await ctx.author.send("Here Is The Official Support Server<:tickYes:490607182010777620>\nhttps://discord.gg/Xgt67WV")
         except:
-            await ctx.author.send("Here Is The Official Support Server\nhttps://discord.gg/Xgt67WV")
+            await ctx.send("Here Is The Official Support Server\nhttps://discord.gg/Xgt67WV")
             
     @commands.guild_only()
     @commands.command()
     async def invite(self, ctx):
         try:
-            embed = discord.Embed(color=discord.Color(value=0x1c407a))
-            embed.add_field(name="Nebula's Invite", value=f"[Click Here](https://enternewname.me/redirects/invite-nebula)")
-            await ctx.send(embed=embed)
+            await ctx.author.send("**Here's my invite:**\nhttps://enternewname.me/redirects/invite-nebula")
         except:
-            embed = discord.Embed(color=discord.Color(value=0x1c407a))
-            embed.add_field(name="Nebula's Invite", value=f"[Click Here](https://enternewname.me/redirects/invite-nebula)")
-            await ctx.send(embed=embed)
+            await ctx.send("**Here's my invite:**\nhttps://enternewname.me/redirects/invite-nebula")
 
     @commands.guild_only()
     @commands.command()
