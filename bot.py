@@ -35,7 +35,7 @@ async def uptime(ctx):
 if __name__ == '__main__':
     for module in cogs:
         bot.load_extension(module)
-        print(f"\nLoaded extention {module}")
-    print("\nBot Extensions Are Ready, Bot Ready To Go!")
+        print(f"\nLoading Extension {module}")
+    print("\nConnecting To The API")
     
     bot.run(config["bottoken"], bot=True, reconnect=True)

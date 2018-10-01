@@ -35,9 +35,9 @@ class FunCommands:
                 await userWins()    
         elif choice == "scissors":
             if botChoice == "paper":
-                await botWins()
-            else:
                 await userWins()
+            else:
+                await botWins()
 
 
     @commands.command(aliases=['ld'])
