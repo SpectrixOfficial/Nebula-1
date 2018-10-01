@@ -8,11 +8,6 @@ class ServerExclusive:
     async def __local_check(self, ctx):
         return ctx.guild.id == 490591987477643264
 
-    @commands.command()
-    async def test(self, ctx):
-        await ctx.send("ing")
-
-     #called an exclusive for a reason you know
                
 
 def setup(bot):
