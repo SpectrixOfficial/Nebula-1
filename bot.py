@@ -5,7 +5,7 @@ from time import ctime
 with open("database/data.json") as f:
     config = json.load(f)
 
-bot = commands.AutoShardedBot(command_prefix=commands.when_mentioned_or(config["prefix"]), 
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(config["prefix"]), 
                              case_insensitive=True,
                              clean_content=True,
                              max_messages=300,
@@ -38,4 +38,4 @@ if __name__ == '__main__':
         print(f"\nLoading Extension {module}")
     print("\nConnecting To The API")
     
-    bot.run(config["bottoken"], bot=True, reconnect=True)
+    bot.run(config["bottoken"])
