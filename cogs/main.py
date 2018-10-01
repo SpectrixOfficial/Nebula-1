@@ -14,9 +14,9 @@ class MainCommands:
     @commands.command()
     async def help(self, ctx):
         try:
-            await ctx.send("Heres My Website For Me\nhttp://enternewname.me/nebula/commands")
+            await ctx.send("**Heres my website**\nhttp://enternewname.me/nebula/commands")
         except:
-            await ctx.author.send("Heres My Website For Me\nhttp://enternewname.me/nebula/commands")
+            await ctx.author.send("**Heres my website**\nhttp://enternewname.me/nebula/commands")
 
     @commands.command()
     async def prefix(self, ctx):
