@@ -22,15 +22,15 @@ Awesome, Its Nice To See Some People Helping Our Bot, you Can [Create an Issue](
 
 The JSON File is pretty much like the login file, but if you want to clone the repo, nevertheless here is it:
 
->&nbsp;{	
->&nbsp;"bottoken": "token",<br />	
->&nbsp;&nbsp;"cogs": [<br />	
->&nbsp;&nbsp;"cogs.main",<br />	
->&nbsp;&nbsp;"cogs.core.owner",<br />	
->&nbsp;&nbsp;"cogs.core.handler",<br />	
->&nbsp;&nbsp;"cogs.message",<br />	
->&nbsp;&nbsp;"cogs.user",<br />	
->&nbsp;&nbsp;"cogs.role",<br />	
->&nbsp;&nbsp;"cogs.fun"],<br />	
->&nbsp;"prefix" : "."<br />	
->&nbsp;} 
+>&nbsp;{
+>&nbsp;"bottoken": "token",<br />
+>&nbsp;&nbsp;"cogs": [<br />
+>&nbsp;&nbsp;"cogs.main",<br />
+>&nbsp;&nbsp;"cogs.core.owner",<br />
+>&nbsp;&nbsp;"cogs.core.handler",<br />
+>&nbsp;&nbsp;"cogs.message",<br />
+>&nbsp;&nbsp;"cogs.user",<br />
+>&nbsp;&nbsp;"cogs.role",<br />
+>&nbsp;&nbsp;"cogs.fun"],<br />
+>&nbsp;"prefix" : "."<br />
+>&nbsp;}
