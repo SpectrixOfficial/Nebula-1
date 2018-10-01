@@ -11,8 +11,34 @@ class FunCommands:
         print("FunCommands Is Loaded")
 
     @commands.command()
-    async def rps(self, ctx):
-        await ctx.send(f"**I Choose.... `{random.choice(['rocks', 'paper', 'scissors'])}`**")
+    async def rps(self, ctx, choice):
+        botChoice = random.choice(['rock', 'paper', 'scissors'])
+
+        async def userWins():
+            await ctx.send(f"I choose... **{botChoice}**. You win! ***{choice} beats {botChoice}!***")
+
+        async def botWins():
+            await ctx.send(f"I choose... **{botChoice}**. I win! ***{botChoice} beats {choice}!***")
+
+        if choice == botChoice:
+            await ctx.send(f"***Tie!*** We both used {botChoice}!")
+
+        elif choice == "rock":
+            if botChoice == "paper":
+                await botWins()
+            else:
+                await userWins()
+        elif choice == "paper":
+            if botChoice == "scissors":
+                await botWins()
+            else:
+                await userWins()    
+        elif choice == "scissors":
+            if botChoice == "paper":
+                await botWins()
+            else:
+                await userWins()
+
 
     @commands.command(aliases=['ld'])
     async def liedetector(self, ctx, *, input):
