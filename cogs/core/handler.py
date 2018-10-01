@@ -37,6 +37,7 @@ class Handler:
             embed.set_author(name="Thanks For Inviting Nebula")
             embed.add_field(name="My Prefix is `.`", value=f"[Support](https://discord.gg/Xgt67WV)")
             embed.add_field(name="Need Help?", value="[Click here](https://enternewname.me/nebula/commands)")
+            embed.add_field(name="Logging Channel Requirement", value="***#mod-log***")
             await guild.system_channel.send(embed=embed)
         except:
             pass
@@ -47,9 +48,13 @@ class Handler:
             await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/Enter%20New%20Name", type=1))
             await asyncio.sleep(15)
         
-    async def on_message(self, message):
-        if message.author.bot:
+    async def on_message(self, msg):
+        if msg.author.bot:
             return
+        if msg.guild:
+            return
+        if msg.author.dm_channel:
+            print(f"Message Content: {msg.content} | User: {msg.author} | User ID: {msg.author.id}")
     
 def setup(bot):
     bot.add_cog(Handler(bot))
