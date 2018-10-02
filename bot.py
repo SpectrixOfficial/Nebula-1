@@ -1,4 +1,4 @@
-import discord, asyncio, json, pkg_resources, time, datetime, logging
+import discord, asyncio, json, pkg_resources, time, datetime
 from discord.ext import commands
 from time import ctime
 
@@ -33,4 +33,4 @@ if __name__ == '__main__':
         print(f"\nLoading Extension {module}")
     print("\nConnecting To The API")
     
-    bot.run(config["bottoken"])
+bot.run(config["bottoken"])
