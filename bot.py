@@ -5,11 +5,7 @@ from time import ctime
 with open("database/data.json") as f:
     config = json.load(f)
 
-bot = commands.Bot(command_prefix=commands.when_mentioned_or(config["prefix"]), 
-                             case_insensitive=True,
-                             clean_content=True,
-                             max_messages=300,
-                             owner_id=373256462211874836)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(config["prefix"]), case_insensitive=True, clean_content=True, max_messages=300, owner_id=373256462211874836)
 
 bot.remove_command('help')
 cogs = config["cogs"]
