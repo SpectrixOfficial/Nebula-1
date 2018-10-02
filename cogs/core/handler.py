@@ -11,20 +11,20 @@ class Handler:
  
     async def on_command_error(self, ctx, error):
         if isinstance (error, commands.MissingPermissions):
-            if ctx.author.id != 373256462211874836:
-                return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But You Have No Permission(s) for The `{ctx.command}` Command***")
+            if ctx.author.id != self.bot.owner_id:
+                return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But You Have Do Not Have The {error.missing_perms[0]} Permission(s)***")
             else:
                 await ctx.reinvoke()
         elif isinstance(error, commands.BotMissingPermissions):
             return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But I Don't Have No Permission(s) To Run The `{ctx.command}` Command***")
         elif isinstance(error, commands.NoPrivateMessage):
-            return await ctx.send(f"<:tickNo:490607198443929620> Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please")
+            return await ctx.send(f"***<:tickNo:490607198443929620> Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please***")
         elif isinstance(error, commands.CheckFailure):
             return await ctx.send("***<:tickNo:490607198443929620> These Commands are Only For My Developers***")
         elif isinstance(error, commands.CommandNotFound):
             pass
         elif isinstance(error, commands.CommandOnCooldown):
-            if ctx.author.id != 1373256462211874836:
+            if ctx.author.id != self.bot.owner_id:
                 return await ctx.send("***<:tickNo:490607198443929620> Command Is On A Cooldown For {} Seconds***".format(math.ceil(error.retry_after)))
             else:
                 await ctx.reinvoke()
@@ -55,6 +55,12 @@ class Handler:
             return
         if msg.author.dm_channel:
             print(f"Message Content: {msg.content} | User: {msg.author} | User ID: {msg.author.id}")
+
+    logger = logging.getLogger('discord')
+    logger.setLevel(logging.DEBUG)
+    handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
+    handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+    logger.addHandler(handler)
     
 def setup(bot):
     bot.add_cog(Handler(bot))

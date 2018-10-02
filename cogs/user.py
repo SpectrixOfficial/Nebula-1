@@ -44,8 +44,7 @@ class UserManagement:
             await ctx.send(f"<:tickYes:490607182010777620> **{user} has Been Banned From The Guild With A Reason:** {reason}") 
 
     @commands.guild_only()
-    @commands.has_permissions(ban_members=True)
-    @commands.has_permissions(kick_members=True)
+    @commands.has_permissions(ban_members=True, kick_members=True)
     @commands.bot_has_permissions(ban_members=True)
     @commands.command(aliases=['sb'])
     async def softban(self, ctx, user : discord.Member, *, reason=None):
