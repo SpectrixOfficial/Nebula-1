@@ -1,4 +1,4 @@
-import discord, asyncio, logging, aiohttp, requests, json, time, datetime
+import discord, asyncio, logging, aiohttp, requests, json, time, datetime, math
 from discord.ext import commands
 from time import ctime
 
@@ -24,8 +24,8 @@ class Handler:
         elif isinstance(error, commands.CommandNotFound):
             pass
         elif isinstance(error, commands.CommandOnCooldown):
-            if ctx.author.id != 373256462211874836:
-                return await ctx.send(f"*** <:tickNo:490607198443929620> {error}***")
+            if ctx.author.id != 1373256462211874836:
+                return await ctx.send("***<:tickNo:490607198443929620> Command Is On A Cooldown For {} Seconds***".format(math.ceil(error.retry_after)))
             else:
                 await ctx.reinvoke()
         else:
