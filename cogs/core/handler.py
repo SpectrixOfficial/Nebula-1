@@ -25,7 +25,7 @@ class Handler:
             pass
         elif isinstance(error, commands.CommandOnCooldown):
             if ctx.author.id != 1373256462211874836:
-                return await ctx.send("***<:tickNo:490607198443929620> Command Is On A Cooldown For {} Seconds***".format(math.ceil(error.retry_after)))
+                return await ctx.send(f"***<:tickNo:490607198443929620> Command Is On A Cooldown For {math.ceil(error.retry_after)} Seconds***")
             else:
                 await ctx.reinvoke()
         else:
