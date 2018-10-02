@@ -15,6 +15,7 @@ class MainCommands:
     async def help(self, ctx):
         try:
             await ctx.author.send("**Here's my website**\nhttp://enternewname.me/nebula/commands")
+            await ctx.send("***Check Your DMs For Help***")
         except:
             await ctx.send("**Here's my website**\nhttp://enternewname.me/nebula/commands")
 
@@ -37,6 +38,7 @@ class MainCommands:
     async def support(self, ctx):
         try:
             await ctx.author.send("Here Is The Official Support Server<:tickYes:490607182010777620>\nhttps://discord.gg/Xgt67WV")
+            await ctx.send("***:mailbox_with_mail: Check DMs For Official Support Server***")
         except:
             await ctx.send("Here Is The Official Support Server\nhttps://discord.gg/Xgt67WV")
             
@@ -45,6 +47,7 @@ class MainCommands:
     async def invite(self, ctx):
         try:
             await ctx.author.send("**Here's my invite:**\nhttps://enternewname.me/redirects/invite-nebula")
+            await ctx.send("***:mailbox_with_mail: Check DMs For The Invite Link***")
         except:
             await ctx.send("**Here's my invite:**\nhttps://enternewname.me/redirects/invite-nebula")
 
@@ -53,7 +56,7 @@ class MainCommands:
     async def feedback(self, ctx, *, body : str):
         try:
             feedback = self.bot.get_channel(490608601950322702)
-            embed = discord.Embed(color=discord.Color(value=0x1c407a))
+            embed = discord.Embed(color=ctx.author.color)
             embed.set_author(name="Feedback")
             embed.add_field(name="Guild ID And Name: ", value=f"ID: {ctx.guild.id}, Name: {ctx.guild}", inline=False)
             embed.add_field(name="User", value=f"Name: {ctx.author}, ID: {ctx.author.id}", inline=False)
@@ -70,7 +73,7 @@ class MainCommands:
     @commands.guild_only()
     @commands.command(aliases=['a'])
     async def annouce(self, ctx, channel : discord.TextChannel, * ,body : str):
-        embed = discord.Embed(color=discord.Color(value=0x1c407a))
+        embed = discord.Embed(color=ctx.author.color)
         embed.set_author(icon_url=ctx.author.avatar_url, name=ctx.author)
         embed.add_field(name="Update:\n", value=body)
         await channel.send(embed=embed)

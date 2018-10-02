@@ -23,7 +23,7 @@ class Developers:
         return f'```py\n{e.text}{"^":>{e.offset}}\n{e.__class__.__name__}: {e}```'
 
     @commands.command(hidden=True)
-    async def eval(self, ctx, *, body: str):
+    async def eval(self, ctx, *, body : str):
         env = {
             'bot': self.bot,
             'ctx': ctx,
@@ -116,7 +116,7 @@ class Developers:
                 typtype = "Unknown Type"
             await ctx.send(f"Changed Presence To `{typtype}` | `{typ}`\nGame Status: `{presencegame} | {len(self.bot.guilds)} Guilds!`")
 
-    @devtools.command()
+    @devtools.command(aliass=['logout'])
     async def logoff(self, ctx):
         await ctx.send("Logged Out")
         await self.bot.logout()

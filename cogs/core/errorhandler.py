@@ -7,7 +7,7 @@ with open("database/data.json") as f:
 
 class Handler:
     def __init__(self, bot):
-        self.bot = bot
+        self.bot = bot        
  
     async def on_command_error(self, ctx, error):
         if isinstance (error, commands.MissingPermissions):
@@ -25,28 +25,14 @@ class Handler:
             pass
         elif isinstance(error, commands.CommandOnCooldown):
             if ctx.author.id != self.bot.owner_id:
-                return await ctx.send("***<:tickNo:490607198443929620> Command Is On A Cooldown For {} Seconds***".format(math.ceil(error.retry_after)))
+                return await ctx.send(f"***<:tickNo:490607198443929620>Woah There, That Command Is On A Cooldown For {math.ceil(error.retry_after)} Seconds***")
             else:
                 await ctx.reinvoke()
         else:
             print(f"\nUser Name And ID: {ctx.author}| {ctx.author.id}\nError: {error}")
 
-    async def on_guild_join(self, guild):
-        try:
-            embed = discord.Embed(color=discord.Color(value=0x1c407a))
-            embed.set_author(name="Thanks For Inviting Nebula")
-            embed.add_field(name="My Prefix is `.`", value=f"[Support](https://discord.gg/Xgt67WV)")
-            embed.add_field(name="Need Help?", value="[Click here](https://enternewname.me/nebula/commands)")
-            embed.add_field(name="Logging Channel Requirement", value="***#mod-log***")
-            await guild.system_channel.send(embed=embed)
-        except:
-            pass
-
     async def on_ready(self):
-        print("Handler Is Loaded")
-        while True:
-            await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/Enter%20New%20Name", type=1))
-            await asyncio.sleep(15)
+        print("Handler Is Loaded")        
         
     async def on_message(self, msg):
         if msg.author.bot:
