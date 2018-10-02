@@ -27,6 +27,7 @@ async def on_guild_remove(guild):
 
 @bot.event
 async def on_ready():
+    await presencehandler()
     print("========================\nConnected To Discord API")
     print("========================\nStats:\n")
     print("Discord.py Version : " + pkg_resources.get_distribution("discord.py").version)
