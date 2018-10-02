@@ -72,7 +72,7 @@ class FunCommands:
 
     @commands.command()
     async def poll(self, ctx, * ,PollMessage : clean_content):
-        embed = discord.Embed(color=discord.Color(value=0x1c407a))
+        embed = discord.Embed(color=ctx.author.color)
         embed.set_author(icon_url=ctx.author.avatar_url, name=f"Poll Made By {ctx.author}")
         embed.add_field(name="\uFEFF", value=PollMessage)
         pollmsg = await ctx.send(embed=embed)
