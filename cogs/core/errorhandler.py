@@ -24,8 +24,13 @@ class Handler:
         elif isinstance(error, commands.CommandNotFound):
             pass
         elif isinstance(error, commands.CommandOnCooldown):
+<<<<<<< HEAD:cogs/core/errorhandler.py
             if ctx.author.id != self.bot.owner_id:
                 return await ctx.send(f"***<:tickNo:490607198443929620>Woah There, That Command Is On A Cooldown For {math.ceil(error.retry_after)} Seconds***")
+=======
+            if ctx.author.id != 1373256462211874836:
+                return await ctx.send(f"***<:tickNo:490607198443929620> Command Is On A Cooldown For {math.ceil(error.retry_after)} Seconds***")
+>>>>>>> 0630323471e2b9f774679199cf8293b4880953f9:cogs/core/handler.py
             else:
                 await ctx.reinvoke()
         else:
