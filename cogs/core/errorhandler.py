@@ -29,7 +29,7 @@ class Handler:
             else:
                 await ctx.reinvoke()
         else:
-            print(f"\nUser Name And ID: {ctx.author}| {ctx.author.id}\nError: {error}")
+            print(f"\nUser Name And ID: {ctx.author} | {ctx.author.id}\nError: {error}")
 
     async def on_ready(self):
         print("Handler Is Loaded")        

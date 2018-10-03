@@ -95,6 +95,13 @@ class FunCommands:
         embed.set_thumbnail(url=user.avatar_url)
         embed.set_footer(icon_url=ctx.guild.icon_url, text=ctx.guild)
         await ctx.send(embed=embed, content=None)
+    
+    @commands.command(aliases=['gh'])
+    async def github(self, ctx, githubacct):
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"https://api.github.com/users/{githubacct}") as b:
+                a = await b.json()
+                await ctx.send(a['avatar_url'])
    
 def setup(bot):
     bot.add_cog(FunCommands(bot))
