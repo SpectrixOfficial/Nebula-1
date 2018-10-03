@@ -26,12 +26,25 @@ class MainCommands:
     @commands.cooldown(1, 20, BucketType.channel)
     @commands.command()
     async def ping(self, ctx):
-        pong = time.perf_counter()
-        msg = await ctx.send("Pinging..")
-        pong2 = time.perf_counter()
-        pingbinding = pong2 - pong
-        result = (round(pingbinding * 1000))
-        await msg.edit(content=f":ping_pong:Pong, My Ping Was {result}ms, My Latency is {round(self.bot.latency * 1000)}ms")
+        counter = 0
+        msg = await ctx.send("`Pinging 0/4...`")
+        embed = discord.Embed(timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0x1c407a))
+        embed.set_author(name=f"Ping Statistics For {self.bot.user.name}")
+        embed.set_thumbnail(url=self.bot.user.avatar_url)
+        average = []
+        for _ in range(4):
+            counter += 1
+            ping1 = time.perf_counter()
+            await msg.edit(content=f"`Pinging {counter}/4...`")
+            ping2 = time.perf_counter()
+            result = round((ping2 - ping1) * 1000)
+            embed.add_field(name=f"Ping {counter}", value=f"{result}ms")
+            average.append(result)
+        embed.add_field(name="Ping Average:", value=f"{round(sum(average) / 4)}ms")
+        embed.add_field(name="Bot Latency:", value=f"{round(self.bot.latency* 1000)}ms")
+        embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested By {ctx.author}")
+        await msg.edit(content=None, embed=embed)
+
 
     @commands.guild_only()
     @commands.command(aliases=['server'])
