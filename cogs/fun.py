@@ -2,6 +2,8 @@ import discord, asyncio, json, random, math, os, aiohttp
 from discord.ext import commands
 from discord.ext.commands import clean_content
 
+with open("database/data.json") as file:
+    config = json.load(file)
 
 class FunCommands:
     def __init__(self, bot):
@@ -96,9 +98,20 @@ class FunCommands:
         embed.set_footer(icon_url=ctx.guild.icon_url, text=ctx.guild)
         await ctx.send(embed=embed, content=None)
     
-    @commands.command(aliases=['gh'])
-    async def github(self, ctx, githubacct):
-        try:            
+
+    @commands.group(aliases=['gh'])
+    async def github(self, ctx):
+        if ctx.invoked_subcommand is None:
+            embed = discord.Embed(color=discord.Color(value=0x1c407a))
+            embed.set_author(icon_url=config['urls']['transparentgithubimg'], name="GitHub Commands")
+            embed.add_field(name="Search User", value="e.g `.github user <user>`", inline=False)
+            embed.add_field(name="Search Repository", value="e.g `.github repo <owner>/<reponame>`", inline=False)
+            embed.set_footer(text="GitHub Commands In Testing")
+            await ctx.send(embed=embed)
+
+    @github.command()
+    async def user(self, ctx, *, githubacct):
+        try:           
             async with aiohttp.ClientSession() as session:
                 async with session.get(f"https://api.github.com/users/{githubacct}") as b:
                     a = await b.json()
@@ -111,16 +124,35 @@ class FunCommands:
                     bio = a['bio']
                     repolist = f"https://github.com/{username}?tab=repositories"
                     profilepage = a['html_url']
-                    emb = discord.Embed(color=discord.Color.blurple())
-                    emb.set_author(name=f"GitHub User: {username}", icon_url="https://camo.githubusercontent.com/7710b43d0476b6f6d4b4b2865e35c108f69991f3/68747470733a2f2f7777772e69636f6e66696e6465722e636f6d2f646174612f69636f6e732f6f637469636f6e732f313032342f6d61726b2d6769746875622d3235362e706e67")
-                    emb.add_field(name="Name:", value=f"{a['name']}")
+                    emb = discord.Embed(color=discord.Color(value=0x1c407a))
+                    emb.set_author(name=f"GitHub User: {username} ({a['name']})", icon_url=config['urls']['transparentgithubimg'])
                     emb.set_thumbnail(url=pfp)
-                    emb.add_field(name="How Many Repositories:", value=f"{repos} Public Repos", inline=False)
+                    emb.add_field(name="Repositories:", value=f"{repos} Public Repos", inline=False)
                     emb.add_field(name="Biography", value=bio)
                     emb.add_field(name="Popularity:", value=f"Following: {following}\nFollowers: {followers}", inline=False)
                     emb.add_field(name=f"Links", value=f"[Profile Page]({profilepage}) | [Repositories]({repolist})")
                     await ctx.send(embed=emb)
         except:
-            await ctx.send(f"`{githubacct}` is Not A Vaild GitHub User")
+            await ctx.send(embed=discord.Embed(description=f"***`{githubacct}` isn't a Valid Account, if So, Try Again Later***", color=discord.Color(value=0x1c407a)))
+
+    @github.command(aliases=['repository'])
+    async def repo(self, ctx, * , reqresult):
+        try:
+            async with aiohttp.ClientSession() as api:
+                async with api.get(f"https://api.github.com/repos/{reqresult}") as resp:
+                    json = await resp.json()
+                    emb = discord.Embed(color=discord.Color(value=0x1c407a))
+                    emb.set_author(icon_url=config['urls']['transparentgithubimg'],name=f"{json['full_name']}")
+                    #emb.set_thumbnail(url=json['owner']['avatar_url'])
+                    emb.add_field(name="Description:", value=json['description'], inline=False)
+                    emb.add_field(name="Mostly Used Language:", value=json['language'], inline=False)
+                    emb.add_field(name="Stargazers:", value=json['stargazers_count'], inline=False)
+                    emb.add_field(name="Forks:", value=json['forks_count'], inline=False)
+                    emb.add_field(name="Watching:", value=json['watchers_count'], inline=False)
+                    await ctx.send(embed=emb)
+        except:
+            await ctx.send(embed=discord.Embed(description=f"***`{reqresult}` isn't a Valid Repo, if So, Try Again Later***", color=discord.Color(value=0x1c407a)))
+                
+
 def setup(bot):
     bot.add_cog(FunCommands(bot))
