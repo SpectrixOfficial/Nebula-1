@@ -143,7 +143,6 @@ class FunCommands:
                     json = await resp.json()
                     emb = discord.Embed(color=discord.Color(value=0x1c407a))
                     emb.set_author(icon_url=config['urls']['transparentgithubimg'],name=f"{json['full_name']}")
-                    #emb.set_thumbnail(url=json['owner']['avatar_url'])
                     emb.add_field(name="Description:", value=json['description'], inline=False)
                     emb.add_field(name="Mostly Used Language:", value=json['language'], inline=False)
                     emb.add_field(name="Stargazers:", value=json['stargazers_count'], inline=False)
