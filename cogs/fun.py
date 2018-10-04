@@ -109,11 +109,16 @@ class FunCommands:
                     followers = a['followers']
                     pfp = a['avatar_url']
                     bio = a['bio']
-                    emb = discord.Embed(title=f"Bio:\n{bio}", color=discord.Color.blurple())
-                    emb.set_author(name=f"User: {username}")
+                    repolist = f"https://github.com/{username}?tab=repositories"
+                    profilepage = a['html_url']
+                    emb = discord.Embed(color=discord.Color.blurple())
+                    emb.set_author(name=f"GitHub User: {username}", icon_url="https://camo.githubusercontent.com/7710b43d0476b6f6d4b4b2865e35c108f69991f3/68747470733a2f2f7777772e69636f6e66696e6465722e636f6d2f646174612f69636f6e732f6f637469636f6e732f313032342f6d61726b2d6769746875622d3235362e706e67")
+                    emb.add_field(name="Name:", value=f"{a['name']}")
                     emb.set_thumbnail(url=pfp)
                     emb.add_field(name="How Many Repositories:", value=f"{repos} Public Repos", inline=False)
+                    emb.add_field(name="Biography", value=bio)
                     emb.add_field(name="Popularity:", value=f"Following: {following}\nFollowers: {followers}", inline=False)
+                    emb.add_field(name=f"Links", value=f"[Profile Page]({profilepage}) | [Repositories]({repolist})")
                     await ctx.send(embed=emb)
         except:
             await ctx.send(f"`{githubacct}` is Not A Vaild GitHub User")

@@ -1,4 +1,4 @@
-import discord, asyncio, json, pkg_resources, time, datetime, aiohttp
+import discord, asyncio, json, pkg_resources, time, datetime, aiohttp, logging
 from discord.ext import commands
 from time import ctime
 
@@ -11,6 +11,7 @@ cogs = config["cogs"]
 lt = datetime.datetime.utcnow()
 header = {"Authorization" : config["dbltoken"]}
 payload = {"server_count"  : len(bot.guilds)}
+logging.basicConfig(level=logging.INFO)
 
 async def presencehandler():
     await bot.change_presence(activity=discord.Activity(name=f".help in {len(bot.guilds)} Servers", url="https://www.twitch.tv/EnterNewName", type=1))
