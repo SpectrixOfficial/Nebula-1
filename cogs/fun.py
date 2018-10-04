@@ -125,12 +125,12 @@ class FunCommands:
                     repolist = f"https://github.com/{username}?tab=repositories"
                     profilepage = a['html_url']
                     emb = discord.Embed(color=discord.Color(value=0x1c407a))
-                    emb.set_author(name=f"GitHub User: {username} ({a['name']})", icon_url=config['urls']['transparentgithubimg'])
+                    emb.set_author(name=f"GitHub User: {username} ({a['name']})",url=profilepage, icon_url=config['urls']['transparentgithubimg'])
                     emb.set_thumbnail(url=pfp)
                     emb.add_field(name="Repositories:", value=f"{repos} Public Repos", inline=False)
                     emb.add_field(name="Biography", value=bio)
                     emb.add_field(name="Popularity:", value=f"Following: {following}\nFollowers: {followers}", inline=False)
-                    emb.add_field(name=f"Links", value=f"[Profile Page]({profilepage}) | [Repositories]({repolist})")
+                    emb.add_field(name=f"Links", value=f"[Repositories]({repolist})")
                     await ctx.send(embed=emb)
         except:
             await ctx.send(embed=discord.Embed(description=f"***`{githubacct}` isn't a Valid Account, if So, Try Again Later***", color=discord.Color(value=0x1c407a)))
@@ -142,7 +142,7 @@ class FunCommands:
                 async with api.get(f"https://api.github.com/repos/{reqresult}") as resp:
                     json = await resp.json()
                     emb = discord.Embed(color=discord.Color(value=0x1c407a))
-                    emb.set_author(icon_url=config['urls']['transparentgithubimg'],name=f"{json['full_name']}")
+                    emb.set_author(icon_url=config['urls']['transparentgithubimg'],name=f"{json['full_name']}", url=json['html_url'])
                     emb.add_field(name="Description:", value=json['description'], inline=False)
                     emb.add_field(name="Mostly Used Language:", value=json['language'], inline=False)
                     emb.add_field(name="Stargazers:", value=json['stargazers_count'], inline=False)
