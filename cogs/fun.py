@@ -98,10 +98,24 @@ class FunCommands:
     
     @commands.command(aliases=['gh'])
     async def github(self, ctx, githubacct):
-        async with aiohttp.ClientSession() as session:
-            async with session.get(f"https://api.github.com/users/{githubacct}") as b:
-                a = await b.json()
-                await ctx.send(a['avatar_url'])
-   
+        try:            
+            async with aiohttp.ClientSession() as session:
+                async with session.get(f"https://api.github.com/users/{githubacct}") as b:
+                    a = await b.json()
+                    #Prepares Things
+                    username = a['login']
+                    repos = a['public_repos']
+                    following = a['following']
+                    followers = a['followers']
+                    pfp = a['avatar_url']
+                    bio = a['bio']
+                    emb = discord.Embed(title=f"Bio:\n{bio}", color=discord.Color.blurple())
+                    emb.set_author(name=f"User: {username}")
+                    emb.set_thumbnail(url=pfp)
+                    emb.add_field(name="How Many Repositories:", value=f"{repos} Public Repos", inline=False)
+                    emb.add_field(name="Popularity:", value=f"Following: {following}\nFollowers: {followers}", inline=False)
+                    await ctx.send(embed=emb)
+        except:
+            await ctx.send(f"`{githubacct}` is Not A Vaild GitHub User")
 def setup(bot):
     bot.add_cog(FunCommands(bot))
