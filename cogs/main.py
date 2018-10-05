@@ -45,11 +45,15 @@ class MainCommands:
             await ctx.send("You didn't passed a prefix")
         async with aiosqlite.connect("database/guilddata.db") as database:
             try:
-                return await database.execute(f"UPDATE {ctx.guild.id} SET prefix={str(newprefix)} WHERE")
+                np = await database.execute(f"UPDATE {ctx.guild.id} SET prefix={str(newprefix)}")
+                await ctx.send(f"Set New Prefix To `{np}`")
             except:
-                pass
+                np = await database.execute(f"CREATE TABLE {ctx.guild.id} (prefix); INSERT INTO {ctx.guild.id} (prefix) VALUES({newprefix})")
+                await ctx.send(f"Set New Prefix To `{np}`")
             finally:
-                pass
+                await ctx.send(f"Seems Like An Database Error Has Occured, Please Report To Owner")
+                await database.close()
+                # Don't commit changes, it might corrupt the database
         
     @commands.cooldown(1, 20, BucketType.channel)
     @commands.command()

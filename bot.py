@@ -14,7 +14,7 @@ def prefix(bot, msg):
             except:
                 return default_prefix
             await database.close()
-    return commands.when_mentioned_or(get_prefix())
+    return get_prefix()
 
 bot = commands.Bot(command_prefix=prefix, case_insensitive=True, clean_content=True)
 bot.remove_command('help')
