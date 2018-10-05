@@ -24,18 +24,32 @@ class MainCommands:
         except:
             await ctx.send("**Here's my website**\nhttp://enternewname.me/nebula/commands")
 
-    @commands.command()
+    @commands.group()
     async def prefix(self, ctx):
-        async def get_prefix():
-            async with aiosqlite.connect("database/guilddata.db") as database:
-                default_prefix = config['defaultprefix']
-                try:        
-                    return await database.execute(f"SELECT prefix FROM {ctx.guild.id};")
-                except:
-                    return default_prefix
-                await database.close()
-        prefix = await get_prefix()
-        await ctx.send(f"My Prefix is `{prefix}` and Cannot Be Changed")
+        if ctx.invoked_subcommand is None:
+            async def get_prefix():
+                async with aiosqlite.connect("database/guilddata.db") as database:
+                    default_prefix = config['defaultprefix']
+                    try:        
+                        return await database.execute(f"SELECT prefix FROM {ctx.guild.id};")
+                    except:
+                        return default_prefix
+                    await database.close()
+            prefix = await get_prefix()
+            await ctx.send(f"My Prefix is `{prefix}`, Edit The Prefix by `{prefix}prefix edit <new prefix>`")
+
+    @commands.has_permissions(manage_server=True)
+    @prefix.command()
+    async def edit(self, ctx, newprefix : str=None):
+        if not newprefix:
+            await ctx.send("You didn't passed a prefix")
+        async with aiosqlite.connect("database/guilddata.db") as database:
+            try:
+                return await database.execute(f"UPDATE {ctx.guild.id} SET prefix={str(newprefix)} WHERE")
+            except:
+                pass
+            finally:
+                pass
         
     @commands.cooldown(1, 20, BucketType.channel)
     @commands.command()
