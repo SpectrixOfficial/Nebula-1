@@ -7,15 +7,16 @@ with open("database/data.json") as f:
 
 def prefix(bot, msg):
     async def get_prefix():
-        async with aiosqlite.connect("database/whatever.db") as database:
+        async with aiosqlite.connect("database/guilddata.db") as database:
             default_prefix = config['prefix']
             try:    
-                return await database.execute("SELECT prefix FROM ?", msg.guild.id)
+                return await database.execute(f"SELECT prefix FROM {msg.guild.id};")
             except:
                 return default_prefix
+            await database.close()
     return get_prefix()
 
-bot = commands.Bot(command_prefix=commands.when_mentioned_or(prefix), case_insensitive=True, clean_content=True, max_messages=300, owner_id=373256462211874836)
+bot = commands.Bot(command_prefix=prefix, case_insensitive=True, clean_content=True)
 bot.remove_command('help')
 cogs = config["cogs"]
 lt = datetime.datetime.utcnow()

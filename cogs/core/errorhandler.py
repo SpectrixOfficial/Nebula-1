@@ -11,7 +11,7 @@ class Handler:
  
     async def on_command_error(self, ctx, error):
         if isinstance (error, commands.MissingPermissions):
-            if ctx.author.id != self.bot.owner_id:
+            if ctx.author.id != 373256462211874836:
                 return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But You Have Do Not Have The {error.missing_perms[0]} Permission(s)***")
             else:
                 await ctx.reinvoke()
@@ -24,7 +24,7 @@ class Handler:
         elif isinstance(error, commands.CommandNotFound):
             pass
         elif isinstance(error, commands.CommandOnCooldown):
-            if ctx.author.id != self.bot.owner_id:
+            if ctx.author.id != 373256462211874836:
                 return await ctx.send(f"***<:tickNo:490607198443929620>Woah There, That Command Is On A Cooldown For {math.ceil(error.retry_after)} Seconds***")
             else:
                 await ctx.reinvoke()
