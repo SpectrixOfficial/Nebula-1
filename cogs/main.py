@@ -1,12 +1,7 @@
-import discord, asyncio, json, time, datetime, aiosqlite
+import discord, asyncio, json, time, datetime
 from time import ctime
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
-
-with open("database/data.json") as f:
-    config = json.load(f)
-
-
 
 class MainCommands:
     def __init__(self, bot):
@@ -24,36 +19,9 @@ class MainCommands:
         except:
             await ctx.send("**Here's my website**\nhttp://enternewname.me/nebula/commands")
 
-    @commands.group()
+    @commands.command()
     async def prefix(self, ctx):
-        if ctx.invoked_subcommand is None:
-            async def get_prefix():
-                async with aiosqlite.connect("database/guilddata.db") as database:
-                    default_prefix = config['defaultprefix']
-                    try:        
-                        return await database.execute(f"SELECT prefix FROM {ctx.guild.id};")
-                    except:
-                        return default_prefix
-                    await database.close()
-            prefix = await get_prefix()
-            await ctx.send(f"My Prefix is `{prefix}`, Edit The Prefix by `{prefix}prefix edit <new prefix>`")
-
-    @commands.has_permissions(manage_server=True)
-    @prefix.command()
-    async def edit(self, ctx, newprefix : str=None):
-        if not newprefix:
-            await ctx.send("You didn't passed a prefix")
-        async with aiosqlite.connect("database/guilddata.db") as database:
-            try:
-                np = await database.execute(f"UPDATE {ctx.guild.id} SET prefix={str(newprefix)}")
-                await ctx.send(f"Set New Prefix To `{np}`")
-            except:
-                np = await database.execute(f"CREATE TABLE {ctx.guild.id} (prefix); INSERT INTO {ctx.guild.id} (prefix) VALUES({newprefix})")
-                await ctx.send(f"Set New Prefix To `{np}`")
-            finally:
-                await ctx.send(f"Seems Like An Database Error Has Occured, Please Report To Owner")
-                await database.close()
-                # Don't commit changes, it might corrupt the database
+        await ctx.send("My Prefix is `.` and Cannot Be Changed")
         
     @commands.cooldown(1, 20, BucketType.channel)
     @commands.command()

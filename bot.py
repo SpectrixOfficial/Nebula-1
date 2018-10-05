@@ -6,15 +6,7 @@ with open("database/data.json") as f:
     config = json.load(f)
 
 def prefix(bot, msg):
-    async def get_prefix():
-        async with aiosqlite.connect("database/guilddata.db") as database:
-            default_prefix = config['defaultprefix']
-            try:    
-                return await database.execute(f"SELECT prefix FROM {msg.guild.id};")
-            except:
-                return default_prefix
-            await database.close()
-    return get_prefix()
+    return commands.when_mentioned_or(config['defaultprefix'])
 
 bot = commands.Bot(command_prefix=prefix, case_insensitive=True, clean_content=True)
 bot.remove_command('help')
@@ -25,7 +17,7 @@ payload = {"server_count"  : len(bot.guilds)}
 logging.basicConfig(level=logging.INFO)
 
 async def presencehandler():
-    await bot.change_presence(activity=discord.Activity(name=f"-help in {len(bot.guilds)} Servers", url="https://www.twitch.tv/EnterNewName", type=1))
+    await bot.change_presence(activity=discord.Activity(name=f".help in {len(bot.guilds)} Servers", url="https://www.twitch.tv/EnterNewName", type=1))
     async with aiohttp.ClientSession() as session:
         await session.post("https://discordbots.org/bot/487164011683774464/stats",  data=payload, headers=header)
 
