@@ -8,7 +8,7 @@ with open("database/data.json") as f:
 def prefix(bot, msg):
     async def get_prefix():
         async with aiosqlite.connect("database/guilddata.db") as database:
-            default_prefix = config['prefix']
+            default_prefix = config['defaultprefix']
             try:    
                 return await database.execute(f"SELECT prefix FROM {msg.guild.id};")
             except:

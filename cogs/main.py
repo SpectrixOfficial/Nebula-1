@@ -28,7 +28,7 @@ class MainCommands:
     async def prefix(self, ctx):
         async def get_prefix():
             async with aiosqlite.connect("database/guilddata.db") as database:
-                default_prefix = config['prefix']
+                default_prefix = config['defaultprefix']
                 try:        
                     return await database.execute(f"SELECT prefix FROM {ctx.guild.id};")
                 except:
