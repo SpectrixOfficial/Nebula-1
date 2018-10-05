@@ -1,7 +1,12 @@
-import discord, asyncio, json, time, datetime
+import discord, asyncio, json, time, datetime, aiosqlite
 from time import ctime
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
+
+with open("database/data.json") as f:
+    config = json.load(f)
+
+
 
 class MainCommands:
     def __init__(self, bot):
@@ -21,7 +26,16 @@ class MainCommands:
 
     @commands.command()
     async def prefix(self, ctx):
-        ctx.send("My Prefix is `.` and Cannot Be Changed")
+        async def get_prefix():
+            async with aiosqlite.connect("database/guilddata.db") as database:
+                default_prefix = config['prefix']
+                try:        
+                    return await database.execute(f"SELECT prefix FROM {ctx.guild.id};")
+                except:
+                    return default_prefix
+                await database.close()
+        prefix = await get_prefix()
+        await ctx.send(f"My Prefix is `{prefix}` and Cannot Be Changed")
         
     @commands.cooldown(1, 20, BucketType.channel)
     @commands.command()
