@@ -32,5 +32,8 @@ The JSON File is pretty much like the login file, but if you want to clone the r
 >&nbsp;&nbsp;"cogs.user",<br />
 >&nbsp;&nbsp;"cogs.role",<br />
 >&nbsp;&nbsp;"cogs.fun"],<br />
->&nbsp;"prefix" : "."<br />
+>&nbsp;"defaultprefix" : "."<br />
+>&nbsp;"dbltoken" : "discord-bot-list-token"
+>&nbsp;"urls" : {
+>&nbsp;"transparentgithubimg" : ""
 >&nbsp;}
