@@ -1,11 +1,21 @@
-import discord, asyncio, json, pkg_resources, time, datetime, aiohttp, logging
+import discord, asyncio, json, pkg_resources, time, datetime, aiohttp, logging, aiosqlite
 from discord.ext import commands
 from time import ctime
 
 with open("database/data.json") as f:
     config = json.load(f)
 
-bot = commands.Bot(command_prefix=commands.when_mentioned_or(config["prefix"]), case_insensitive=True, clean_content=True, max_messages=300, owner_id=373256462211874836)
+def prefix(bot, msg):
+    async def get_prefix():
+        async with aiosqlite.connect("database/whatever.db") as database:
+            default_prefix = config['prefix']
+            try:    
+                return await database.execute("SELECT prefix FROM ?=?", msg.guild.id)
+            except:
+                return default_prefix
+    return get_prefix()
+
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(prefix), case_insensitive=True, clean_content=True, max_messages=300, owner_id=373256462211874836)
 bot.remove_command('help')
 cogs = config["cogs"]
 lt = datetime.datetime.utcnow()
@@ -14,7 +24,7 @@ payload = {"server_count"  : len(bot.guilds)}
 logging.basicConfig(level=logging.INFO)
 
 async def presencehandler():
-    await bot.change_presence(activity=discord.Activity(name=f".help in {len(bot.guilds)} Servers", url="https://www.twitch.tv/EnterNewName", type=1))
+    await bot.change_presence(activity=discord.Activity(name=f"-help in {len(bot.guilds)} Servers", url="https://www.twitch.tv/EnterNewName", type=1))
     async with aiohttp.ClientSession() as session:
         await session.post("https://discordbots.org/bot/487164011683774464/stats",  data=payload, headers=header)
 

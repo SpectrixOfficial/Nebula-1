@@ -97,7 +97,7 @@ class Developers:
     async def devtools(self, ctx):
         await ctx.send("Developer Tools For Use Of the Bot In General")
 
-    @devtools.command()
+    @devtools.command(aliases=['p'])
     async def presence(self, ctx, typ : int, *, presencegame=None):
         if presencegame is None:
             await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/Enter%20New%20Name", type=1))
@@ -116,7 +116,7 @@ class Developers:
                 typtype = "Unknown Type"
             await ctx.send(f"Changed Presence To `{typtype}` | `{typ}`\nGame Status: `{presencegame} | {len(self.bot.guilds)} Guilds!`")
 
-    @devtools.command(aliass=['logout'])
+    @devtools.command(aliases=['logout'])
     async def logoff(self, ctx):
         await ctx.send("Logged Out")
         await self.bot.logout()
