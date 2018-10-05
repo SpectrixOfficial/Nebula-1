@@ -5,10 +5,7 @@ from time import ctime
 with open("database/data.json") as f:
     config = json.load(f)
 
-def prefix(bot, msg):
-    return commands.when_mentioned_or(config['defaultprefix'])
-
-bot = commands.Bot(command_prefix=prefix, case_insensitive=True, clean_content=True)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(config['defaultprefix']), case_insensitive=True, clean_content=True)
 bot.remove_command('help')
 cogs = config["cogs"]
 lt = datetime.datetime.utcnow()
