@@ -10,7 +10,7 @@ def prefix(bot, msg):
         async with aiosqlite.connect("database/whatever.db") as database:
             default_prefix = config['prefix']
             try:    
-                return await database.execute("SELECT prefix FROM ?=?", msg.guild.id)
+                return await database.execute("SELECT prefix FROM ?", msg.guild.id)
             except:
                 return default_prefix
     return get_prefix()
