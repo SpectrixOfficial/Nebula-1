@@ -13,13 +13,7 @@ class RoleCommands:
     @commands.has_permissions(manage_roles=True)
     @commands.command()
     async def giverole(self, ctx, user : discord.Member, *, role : discord.Role):
-        if ctx.author.top_role > user.top_role:
-            await user.add_roles(role)
-            await ctx.send(f"***<:tickYes:490607182010777620> Gave {user.mention} Role: `{role}`***")
-        elif ctx.guild.owner:
-            await user.add_roles(role)
-            await ctx.send(f"***<:tickYes:490607182010777620> Gave {user.mention} Role: `{role}`***")
-        elif ctx.author.id == 373256462211874836:
+        if ctx.author.top_role > user.top_role or ctx.author.id == 373256462211874836 or ctx.author == ctx.guild.owner:
             await user.add_roles(role)
             await ctx.send(f"***<:tickYes:490607182010777620> Gave {user.mention} Role: `{role}`***")
 
@@ -28,13 +22,7 @@ class RoleCommands:
     @commands.has_permissions(manage_roles=True)
     @commands.command()
     async def removerole(self, ctx, user : discord.Member, *, role : discord.Role):
-        if ctx.author.top_role >= user.top_role:
-            await user.remove_roles(role)
-            await ctx.send(f"***<:tickYes:490607182010777620> Removed {user.mention} From role: `{role}`***")
-        elif ctx.author.id == 373256462211874836:
-            await user.remove_roles(role)
-            await ctx.send(f"***<:tickYes:490607182010777620> Removed {user.mention} From role: `{role}`***")
-        elif ctx.guild.owner:
+        if ctx.author.top_role >= user.top_role or ctx.author == ctx.guild.owner or ctx.author.id == 373256462211874836:
             await user.remove_roles(role)
             await ctx.send(f"***<:tickYes:490607182010777620> Removed {user.mention} From role: `{role}`***")
         
