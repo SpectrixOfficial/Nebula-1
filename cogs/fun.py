@@ -41,18 +41,6 @@ class FunCommands:
             else:
                 await botWins()
 
-    @commands.group()
-    async def fortnite(self, ctx):
-        if ctx.invoked_subcommand is None:
-            await ctx.send("```diff\n-Usage:\n\n-Xbox:\nfortnite xb1 {user}\n-PS4\nfortnite psn {user}\n-PC:\nfortnite pc {user}```")
-    
-    @fortnite.command()
-    async def psn(self, ctx, player : str):
-        msg = await ctx.send("Fetching Data")
-        async with aiohttp.ClientSession() as session:
-
-
-
     @commands.command()
     async def poll(self, ctx, * ,PollMessage : clean_content):
         embed = discord.Embed(color=ctx.author.color)
