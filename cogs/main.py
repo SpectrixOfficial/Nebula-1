@@ -50,10 +50,10 @@ class MainCommands:
     @commands.command(aliases=['server'])
     async def support(self, ctx):
         try:
-            await ctx.author.send("**Here's My Support Server:**\nhttps://discord.gg/Xgt67WV")
+            await ctx.author.send("**Here's My Support Server:**\nhttps://enternewname.me/redirects/support")
             await ctx.send("***:mailbox_with_mail: Check DMs For Official Support Server***")
         except:
-            await ctx.send("Here Is The Official Support Server\nhttps://discord.gg/Xgt67WV")
+            await ctx.send("Here Is The Official Support Server\nhttps://enternewname.me/redirects/support")
             
     @commands.guild_only()
     @commands.command()
