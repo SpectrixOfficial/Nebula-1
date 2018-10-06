@@ -50,7 +50,7 @@ class MainCommands:
     @commands.command(aliases=['server'])
     async def support(self, ctx):
         try:
-            await ctx.author.send("Here Is The Official Support Server<:tickYes:490607182010777620>\nhttps://discord.gg/Xgt67WV")
+            await ctx.author.send("**Here's My Support Server:**\nhttps://discord.gg/Xgt67WV")
             await ctx.send("***:mailbox_with_mail: Check DMs For Official Support Server***")
         except:
             await ctx.send("Here Is The Official Support Server\nhttps://discord.gg/Xgt67WV")

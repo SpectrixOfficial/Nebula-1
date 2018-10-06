@@ -34,8 +34,9 @@ class UserManagement:
         if ctx.author.top_role > user.top_role:
             if user == ctx.author:
                 return await ctx.send("<:tickNo:490607198443929620> ***You Can't Ban Yourself..***")
-            await user.ban(reason=reason)
-            await ctx.send(f"<:tickYes:490607182010777620> **{user} has Been Banned From The Guild With A Reason:** {reason}") 
+            if not reason:
+                await user.ban(reason=reason)
+                await ctx.send(f"<:tickYes:490607182010777620> **{user} has Been Banned From The Server**") 
         elif ctx.author.id == 373256462211874836:
             await user.ban(reason=reason)
             await ctx.send(f"<:tickYes:490607182010777620> **{user} has Been Banned From The Guild With A Reason:** {reason}")                
