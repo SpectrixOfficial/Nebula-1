@@ -80,6 +80,7 @@ class FunCommands:
 
     @github.command()
     async def user(self, ctx, *, githubacct):
+        msg = await ctx.send("`Fetching Information..`")
         try:           
             async with aiohttp.ClientSession() as session:
                 async with session.get(f"https://api.github.com/users/{githubacct}") as b:
@@ -91,7 +92,6 @@ class FunCommands:
                     followers = a['followers']
                     pfp = a['avatar_url']
                     bio = a['bio']
-                    repolist = f"https://github.com/{username}?tab=repositories"
                     profilepage = a['html_url']
                     emb = discord.Embed(color=discord.Color(value=0x1c407a))
                     emb.set_author(name=f"GitHub User: {username} ({a['name']})",url=profilepage, icon_url=config['urls']['transparentgithubimg'])
@@ -99,10 +99,10 @@ class FunCommands:
                     emb.add_field(name="Repositories:", value=f"{repos} Public Repos", inline=False)
                     emb.add_field(name="Biography", value=bio)
                     emb.add_field(name="Popularity:", value=f"Following: {following}\nFollowers: {followers}", inline=False)
-                    emb.add_field(name=f"Links", value=f"[Repositories]({repolist})")
-                    await ctx.send(embed=emb)
+                    emb.add_field(name=f"Links", value=f"[Repositories](https://github.com/{username}?tab=repositories)")
+                    await msg.edit(content=None, embed=emb)
         except:
-            await ctx.send(embed=discord.Embed(description=f"***`{githubacct}` isn't a Valid Account, if So, Try Again Later***", color=discord.Color(value=0x1c407a)))
+            await msg.edit(content=None, embed=discord.Embed(description=f"***`{githubacct}` isn't a Valid Account, if So, Try Again Later***", color=discord.Color(value=0x1c407a)))
 
     @github.command(aliases=['repository'])
     async def repo(self, ctx, * , reqresult):
