@@ -15,6 +15,9 @@ class RoleCommands:
     async def giverole(self, ctx, user : discord.Member, *, role : discord.Role):
         if ctx.author.top_role > user.top_role:
             if ctx.author == user:
+                if ctx.guild.owner:
+                    await user.add_roles(role)
+                    await ctx.send(f"***<:tickYes:490607182010777620> Gave {user.mention} Role: `{role}`***")
                 return await ctx.send("<:tickNo:490607198443929620> ***You can't give yourself Roles")            
             await user.add_roles(role)
             await ctx.send(f"***<:tickYes:490607182010777620> Gave {user.mention} Role: `{role}`***")
@@ -32,6 +35,9 @@ class RoleCommands:
     async def removerole(self, ctx, user : discord.Member, *, role : discord.Role):
         if ctx.author.top_role >= user.top_role:
             if ctx.author == user:
+                if ctx.guild.owner:
+                    await user.remove_roles(role)
+                    await ctx.send(f"***<:tickYes:490607182010777620> Removed {user.mention} From role: `{role}`***")
                 return await ctx.send("<:tickNo:490607198443929620> ***You can't Remove Your Own Roles")
             await user.remove_roles(role)
             await ctx.send(f"***<:tickYes:490607182010777620> Removed {user.mention} From role: `{role}`***")
