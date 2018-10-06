@@ -41,36 +41,17 @@ class FunCommands:
             else:
                 await botWins()
 
+    @commands.group()
+    async def fortnite(self, ctx):
+        if ctx.invoked_subcommand is None:
+            await ctx.send("```diff\n-Usage:\n\n-Xbox:\nfortnite xb1 {user}\n-PS4\nfortnite psn {user}\n-PC:\nfortnite pc {user}```")
+    
+    @fortnite.command()
+    async def psn(self, ctx, player : str):
+        msg = await ctx.send("Fetching Data")
+        async with aiohttp.ClientSession() as session:
 
-    @commands.command(aliases=['ld'])
-    async def liedetector(self, ctx, *, input):
-        lieresult = random.randint(0, 100)
-        if lieresult <= 0 <= 10:
-            result = f"Seeing No Lies, {ctx.author.name}"
-        elif lieresult <= 11 <= 15:
-            result = "I'm Not Smelling Any Lies Yet"
-        elif lieresult <= 16 <= 20:
-            result = "*Sniff, Sniff*, No Lies, But i am Getting Suspicious"
-        elif lieresult <= 21 <= 25:
-            result = "I Smell A Lie, Kiddo"         
-        elif lieresult <= 26 <= 30:
-            result = "***Lie Detector Reports 4 Lies Has Been Told***"
-        elif lieresult <= 31 <= 40:
-            result = "**WHATS THIS, RUBBISH LIES**"
-        elif lieresult <= 41 <= 50:
-            result = "LIES LIES LIES"
-        elif lieresult <= 51 <= 60:
-            result = "***BEEP BEEP BEEP BEEP BEEP :no_entry: ***"
-        elif lieresult <= 61 <= 89:
-            result = "Damn, you lie so much, even the devil won't accept you"
-        elif lieresult <= 90 <= 100:
-            result = f"<:Kermit:490607143771439116> WE ALL KNOW YOU ARE LYING!"
-        emb = discord.Embed(color=discord.Color(value=0x1c407a))
-        emb.set_author(name="Lie Detector Test")
-        emb.add_field(name="Lie Checker", value=input, inline=False)
-        emb.add_field(name=f"Result: ", value=result, inline=False)
-        emb.add_field(name="Lie Percentage Result: ", value=f"{lieresult}% Percent", inline=False)
-        await ctx.send(embed=emb)
+
 
     @commands.command()
     async def poll(self, ctx, * ,PollMessage : clean_content):

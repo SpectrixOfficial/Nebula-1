@@ -24,7 +24,7 @@ class RoleCommands:
     async def removerole(self, ctx, user : discord.Member, *, role : discord.Role):
         if ctx.author.top_role >= user.top_role or ctx.author == ctx.guild.owner or ctx.author.id == 373256462211874836:
             await user.remove_roles(role)
-            await ctx.send(f"***<:tickYes:490607182010777620> Removed {user.mention} From role: `{role}`***")
+            await ctx.send(f"***<:tickYes:490607182010777620> Ok, {user.mention} has been removed from role: `{role}`***")
         
 def setup(bot):
     bot.add_cog(RoleCommands(bot))

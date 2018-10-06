@@ -28,8 +28,8 @@ class MainCommands:
     async def ping(self, ctx):
         counter = 0
         msg = await ctx.send("`Pinging 0/4...`")
-        embed = discord.Embed(timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0x1c407a))
-        embed.set_author(name=f"Ping Statistics For {self.bot.user.name}")
+        embed = discord.Embed(title="Client Speed Information", timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0x1c407a))
+        embed.set_author(name=f"Speed {self.bot.user.name}", icon_url=self.bot.user.avatar_url)
         embed.set_thumbnail(url=self.bot.user.avatar_url)
         average = []
         for _ in range(4):
