@@ -22,13 +22,13 @@ class FunCommands:
         botChoice = random.choice(['rock', 'paper', 'scissors'])
 
         async def userWins():
-            await ctx.send(f"I choose... **{botChoice}**. You win! ***{choice} beats {botChoice}!***")
+            await ctx.send(f"I choose... **{botChoice}**.  You win! ***{choice} beats {botChoice}!***")
 
         async def botWins():
-            await ctx.send(f"I choose... **{botChoice}**. I win! ***{botChoice} beats {choice}!***")
+            await ctx.send(f"I choose... **{botChoice}**.  I win! ***{botChoice} beats {choice}!***")
 
         if choice == botChoice:
-            await ctx.send(f"***Tie!*** We both used {botChoice}!")
+            await ctx.send(f"***Tie!***  We both used {botChoice}!")
 
         elif choice == "rock":
             if botChoice == "paper":
@@ -47,7 +47,7 @@ class FunCommands:
                 await botWins()
 
     @commands.command()
-    async def poll(self, ctx, * ,PollMessage : clean_content):
+    async def poll(self, ctx, * , PollMessage : clean_content):
         embed = discord.Embed(color=ctx.author.color)
         embed.set_author(icon_url=ctx.author.avatar_url, name=f"Poll Made By {ctx.author}")
         embed.add_field(name="\uFEFF", value=PollMessage)
@@ -92,8 +92,7 @@ class FunCommands:
             embed.set_author(name=f"{a['login']} ({a['name']})", url=a["html_url"])
             embed.set_thumbnail(url=a['avatar_url'])
             embed.add_field(name=f"Followers: {a['followers']}", value=f"Public Gists: {a['public_gists']}\nPublic Repos: {a['public_repos']}")
-            await msg.edit(content=None, embed=embed)
-                    
+            await msg.edit(content=None, embed=embed)       
         except:
             await msg.edit(content=None, embed=discord.Embed(description=f"***`{githubacct}` isn't a Valid Account, if So, Try Again Later***", color=discord.Color(value=0x1c407a)))
 
