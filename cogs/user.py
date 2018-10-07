@@ -1,4 +1,4 @@
-import discord, asyncio, time
+import discord, asyncio, time, datetime
 from time import ctime
 from discord.ext import commands
 
@@ -17,6 +17,14 @@ class UserManagement:
                 await ctx.send(f"**<:tickYes:490607182010777620> I have banned {user} from the server**")
             else:
                 await ctx.send(f"**<:tickYes:490607182010777620> I have banned {user} from the server because: {banReason}**")
+            embed = discord.Embed(timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0x1c407a))
+            embed.set_author(name=f"Moderator Action: {ctx.command}")
+            embed.add_field(name="Moderator: ", value=ctx.author, inline=False)
+            embed.add_field(name="Accused User", value=user, inline=False)
+            embed.add_field(name="Reason: ", value=banReason, inline=False)
+            embed.set_footer(text=f"Moderator ID: {ctx.author.id}")
+            modlog = discord.utils.get(ctx.guild.text_channels, name="mod-log")
+            await modlog.send(embed=embed)
 
     @commands.command()
     async def kick(self, ctx, user : discord.Member, kickReason=None):
@@ -26,6 +34,14 @@ class UserManagement:
                 await ctx.send(f"**<:tickYes:490607182010777620> I have kicked {user} from the server**")
             else:
                 await ctx.send(f"**<:tickYes:490607182010777620> I have kicked {user} from the server because: {kickReason}**")
+            embed = discord.Embed(timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0x1c407a))
+            embed.set_author(name=f"Moderator Action: {ctx.command}")
+            embed.add_field(name="Moderator: ", value=ctx.author, inline=False)
+            embed.add_field(name="Accused User", value=user, inline=False)
+            embed.add_field(name="Reason: ", value=kickReason, inline=False)
+            embed.set_footer(text=f"Moderator ID: {ctx.author.id}", inline=False)
+            modlog = discord.utils.get(ctx.guild.text_channels, name="mod-log")
+            await modlog.send(embed=embed)
     
     @commands.command()
     async def softban(self, ctx, user : discord.Member, softbanReason=None):
@@ -35,7 +51,15 @@ class UserManagement:
             if not softbanReason:
                 await ctx.send(f"**<:tickYes:490607182010777620> I have softbanned {user} from the server**")
             else:
-                await ctx.send(f"**<:tickYes:490607182010777620> I have softbanned {user} from the server because: {softbanReason}**")        
+                await ctx.send(f"**<:tickYes:490607182010777620> I have softbanned {user} from the server because: {softbanReason}**")
+            embed = discord.Embed(timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0x1c407a))
+            embed.set_author(name=f"Moderator Action: {ctx.command}")
+            embed.add_field(name="Moderator: ", value=ctx.author, inline=False)
+            embed.add_field(name="Accused User", value=user, inline=False)
+            embed.add_field(name="Reason: ", value=softbanReason, inline=False)
+            embed.set_footer(text=f"Moderator ID: {ctx.author.id}")
+            modlog = discord.utils.get(ctx.guild.text_channels, name="mod-log")
+            await modlog.send(embed=embed)   
 
         
 # no <:tickNo:483288678437879808> 

@@ -45,7 +45,7 @@ async def on_guild_join(guild):
     try:
         embed = discord.Embed(color=discord.Color(value=0x1c407a))
         embed.set_author(name="Thanks For Inviting Nebula")
-        embed.add_field(name="My Prefix is `.`", value=f"[Support](https://discord.gg/Xgt67WV)")
+        embed.add_field(name="My Prefix is `.`", value=f"[Support](https://enternewname.me/redirects/support)")
         embed.add_field(name="Need Help?", value="[Click here](https://enternewname.me/nebula/commands)")
         embed.add_field(name="Logging Channel Requirement", value="***#mod-log***")
         await guild.system_channel.send(embed=embed)
