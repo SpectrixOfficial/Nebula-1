@@ -75,9 +75,6 @@ class Developers:
                 self._last_result = ret
                 await ctx.send(f'```py\n{value}{ret}\n```')
 
-   
-
-
     @commands.command(aliases=['rl'])
     async def reload(self, ctx, cog=None):
         if not cog:
