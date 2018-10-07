@@ -3,6 +3,10 @@ from time import ctime
 from contextlib import redirect_stdout
 from discord.ext import commands
 
+with open("database/data.json") as f:
+    config = json.load(f)
+    cogs = config['cogs']
+
 class Developers:
     def __init__(self, bot):
         self.bot = bot
@@ -71,8 +75,20 @@ class Developers:
                 self._last_result = ret
                 await ctx.send(f'```py\n{value}{ret}\n```')
 
+   
+
+
     @commands.command(aliases=['rl'])
-    async def reload(self, ctx, cog):
+    async def reload(self, ctx, cog=None):
+        if not cog:
+            try:
+                for module in cogs:
+                    self.bot.unload_extension(module)
+                    self.bot.load_extension(module)
+                return await ctx.send(f"Successfully Reloaded {len(module)} Cogs")                
+            except Exception as e:
+                return await ctx.send(f"```bash\n{e}\n```")
+
         try:
             self.bot.unload_extension(f"cogs.{cog}")
             self.bot.load_extension(f"cogs.{cog}")
