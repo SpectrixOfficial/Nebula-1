@@ -1,4 +1,4 @@
-import discord, asyncio, json, time, io, traceback, inspect, textwrap, datetime, os, sqlite3
+import discord, asyncio, json, time, io, traceback, inspect, textwrap, datetime, os
 from time import ctime
 from contextlib import redirect_stdout
 from discord.ext import commands
@@ -82,9 +82,9 @@ class Developers:
                 for module in cogs:
                     self.bot.unload_extension(module)
                     self.bot.load_extension(module)
-                return await ctx.send(f"Successfully Reloaded {len(module)} Cogs")                
+                return await ctx.send(embed=discord.Embed(color=discord.Color.green(), description=f"Successfully Reloaded {len(module)} Cogs <:tickYes:490607182010777620>"))            
             except Exception as e:
-                return await ctx.send(f"```bash\n{e}\n```")
+                return await ctx.send(embed=discord.Embed(description=f"Could Not Reload {len(module)} Cogs <:tickNo:490607198443929620>\n```bash\n{e}\n```", color=discord.Color.red()))
 
         try:
             self.bot.unload_extension(f"cogs.{cog}")
@@ -97,14 +97,14 @@ class Developers:
     async def load(self, ctx, cog):
         try:
             self.bot.load_extension(f"cogs.{cog}")
-            await ctx.send(f"***Loaded Cog `cogs.{cog}`***")
+            await ctx.send(embed=discord.Embed(description=f"Loaded Cog `cogs.{cog}` <:tickYes:490607182010777620>", color=discord.Color.green()))
         except Exception as e:
-            await ctx.send(f"```fix\n{e}\n```")
+            await ctx.send(embed=discord.Embed(color=discord.Color.red(), description=f"Could Not Load `cogs.{cog}` <:tickNo:490607198443929620>\n```fix\n{e}\n```"))
 
     @commands.command(aliases=['ul'])
     async def unload(self, ctx, cog):
         self.bot.unload_extension(f"cogs.{cog}")
-        await ctx.send(f"***Unloaded Cog `cogs.{cog}`***")
+        await ctx.send(embed=discord.Embed(description=f"Unloaded Cog `cogs.{cog}` <:tickYes:490607182010777620>"))
 
     @commands.group(invoke_without_command=True)
     async def devtools(self, ctx):

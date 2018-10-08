@@ -40,7 +40,7 @@ class Handler:
         if msg.guild:
             return
         if msg.author.dm_channel:
-            print(f"Message Content: {msg.content} | User: {msg.author} | User ID: {msg.author.id}")
-    
+            print(f"Message Content:\n{msg.content}\nUser: {msg.author}\nUser ID: {msg.author.id}")
+            
 def setup(bot):
     bot.add_cog(Handler(bot))
