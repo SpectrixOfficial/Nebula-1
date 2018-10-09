@@ -9,10 +9,9 @@ bot = commands.Bot(command_prefix=commands.when_mentioned_or(config['defaultpref
 
 bot.remove_command('help')
 cogs = config["cogs"]
-lt = datetime.datetime.utcnow()
+startup = datetime.datetime.utcnow()
 header = {"Authorization" : config["dbltoken"]}
 payload = {"server_count"  : len(bot.guilds)}
-logging.basicConfig(level=logging.INFO)
 
 async def presencehandler():
     await bot.change_presence(activity=discord.Activity(name=f".help in {len(bot.guilds)} Servers!", url="https://www.twitch.tv/EnterNewName", type=1))
@@ -55,7 +54,7 @@ async def on_guild_join(guild):
         
 @bot.command()
 async def uptime(ctx):
-    delta_uptime = datetime.datetime.utcnow() - lt
+    delta_uptime = datetime.datetime.utcnow() - startup
     hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
     minutes, seconds = divmod(remainder, 60)
     days, hours = divmod(hours, 24)
