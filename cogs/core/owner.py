@@ -89,9 +89,10 @@ class Developers:
         try:
             self.bot.unload_extension(f"cogs.{cog}")
             self.bot.load_extension(f"cogs.{cog}")
-            await ctx.send(f"***Reloaded Cog `cogs.{cog}`***")
+            await ctx.send(embed=discord.Embed(color=discord.Color.green(), description=f"Successfully Reloaded `cogs.{cog}` <:tickYes:490607182010777620>"))            
         except Exception as e:
-            await ctx.send(f"```fix\n{e}\n```")
+            await ctx.send(embed=discord.Embed(description=f"Could Not Reload `cogs.{cog}` <:tickNo:490607198443929620>\n```bash\n{e}\n```", color=discord.Color.red()))
+
     
     @commands.command(aliases=['l'])
     async def load(self, ctx, cog):
