@@ -8,7 +8,7 @@ with open("database/data.json") as f:
 class Handler:
     def __init__(self, bot):
         self.bot = bot
-        
+
     async def on_command_error(self, ctx, error):
         if isinstance (error, commands.MissingPermissions):
             if ctx.author.id != 373256462211874836:
