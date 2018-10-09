@@ -5,6 +5,7 @@ from discord.ext.commands import clean_content
 with open("database/data.json") as file:
     config = json.load(file)
 
+# just made this, but its an good tool for not wasting space and use as many reqs as you like
 async def getjson(url):
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as jsonresp:
