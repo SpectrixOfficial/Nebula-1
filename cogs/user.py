@@ -8,8 +8,10 @@ class UserManagement:
      
     async def on_ready(self):
         print("User Management Is Loaded")
-   
-    @commands.command()
+
+    @commands.has_permissions(ban_members=True)   
+    @commands.bot_has_permissions(ban_members=True)
+    @commands.command(aliases=['b'])
     async def ban(self, ctx, user : discord.Member, banReason=None):
         if ctx.author.id == 373256462211874836 or ctx.author == ctx.guild.owner or ctx.author.top_role > user.top_role:
             await user.ban(reason=banReason)
@@ -26,7 +28,9 @@ class UserManagement:
             modlog = discord.utils.get(ctx.guild.text_channels, name="mod-log")
             await modlog.send(embed=embed)
 
-    @commands.command()
+    @commands.has_permissions(kick_members=True)
+    @commands.bot_has_permissions(kick_members=True)
+    @commands.command(aliases=['k'])
     async def kick(self, ctx, user : discord.Member, kickReason=None):
         if ctx.author.id == 373256462211874836 or ctx.author == ctx.guild.owner or ctx.author.top_role > user.top_role:
             await user.kick(reason=kickReason)
@@ -45,8 +49,9 @@ class UserManagement:
                 await modlog.send(embed=embed)
             except:
                 pass
-    
-    @commands.command()
+    @commands.has_permissions(ban_members=True, kick_members=True)
+    @commands.bot_has_permissions(ban_members=True)
+    @commands.command(aliases=['sb'])
     async def softban(self, ctx, user : discord.Member, softbanReason=None):
         if ctx.author.id == 373256462211874836 or ctx.author == ctx.guild.owner or ctx.author.top_role > user.top_role:
             await user.ban(reason=softbanReason)

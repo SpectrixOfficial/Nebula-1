@@ -11,12 +11,12 @@ class Handler:
 
     async def on_command_error(self, ctx, error):
         if isinstance (error, commands.MissingPermissions):
-            if ctx.author.id != 373256462211874836:
-                return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But You Have Do Not Have The {error.missing_perms[0]} Permission(s)***")
+            if ctx.author.id != self.bot.owner_id:
+                return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But You Have Do Not Have The `{error.missing_perms[0].replace('_', ' ')}` permission***")
             else:
                 await ctx.reinvoke()
         elif isinstance(error, commands.BotMissingPermissions):
-            return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But I Don't Have No Permission(s) To Run The `{ctx.command}` Command***")
+            return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But I Don't Have No Permissions To Run The `{ctx.command}` command***")
         elif isinstance(error, commands.NoPrivateMessage):
             return await ctx.send(f"***<:tickNo:490607198443929620> Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please***")
         elif isinstance(error, commands.CheckFailure):
@@ -24,7 +24,7 @@ class Handler:
         elif isinstance(error, commands.CommandNotFound):
             pass
         elif isinstance(error, commands.CommandOnCooldown):
-            if ctx.author.id != 373256462211874836:
+            if ctx.author.id != self.bot.owner_id:
                 return await ctx.send(f"***<:tickNo:490607198443929620>Woah There, That Command Is On A Cooldown For {math.ceil(error.retry_after)} Seconds***")
             else:
                 await ctx.reinvoke()
