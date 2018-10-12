@@ -20,7 +20,7 @@ async def activitytype(activitytype):
         return "Listening To"
     else:
         pass
-        
+
 class FunCommands:
     def __init__(self, bot):
         self.bot = bot
@@ -136,13 +136,21 @@ class FunCommands:
             username = user
         if len(user.roles) > 1:
             roles = '\n'.join(list(reversed(sorted([a.name for a in user.roles if a.name != "@everyone"]))))
-        if user.activity:
-            activity = user.activity
         else:
             roles = "None"
+        if user.status:
+            try:
+                authoracttype = await activitytype(user.activity.type)
+                activity = f"{authoracttype} {user.activity.name}"
+            except:
+                activity =  user.name + " isn't playing nothing"
+        else:
+            activity = "This user is offline"
         embed = discord.Embed(description=activity, color=discord.Color(value=0x1c407a))
         if user.nick:
             embed.set_author(name=f"{username} ({user.nick})")
+        else:
+            embed.set_author(name=username)
         embed.set_thumbnail(url=user.avatar_url)
         embed.add_field(name="Joined Server", value=f"{joined_server}, {server_stay_length} Days ago", inline=False)
         embed.add_field(name="Joined Discord", value=f"{joined_discord}, {created_account_length} Days ago", inline=False)
