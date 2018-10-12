@@ -1,4 +1,5 @@
-import discord, asyncio, json, random, math, os, aiohttp
+import discord, asyncio, json, random, math, os, aiohttp, time, datetime
+from time import ctime
 from discord.ext import commands
 from discord.ext.commands import clean_content
 
@@ -111,7 +112,25 @@ class FunCommands:
             await ctx.send(embed=emb)
         except:
             await ctx.send(embed=discord.Embed(description=f"***`{reqresult}` isn't a Valid Repo, if So, Try Again Later***", color=discord.Color(value=0x1c407a)))
-                
+
+    @commands.command()
+    async def userinfo(self, ctx, * ,user : discord.Member=None):
+        if user is None:
+            user = ctx.author
+        joined_server = user.joined_at.strftime("%B %e, %Y %I:%M%p")
+        joined_discord = user.created_at.strftime("%B %e, %Y %I:%M%p")
+        server_stay_length = (ctx.message.created_at - user.joined_at).days
+        created_account_length = (ctx.message.created_at - user.created_at).days
+        if user.id == self.bot.owner_id:
+            username = f"{user} (My Owner)"
+        else:
+            username = user
+        embed = discord.Embed(color=discord.Color(value=0x1c407a))
+        embed.set_author(name=f"{username}")
+        embed.set_thumbnail(url=user.avatar_url)
+        embed.add_field(name="Joined Server", value=f"{joined_server}, {server_stay_length} Days ago", inline=False)
+        embed.add_field(name="Joined Discord", value=f"{joined_discord}, {created_account_length} Days ago", inline=False)
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(FunCommands(bot))
