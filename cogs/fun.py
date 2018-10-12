@@ -6,12 +6,21 @@ from discord.ext.commands import clean_content
 with open("database/data.json") as file:
     config = json.load(file)
 
-# just made this, but its an good tool for not wasting space and use as many reqs as you like without hardcoding anything, sorry for the long comment but ya get it ;')
 async def get(url):
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as jsonresp:
             return await jsonresp.json()
 
+async def activitytype(activitytype):
+    if str(activitytype) == "ActivityType.playing":
+        return "Playing"
+    elif str(activitytype) == "ActivityType.streaming":
+        return "Streaming"
+    elif str(activitytype) ==  "ActivityType.listening":
+        return "Listening To"
+    else:
+        pass
+        
 class FunCommands:
     def __init__(self, bot):
         self.bot = bot
@@ -125,11 +134,20 @@ class FunCommands:
             username = f"{user} (My Owner)"
         else:
             username = user
-        embed = discord.Embed(color=discord.Color(value=0x1c407a))
-        embed.set_author(name=f"{username}")
+        if len(user.roles) > 1:
+            roles = '\n'.join(list(reversed(sorted([a.name for a in user.roles if a.name != "@everyone"]))))
+        if user.activity:
+            activity = user.activity
+        else:
+            roles = "None"
+        embed = discord.Embed(description=activity, color=discord.Color(value=0x1c407a))
+        if user.nick:
+            embed.set_author(name=f"{username} ({user.nick})")
         embed.set_thumbnail(url=user.avatar_url)
         embed.add_field(name="Joined Server", value=f"{joined_server}, {server_stay_length} Days ago", inline=False)
         embed.add_field(name="Joined Discord", value=f"{joined_discord}, {created_account_length} Days ago", inline=False)
+        embed.add_field(name="Roles", value=roles)
+        embed.set_footer(text=f"User ID: {user.id}")
         await ctx.send(embed=embed)
 
 def setup(bot):
