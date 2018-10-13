@@ -25,8 +25,7 @@ class MainCommands:
     async def ping(self, ctx):
         counter = 0
         msg = await ctx.send("`Pinging 0/4...`")
-        embed = discord.Embed(title="Speed Information", timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0x1c407a))
-        embed.set_author(name=f"Ping Results From Nebula", icon_url=self.bot.user.avatar_url)
+        embed = discord.Embed(timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0x1c407a))
         embed.set_thumbnail(url=self.bot.user.avatar_url)
         average = []
         for _ in range(4):
@@ -37,9 +36,9 @@ class MainCommands:
             result = round((ping2 - ping1) * 1000)
             embed.add_field(name=f"Ping {counter}", value=f"{result}ms")
             average.append(result)
-        embed.add_field(name="Ping Average:", value=f"{round(sum(average) / 4)}ms")
         embed.add_field(name="Bot Latency:", value=f"{round(self.bot.latency* 1000)}ms")
-        embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested By {ctx.author}")
+        embed.add_field(name="Ping Average:", value=f"{round(sum(average) / 4)}ms")
+        embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested By {ctx.author.name}")
         await msg.edit(content=None, embed=embed)
 
 

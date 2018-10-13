@@ -32,7 +32,7 @@ class Handler:
             else:
                 await ctx.reinvoke()
         else:
-            print(f"\nUser Name And ID: {ctx.author} | {ctx.author.id}\nError: {error}")        
+            print(f"\nUser Name And ID: {ctx.author} | {ctx.author.id}\nCommand: {ctx.command}\nError: {error}")        
         
     async def on_message(self, msg):
         if msg.author.bot:
@@ -40,7 +40,10 @@ class Handler:
         if msg.guild:
             return
         if msg.author.dm_channel:
-            print(f"Message Content:\n{msg.content}\nUser: {msg.author}\nUser ID: {msg.author.id}")
+            if msg.author.id == self.bot.owner_id:
+                return
+            else:
+                print(f"Message Content:\n{msg.content}\nUser: {msg.author}\nUser ID: {msg.author.id}")
             
 def setup(bot):
     bot.add_cog(Handler(bot))

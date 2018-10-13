@@ -108,10 +108,10 @@ class Developers:
         await ctx.send(embed=discord.Embed(description=f"Unloaded Cog `cogs.{cog}` <:tickYes:490607182010777620>"))
 
     @commands.group(invoke_without_command=True)
-    async def devtools(self, ctx):
+    async def dt(self, ctx):
         await ctx.send("Developer Tools For Use Of the Bot In General")
 
-    @devtools.command(aliases=['p'])
+    @dt.command(aliases=['p'])
     async def presence(self, ctx, typ : int, *, presencegame=None):
         if presencegame is None:
             await self.bot.change_presence(activity=discord.Activity(name=f".help in {len(self.bot.guilds)} Servers", url="https://www.twitch.tv/Enter%20New%20Name", type=1))
@@ -130,10 +130,15 @@ class Developers:
                 typtype = "Unknown Type"
             await ctx.send(f"Changed Presence To `{typtype}` | `{typ}`\nGame Status: `{presencegame} | {len(self.bot.guilds)} Guilds!`")
 
-    @devtools.command(aliases=['logout'])
+    @dt.command(aliases=['logout'])
     async def logoff(self, ctx):
         await ctx.send("Logged Out")
+        sys.exit(0)
         await self.bot.logout()
+
+    @commands.command()
+    async def send(self, ctx, user : discord.User, *, body : str):
+        await user.send(body)
     
 def setup(bot):
     bot.add_cog(Developers(bot))
