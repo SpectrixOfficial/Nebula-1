@@ -14,7 +14,10 @@ class Handler:
             if ctx.author.id != self.bot.owner_id:
                 return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But You Have Do Not Have The `{error.missing_perms[0].replace('_', ' ')}` permission***")
             else:
-                await ctx.reinvoke()
+                try:
+                    await ctx.reinvoke()
+                except Exception as e:
+                    await ctx.send(f"```bash\n{e}\n```")
         elif isinstance(error, commands.BotMissingPermissions):
             return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But I Don't Have No Permissions To Run The `{ctx.command}` command***")
         elif isinstance(error, commands.NoPrivateMessage):

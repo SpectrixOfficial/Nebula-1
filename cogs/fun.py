@@ -18,6 +18,8 @@ async def activitytype(activitytype):
         return "Streaming"
     elif str(activitytype) ==  "ActivityType.listening":
         return "Listening To"
+    elif str(activitytype) == 'ActivityType.watching':
+        return "Watching"
     else:
         pass
 
@@ -123,7 +125,7 @@ class FunCommands:
             await ctx.send(embed=discord.Embed(description=f"***`{reqresult}` isn't a Valid Repo, if So, Try Again Later***", color=discord.Color(value=0x1c407a)))
 
     @commands.command()
-    async def userinfo(self, ctx, * ,user : discord.Member=None):
+    async def userinfo(self, ctx, * , user : discord.Member=None):
         if user is None:
             user = ctx.author
         joined_server = user.joined_at.strftime("%B %e, %Y %I:%M%p")
@@ -132,20 +134,21 @@ class FunCommands:
         created_account_length = (ctx.message.created_at - user.created_at).days
         if user.id == self.bot.owner_id:
             username = f"{user} (My Owner)"
+        elif user.bot:
+            username = f"{user} (Bot)"
         else:
             username = user
         if len(user.roles) > 1:
             roles = '\n'.join(list(reversed(sorted([a.name for a in user.roles if a.name != "@everyone"]))))
         else:
             roles = "None"
-        if user.status:
-            try:
-                authoracttype = await activitytype(user.activity.type)
-                activity = f"{authoracttype} {user.activity.name}"
-            except:
-                activity =  user.name + " isn't playing nothing"
-        else:
-            activity = "This user is offline"
+        
+        try:
+            authoracttype = await activitytype(user.activity.type)
+            activity = f"{authoracttype} {user.activity.name}"
+        except:
+            activity = f"{user.name} isn't playing anything"
+           
         embed = discord.Embed(description=activity, color=discord.Color(value=0x1c407a))
         if user.nick:
             embed.set_author(name=f"{username} ({user.nick})")
