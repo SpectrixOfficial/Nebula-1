@@ -31,7 +31,7 @@ class FunCommands:
         print("FunCommands Is Loaded")
 
     @commands.command()
-    async def rps(self, ctx, choice):
+    async def rps(self, ctx, *, choice):
         botChoice = random.choice(['rock', 'paper', 'scissors'])
 
         async def userWins():
