@@ -1,8 +1,16 @@
-# Nebula
+# Nebula, Welcome To v1.0
 
 A Discord Bot Created By [`discord.py`](https://discordpy.readthedocs.io/en/rewrite/api.html) and Maintained And Owned By [@EnterNewName](https://github.com/EnterNewName)
 
-## What Is Nebula Anyways?
+## New Updates
+
+* Made Performance Faster
+* Removed uptime
+* Made the bot ready for an database provider to be setup
+* Spoofied Command Designs
+* Added User Info and planning to add server info
+
+# What Is Nebula Anyways?
 
 Nebula is A Discord bot That Serves All Purposes, Moderation, Fun, Server Utilities, You Name It, We Need It
 
@@ -33,7 +41,7 @@ The JSON File is pretty much like the login file, but if you want to clone the r
 >&nbsp;&nbsp;"cogs.role",<br />
 >&nbsp;&nbsp;"cogs.fun"],<br />
 >&nbsp;"defaultprefix" : "."<br />
->&nbsp;"dbltoken" : "discord-bot-list-token"
->&nbsp;"urls" : {
->&nbsp;"transparentgithubimg" : ""
->&nbsp;}
+>&nbsp;"dbltoken" : "discord-bot-list-token"<br />
+>&nbsp;"urls" : {<br />
+>&nbsp;"transparentgithubimg" : "https://camo.githubusercontent.com/7710b43d0476b6f6d4b4b2865e35c108f69991f3/68747470733a2f2f7777772e69636f6e66696e6465722e636f6d2f646174612f69636f6e732f6f637469636f6e732f313032342f6d61726b2d6769746875622d3235362e706e67"<br />
+>&nbsp;}<br />
