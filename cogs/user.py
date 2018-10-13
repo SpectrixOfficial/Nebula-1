@@ -5,9 +5,6 @@ from discord.ext import commands
 class UserManagement:
     def __init__(self, bot):
         self.bot = bot
-     
-    async def on_ready(self):
-        print("User Management Is Loaded")
 
     @commands.has_permissions(ban_members=True)   
     @commands.bot_has_permissions(ban_members=True)
@@ -72,8 +69,5 @@ class UserManagement:
             except:
                 pass
 
-        
-# no <:tickNo:483288678437879808> 
-#yes <:tickYes:483288647823523841>
 def setup(bot):
     bot.add_cog(UserManagement(bot))

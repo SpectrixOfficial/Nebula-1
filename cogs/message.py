@@ -19,7 +19,6 @@ class MessageManagement:
         await asyncio.sleep(.7)
         await ctx.send(f"**Deleted `{len(num) - 1}` {msg} <:tickYes:490607182010777620>**", delete_after=1)
 
-
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     @commands.command(aliases=['slowmo'])
@@ -36,9 +35,6 @@ class MessageManagement:
                 numofmessages = "seconds"
             await ctx.channel.edit(slowmode_delay=(seconds))
             await ctx.send(f"**Channel is On Slowmode for `{seconds}` {numofmessages} <:tickYes:490607182010777620>\nTo Turn Off, Just Do `.slowmode`**")
-
-    async def on_ready(self):
-        print("MessageManagement Is Loaded")
 
 def setup(bot):
     bot.add_cog(MessageManagement(bot))

@@ -7,9 +7,6 @@ class MainCommands:
     def __init__(self, bot):
         self.bot = bot
 
-    async def on_ready(self):
-        print("MainCommands Is Loaded")
-       
     @commands.guild_only()
     @commands.command()
     async def help(self, ctx):

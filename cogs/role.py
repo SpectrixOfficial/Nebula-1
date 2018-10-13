@@ -5,9 +5,6 @@ class RoleCommands:
     def __init__(self, bot):
         self.bot = bot
 
-    async def on_ready(self):
-        print("RoleCommands is Loaded")
-
     @commands.guild_only()
     @commands.bot_has_permissions(manage_roles=True)
     @commands.has_permissions(manage_roles=True)

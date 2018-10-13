@@ -27,9 +27,6 @@ class FunCommands:
     def __init__(self, bot):
         self.bot = bot
 
-    async def on_ready(self):
-        print("FunCommands Is Loaded")
-
     @commands.command()
     async def rps(self, ctx, *, choice):
         botChoice = random.choice(['rock', 'paper', 'scissors'])
