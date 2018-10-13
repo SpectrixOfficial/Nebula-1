@@ -21,14 +21,10 @@ class Nebula_Bot(commands.AutoShardedBot):
 
 
     async def on_guild_remove(self, guild):
-        try:
-            await self.presencehandler()
-        except Exception as e:
-            await self.presencehandler()
-            print(f"Having A Problem With Loading The presence_handler\nHeres The Error: {e}")  
+        await self.presencehandler()
 
     async def on_ready(self):
-        await  self.presencehandler()
+        await self.presencehandler()
         print("========================\nConnected To Discord API")
         print("========================\nStats:\n")
         print("Discord.py Version : " + pkg_resources.get_distribution("discord.py").version)
@@ -36,11 +32,7 @@ class Nebula_Bot(commands.AutoShardedBot):
         print(f"Guild Count : {len(self.guilds)}\n")
 
     async def on_guild_join(self, guild):
-        try:
-            self.presencehandler()
-        except Exception as e:
-            self.presencehandler()
-            print(f"Having A Problem With Loading The presence_handler\nHeres The Error: {e}")            
+        await self.presencehandler()         
         try:
             embed = discord.Embed(color=discord.Color(value=0x1c407a))
             embed.set_author(name="Thanks For Inviting Nebula")
