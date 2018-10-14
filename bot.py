@@ -13,11 +13,11 @@ class Nebula_Bot(commands.AutoShardedBot):
 
 
     async def presencehandler(self):
-        header = {"Authorization" : config["dbltoken"]}
-        payload = {"server_count"  : len(self.guilds)}
+        #header = {"Authorization" : config["dbltoken"]}
+        #payload = {"server_count"  : len(self.guilds)}
         await self.change_presence(activity=discord.Activity(name=f".help in {len(self.guilds)} Servers!", url="https://www.twitch.tv/EnterNewName", type=1))
-        async with aiohttp.ClientSession() as session:
-            await session.post("https://discordbots.org/bot/487164011683774464/stats", data=payload, headers=header)
+        """async with aiohttp.ClientSession() as session:
+            await session.post("https://discordbots.org/bot/487164011683774464/stats", data=payload, headers=header)"""
 
 
     async def on_guild_remove(self, guild):
