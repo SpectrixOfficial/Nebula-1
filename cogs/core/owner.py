@@ -1,4 +1,4 @@
-import discord, asyncio, json, time, io, traceback, inspect, textwrap, datetime, os, sys
+import discord, asyncio, json, time, io, traceback, inspect, textwrap, datetime, os, sys, subprocess
 from time import ctime
 from contextlib import redirect_stdout
 from discord.ext import commands
@@ -58,13 +58,13 @@ class Developers:
             value = stdout.getvalue()
             await ctx.send(f'```py\n{value}{traceback.format_exc()}```')
             try:
-                await ctx.message.add_reaction(':tickNo:490607198443929620')
+                await ctx.message.add_reaction(config['ticknoreact'])
             except:
                 pass
         else:
             value = stdout.getvalue()
             try:
-                await ctx.message.add_reaction(':tickYes:490607182010777620')
+                await ctx.message.add_reaction(config['tickyesreact'])
             except:
                 pass
 
@@ -75,6 +75,7 @@ class Developers:
                 self._last_result = ret
                 await ctx.send(f'```py\n{value}{ret}\n```')
 
+
     @commands.command(aliases=['rl'])
     async def reload(self, ctx, cog=None):
         if not cog:
@@ -82,25 +83,25 @@ class Developers:
                 for module in cogs:
                     self.bot.unload_extension(module)
                     self.bot.load_extension(module)
-                return await ctx.send(embed=discord.Embed(color=discord.Color.green(), description=f"Successfully Reloaded {len(module)} Cogs <:tickYes:490607182010777620>"))            
+                return await ctx.send(embed=discord.Embed(color=discord.Color.green(), description=f"Successfully Reloaded {len(module)} Cogs {config['tickyes']}"))            
             except Exception as e:
-                return await ctx.send(embed=discord.Embed(description=f"Could Not Reload {len(module)} Cogs <:tickNo:490607198443929620>\n```bash\n{e}\n```", color=discord.Color.red()))
+                return await ctx.send(embed=discord.Embed(description=f"Could Not Reload {len(module)} Cogs {config['tickno']}\n```bash\n{e}\n```", color=discord.Color.red()))
 
         try:
             self.bot.unload_extension(f"cogs.{cog}")
             self.bot.load_extension(f"cogs.{cog}")
-            await ctx.send(embed=discord.Embed(color=discord.Color.green(), description=f"Successfully Reloaded `cogs.{cog}` <:tickYes:490607182010777620>"))            
+            await ctx.send(embed=discord.Embed(color=discord.Color.green(), description=f"Successfully Reloaded `cogs.{cog}` {config['tickyes']}"))            
         except Exception as e:
-            await ctx.send(embed=discord.Embed(description=f"Could Not Reload `cogs.{cog}` <:tickNo:490607198443929620>\n```bash\n{e}\n```", color=discord.Color.red()))
+            await ctx.send(embed=discord.Embed(description=f"Could Not Reload `cogs.{cog}` {config['tickno']}\n```bash\n{e}\n```", color=discord.Color.red()))
 
     
     @commands.command(aliases=['l'])
     async def load(self, ctx, cog):
         try:
             self.bot.load_extension(f"cogs.{cog}")
-            await ctx.send(embed=discord.Embed(description=f"Loaded Cog `cogs.{cog}` <:tickYes:490607182010777620>", color=discord.Color.green()))
+            await ctx.send(embed=discord.Embed(description=f"Loaded Cog `cogs.{cog}` {config['tickyes']}", color=discord.Color.green()))
         except Exception as e:
-            await ctx.send(embed=discord.Embed(color=discord.Color.red(), description=f"Could Not Load `cogs.{cog}` <:tickNo:490607198443929620>\n```fix\n{e}\n```"))
+            await ctx.send(embed=discord.Embed(color=discord.Color.red(), description=f"Could Not Load `cogs.{cog}` {config['tickno']}\n```fix\n{e}\n```"))
 
     @commands.command(aliases=['ul'])
     async def unload(self, ctx, cog):
@@ -139,6 +140,12 @@ class Developers:
     @commands.command()
     async def send(self, ctx, user : discord.User, *, body : str):
         await user.send(body)
+        await ctx.message.add_reaction(str(config['tickyesreact']))
+        await asyncio.sleep(.125)
+        try:
+            await ctx.message.delete()
+        except:
+            pass
     
 def setup(bot):
     bot.add_cog(Developers(bot))

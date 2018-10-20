@@ -12,23 +12,23 @@ class Handler:
     async def on_command_error(self, ctx, error):
         if isinstance (error, commands.MissingPermissions):
             if ctx.author.id != self.bot.owner_id:
-                return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But You Have Do Not Have The `{error.missing_perms[0].replace('_', ' ')}` permission***")
+                return await ctx.send(f"{config['tickno']} ***Sorry, But You Have Do Not Have The `{error.missing_perms[0].replace('_', ' ')}` permission***")
             else:
                 try:
                     return await ctx.reinvoke()
                 except Exception as err:
-                    return await ctx.send(f"```bash\n{err}\n```")
+                    return await ctx.send(f"```bash\n{err}\n```").add_reaction(config['ticknoreact'])
         elif isinstance(error, commands.BotMissingPermissions):
-            return await ctx.send(f"<:tickNo:490607198443929620> ***Sorry, But I Don't Have No Permissions To Run The `{ctx.command}` command***")
+            return await ctx.send(f"{config['tickno']} ***Sorry, But I Don't Have No Permissions To Run The `{ctx.command}` command***")
         elif isinstance(error, commands.NoPrivateMessage):
-            return await ctx.send(f"***<:tickNo:490607198443929620> Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please***")
+            return await ctx.send(f"***{config['tickno']} Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please***")
         elif isinstance(error, commands.CheckFailure):
-            return await ctx.send("***<:tickNo:490607198443929620> These Commands are Only For My Developers***")
+            return await ctx.send(f"***{config['tickno']} These Commands are Only For My Developers***")
         elif isinstance(error, commands.CommandNotFound):
             pass
         elif isinstance(error, commands.CommandOnCooldown):
             if ctx.author.id != self.bot.owner_id:
-                return await ctx.send(f"***<:tickNo:490607198443929620>Woah There, That Command Is On A Cooldown For {math.ceil(error.retry_after)} Seconds***")
+                return await ctx.send(f"***{config['tickno']} Woah There, That Command Is On A Cooldown For {math.ceil(error.retry_after)} Seconds***")
             else:
                 await ctx.reinvoke()
         else:

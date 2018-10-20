@@ -5,12 +5,10 @@ from time import ctime
 with open("database/data.json") as f:
     config = json.load(f)
 
-
 class Nebula_Bot(commands.AutoShardedBot):
     def __init__(self):
         super().__init__(command_prefix=commands.when_mentioned_or(config['prefix']),
-                         case_insensitive=True)
-
+                         case_insensitive=True, owner_id=373256462211874836)
 
     async def presencehandler(self):
         #header = {"Authorization" : config["dbltoken"]}
@@ -18,7 +16,6 @@ class Nebula_Bot(commands.AutoShardedBot):
         await self.change_presence(activity=discord.Activity(name=f".help in {len(self.guilds)} Servers!", url="https://www.twitch.tv/EnterNewName", type=1))
         """async with aiohttp.ClientSession() as session:
             await session.post("https://discordbots.org/bot/487164011683774464/stats", data=payload, headers=header)"""
-
 
     async def on_guild_remove(self, guild):
         await self.presencehandler()

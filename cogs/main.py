@@ -1,11 +1,19 @@
-import discord, asyncio, json, time, datetime
+import discord, asyncio, json, time, datetime 
 from time import ctime
 from discord.ext import commands
 from discord.ext.commands.cooldowns import BucketType
 
+with open('database/data.json') as file:
+    config = json.load(file)
+
 class MainCommands:
     def __init__(self, bot):
         self.bot = bot
+
+    async def on_ready(self):
+        with open("database/uptime.json", "w+") as file:
+            json.dump({"uptimestats" : str(datetime.datetime.utcnow())}, file)
+        print("Posted Uptime")
 
     @commands.guild_only()
     @commands.command()
@@ -46,19 +54,19 @@ class MainCommands:
     @commands.command(aliases=['server'])
     async def support(self, ctx):
         try:
-            await ctx.author.send("**Here's My Support Server:**\nhttps://enternewname.me/redirects/support")
+            await ctx.author.send("**Here's My Support Server**\nhttps://enternewname.me/redirects/support")
             await ctx.send("***:mailbox_with_mail: Check DMs For Official Support Server***")
         except:
-            await ctx.send("Here Is The Official Support Server\nhttps://enternewname.me/redirects/support")
+            await ctx.send("Here's My Support Server\nhttps://enternewname.me/redirects/support")
             
     @commands.guild_only()
     @commands.command()
     async def invite(self, ctx):
         try:
-            await ctx.author.send("**Here's my invite:**\nhttps://enternewname.me/redirects/invite-nebula")
+            await ctx.author.send("**Here's my invite**\nhttps://enternewname.me/redirects/invite-nebula")
             await ctx.send("***:mailbox_with_mail: Check DMs For The Invite Link***")
         except:
-            await ctx.send("**Here's my invite:**\nhttps://enternewname.me/redirects/invite-nebula")
+            await ctx.send("**Here's my invite**\nhttps://enternewname.me/redirects/invite-nebula")
 
     @commands.guild_only()
     @commands.command()
@@ -74,7 +82,7 @@ class MainCommands:
             await feedback.send(embed=embed)
             await ctx.send("**Your Response Has Been Sent, You Might Recieve A Response Later On**")
         except Exception as e:
-            await ctx.send("***Your Feedback Could Not Be Sent <:tickNo:490607198443929620>, Notifying Owner***")
+            await ctx.send(f"***Your Feedback Could Not Be Sent {config['tickno']}, Notifying Owner***")
             owner = self.bot.get_user(373256462211874836)
             await owner.send(f"{owner}, We Have A Problem With The Feedback Command,\nAuthor Profile: {ctx.author.id}\nName: {ctx.author}\nHeres The Error:\n```fix\n{e}\n```")
 
@@ -84,14 +92,23 @@ class MainCommands:
     async def annouce(self, ctx, channel : discord.TextChannel, * ,body : str):
         embed = discord.Embed(color=ctx.author.color)
         embed.set_author(icon_url=ctx.author.avatar_url, name=ctx.author)
-        embed.add_field(name="Update:\n", value=body)
+        embed.add_field(name="Update:\n\n", value=body)
         await channel.send(embed=embed)
         try:
             await ctx.message.delete()
         except:
             pass
-# no <:tickNo:483288678437879808> 
-#yes <:tickYes:490607182010777620>
+
+    @commands.command()
+    async def uptime(self, ctx):
+        file = open('database/uptime.json', "r")
+        time = json.load(file)['uptimestats']
+        uptimeraw = datetime.datetime.strptime(time, "%Y-%m-%d %H:%M:%S.%f")
+        uptime = datetime.datetime.utcnow() - uptimeraw
+        hours, remainder = divmod(int(uptime.total_seconds()), 3600)
+        minutes, seconds = divmod(remainder, 60)
+        days, hours = divmod(hours, 24)
+        await ctx.send(f"I've been on for **{days}** days, **{hours}** hours, **{minutes}** minutes, **{seconds}** seconds")
 
 def setup(bot):
     bot.add_cog(MainCommands(bot))

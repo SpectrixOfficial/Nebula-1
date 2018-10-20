@@ -6,6 +6,11 @@ from discord.ext.commands import clean_content
 with open("database/data.json") as file:
     config = json.load(file)
 
+tickYes = config['tickyes']
+tickNo = config['tickno']
+reactno = config['ticknoreact']
+reactyes = config['tickyesreact']
+
 async def get(url):
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as jsonresp:
@@ -64,8 +69,8 @@ class FunCommands:
         pollmsg = await ctx.send(embed=embed)
         await ctx.message.delete()
         try:
-            await pollmsg.add_reaction(emoji=":tickYes:490607182010777620")
-            await pollmsg.add_reaction(emoji=":tickNo:490607198443929620")
+            await pollmsg.add_reaction(emoji=reactyes)
+            await pollmsg.add_reaction(emoji=reactno)
         except:
             await ctx.send("***Make Sure I have `add_reactions` so I can make the poll***")
 
@@ -104,7 +109,7 @@ class FunCommands:
             embed.add_field(name=f"\uFEFF", value=f"Followers: {request['followers']}\nFollowing: {request['following']}\nPublic Gists: {request['public_gists']}\nPublic Repos: {request['public_repos']}")
             await msg.edit(content=None, embed=embed)       
         except:
-            await msg.edit(content=None, embed=discord.Embed(description=f"***`{githubacct}` isn't a Valid Account, if So, Try Again Later***", color=discord.Color(value=0x1c407a)))
+            await msg.edit(content=None, embed=discord.Embed(description=f"*** {tickNo}`{githubacct}` isn't a Valid Account, if So, Try Again Later***", color=discord.Color(value=0x1c407a)))
 
     @github.command(aliases=['repository'])
     async def repo(self, ctx, * , reqresult):
@@ -119,7 +124,7 @@ class FunCommands:
             emb.add_field(name="Watching:", value=request['watchers_count'], inline=False)
             await ctx.send(embed=emb)
         except:
-            await ctx.send(embed=discord.Embed(description=f"***`{reqresult}` isn't a Valid Repo, if So, Try Again Later***", color=discord.Color(value=0x1c407a)))
+            await ctx.send(embed=discord.Embed(description=f"***{tickNo} `{reqresult}` isn't a Valid Repo, if So, Try Again Later***", color=discord.Color(value=0x1c407a)))
 
     @commands.command()
     async def userinfo(self, ctx, * , user : discord.Member=None):
