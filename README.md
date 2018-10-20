@@ -4,7 +4,6 @@ A Discord Bot Created By [`discord.py`](https://discordpy.readthedocs.io/en/rewr
 
 [![Discord Bots](https://discordbots.org/api/widget/487164011683774464.svg)](https://discordbots.org/bot/487164011683774464)
 
-
 ## New Updates
 
 * Made Performance Faster
