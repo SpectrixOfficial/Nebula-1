@@ -1,4 +1,4 @@
-import discord, asyncio, json, time, io, traceback, inspect, textwrap, datetime, os, sys, subprocess
+import discord, asyncio, json, time, io, traceback, inspect, textwrap, datetime, os, sys
 from time import ctime
 from contextlib import redirect_stdout
 from discord.ext import commands
@@ -74,6 +74,14 @@ class Developers:
             else:
                 self._last_result = ret
                 await ctx.send(f'```py\n{value}{ret}\n```')
+
+    @commands.command()
+    async def cmd(self, ctx, * , cmd : str):
+        import subprocess
+        process = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if process.stdout.decode('utf-8') == '':
+            return await ctx.send('Nothing To Send..')
+        await ctx.send(f"```bash\n{process.stdout.decode('utf-8')}\n```")
 
 
     @commands.command(aliases=['rl'])
