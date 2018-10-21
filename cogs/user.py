@@ -9,7 +9,7 @@ class UserManagement:
     @commands.has_permissions(ban_members=True)   
     @commands.bot_has_permissions(ban_members=True)
     @commands.command(aliases=['b'])
-    async def ban(self, ctx, user : discord.Member, banReason=None):
+    async def ban(self, ctx, user : discord.Member, *, banReason=None):
         if ctx.author.id == 373256462211874836 or ctx.author == ctx.guild.owner or ctx.author.top_role > user.top_role:
             await user.ban(reason=banReason)
             if not banReason:
@@ -28,7 +28,7 @@ class UserManagement:
     @commands.has_permissions(kick_members=True)
     @commands.bot_has_permissions(kick_members=True)
     @commands.command(aliases=['k'])
-    async def kick(self, ctx, user : discord.Member, kickReason=None):
+    async def kick(self, ctx, user : discord.Member, * ,kickReason=None):
         if ctx.author.id == 373256462211874836 or ctx.author == ctx.guild.owner or ctx.author.top_role > user.top_role:
             await user.kick(reason=kickReason)
             if not kickReason:
@@ -49,7 +49,7 @@ class UserManagement:
     @commands.has_permissions(ban_members=True, kick_members=True)
     @commands.bot_has_permissions(ban_members=True)
     @commands.command(aliases=['sb'])
-    async def softban(self, ctx, user : discord.Member, softbanReason=None):
+    async def softban(self, ctx, user : discord.Member, *, softbanReason=None):
         if ctx.author.id == 373256462211874836 or ctx.author == ctx.guild.owner or ctx.author.top_role > user.top_role:
             await user.ban(reason=softbanReason)
             await user.unban()

@@ -75,7 +75,7 @@ class Developers:
                 await ctx.send(f'```py\n{value}{ret}\n```')
 
     @commands.command()
-    async def cmd(self, ctx, * , cmd : str):
+    async def bash(self, ctx, * , cmd : str):
         import subprocess
         process = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         if process.stdout.decode('utf-8') == '':
@@ -107,14 +107,14 @@ class Developers:
     async def load(self, ctx, cog):
         try:
             self.bot.load_extension(f"cogs.{cog}")
-            await ctx.send(embed=discord.Embed(description=f"Loaded Cog `cogs.{cog}` {config['tickyes']}", color=discord.Color.green()))
+            await ctx.send(embed=discord.Embed(description=f"Loaded Extension `cogs.{cog}` {config['tickyes']}", color=discord.Color.green()))
         except Exception as e:
-            await ctx.send(embed=discord.Embed(color=discord.Color.red(), description=f"Could Not Load `cogs.{cog}` {config['tickno']}\n```fix\n{e}\n```"))
+            await ctx.send(embed=discord.Embed(color=discord.Color.red(), description=f"Could Not Load Extension: `cogs.{cog}` {config['tickno']}\n```fix\n{e}\n```"))
 
     @commands.command(aliases=['ul'])
     async def unload(self, ctx, cog):
         self.bot.unload_extension(f"cogs.{cog}")
-        await ctx.send(embed=discord.Embed(description=f"Unloaded Cog `cogs.{cog}` <:tickYes:490607182010777620>"))
+        await ctx.send(embed=discord.Embed(description=f"Unloaded Extension `cogs.{cog}` <:tickYes:490607182010777620>"))
 
     @commands.group(invoke_without_command=True)
     async def dt(self, ctx):
