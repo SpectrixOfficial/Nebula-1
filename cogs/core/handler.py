@@ -17,13 +17,17 @@ class Handler:
                 try:
                     return await ctx.reinvoke()
                 except Exception as err:
-                    return await ctx.send(f"```bash\n{err}\n```").add_reaction(config['ticknoreact'])
+                    await ctx.send(f"```bash\n{err}\n```")
+                    await ctx.message.add_reaction(config['ticknoreact'])
         elif isinstance(error, commands.BotMissingPermissions):
             return await ctx.send(f"{config['tickno']} ***Sorry, But I Don't Have No Permissions To Run The `{ctx.command}` command***")
         elif isinstance(error, commands.NoPrivateMessage):
-            return await ctx.send(f"***{config['tickno']} Hey, {ctx.command} isn't allowed in DMs, Try It In A Server Please***")
+            return await ctx.send(f"***{config['tickno']} Hey, {ctx.command} isn't allowed in DMs, Try it in a server please***")
         elif isinstance(error, commands.CheckFailure):
-            return await ctx.send(f"***{config['tickno']} These Commands are Only For My Developers***")
+            if ctx.cog.__class__.__name__ != 'Support':
+                return await ctx.send(f"***{config['tickno']} These Commands are Only For My Developers***")
+            else:
+                return await ctx.send(f"***{config['tickno']} This command can only be used in my Support Server***")                
         elif isinstance(error, commands.CommandNotFound):
             pass
         elif isinstance(error, commands.CommandOnCooldown):

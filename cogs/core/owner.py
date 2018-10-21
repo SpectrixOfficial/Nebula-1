@@ -5,7 +5,6 @@ from discord.ext import commands
 
 with open("database/data.json") as f:
     config = json.load(f)
-    cogs = config['cogs']
 
 class Developers:
     def __init__(self, bot):
@@ -86,12 +85,13 @@ class Developers:
 
     @commands.command(aliases=['rl'])
     async def reload(self, ctx, cog=None):
+        cogs = config['cogs']
         if not cog:
             try:
                 for module in cogs:
                     self.bot.unload_extension(module)
                     self.bot.load_extension(module)
-                return await ctx.send(embed=discord.Embed(color=discord.Color.green(), description=f"Successfully Reloaded {len(module)} Cogs {config['tickyes']}"))            
+                return await ctx.send(embed=discord.Embed(color=discord.Color.green(), description=f"Successfully Reloaded {len(cogs)} Cogs {config['tickyes']}"))            
             except Exception as e:
                 return await ctx.send(embed=discord.Embed(description=f"Could Not Reload {len(module)} Cogs {config['tickno']}\n```bash\n{e}\n```", color=discord.Color.red()))
 

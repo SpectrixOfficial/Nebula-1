@@ -15,14 +15,16 @@ class MainCommands:
             json.dump({"uptimestats" : str(datetime.datetime.utcnow())}, file)
         print("Posted Uptime")
 
-    @commands.guild_only()
     @commands.command()
     async def help(self, ctx):
-        try:
-            await ctx.author.send("**Here's my website**\nhttp://enternewname.me/nebula/commands")
-            await ctx.send("***Check Your DMs For Help***")
-        except:
-            await ctx.send("**Here's my website**\nhttp://enternewname.me/nebula/commands")
+        if not ctx.guild:
+            return await ctx.send("**Here's my website**\nhttp://enternewname.me/nebula/commands")
+        else:
+            try:
+                await ctx.author.send("**Here's my website**\nhttp://enternewname.me/nebula/commands")
+                await ctx.send("***Check Your DMs For Help***")
+            except:
+                await ctx.send("**Here's my website**\nhttp://enternewname.me/nebula/commands")
 
     @commands.command()
     async def prefix(self, ctx):
@@ -49,24 +51,27 @@ class MainCommands:
         embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested By {ctx.author.name}")
         await msg.edit(content=None, embed=embed)
 
-
-    @commands.guild_only()
     @commands.command(aliases=['server'])
     async def support(self, ctx):
-        try:
-            await ctx.author.send("**Here's My Support Server**\nhttps://enternewname.me/redirects/support")
-            await ctx.send("***:mailbox_with_mail: Check DMs For Official Support Server***")
-        except:
-            await ctx.send("Here's My Support Server\nhttps://enternewname.me/redirects/support")
+        if not ctx.guild:
+            return await ctx.send("**Here's My Support Server**\nhttps://enternewname.me/redirects/support")
+        else:
+            try:
+                await ctx.author.send("**Here's My Support Server**\nhttps://enternewname.me/redirects/support")
+                await ctx.send("***:mailbox_with_mail: Check DMs For Official Support Server***")
+            except:
+                await ctx.send("Here's My Support Server\nhttps://enternewname.me/redirects/support")
             
-    @commands.guild_only()
     @commands.command()
     async def invite(self, ctx):
-        try:
-            await ctx.author.send("**Here's my invite**\nhttps://enternewname.me/redirects/invite-nebula")
-            await ctx.send("***:mailbox_with_mail: Check DMs For The Invite Link***")
-        except:
-            await ctx.send("**Here's my invite**\nhttps://enternewname.me/redirects/invite-nebula")
+        if not ctx.guild:
+            return await ctx.send("**Here's my invite**\nhttps://enternewname.me/redirects/invite-nebula")
+        else:
+            try:
+                await ctx.author.send("**Here's my invite**\nhttps://enternewname.me/redirects/invite-nebula")
+                await ctx.send("***:mailbox_with_mail: Check DMs For The Invite Link***")
+            except:
+                await ctx.send("**Here's my invite**\nhttps://enternewname.me/redirects/invite-nebula")
 
     @commands.guild_only()
     @commands.command()
