@@ -5,7 +5,10 @@ from time import ctime
 with open("database/data.json") as f:
     config = json.load(f)
 
-class Nebula_Bot(commands.AutoShardedBot):
+# This Little thing right here is pretty much like an faster startup, and it makes it database compatible too, for beginners i would NOT suggest doing this and copying 
+# right off the bat. Just Goto the master branch to see the original version, nothing really different, Except That It Actaully Makes Startup Speed Very Fast(Like 3 Seconds Fast but it my vary)
+
+class Nebula_Bot(commands.Bot):
     def __init__(self):
         super().__init__(command_prefix=commands.when_mentioned_or(config['prefix']),
                          case_insensitive=True, owner_id=373256462211874836)
@@ -33,9 +36,10 @@ class Nebula_Bot(commands.AutoShardedBot):
         try:
             embed = discord.Embed(color=discord.Color(value=0x1c407a))
             embed.set_author(name="Thanks For Inviting Nebula")
-            embed.add_field(name="My Prefix is `.`", value=f"[Support](https://enternewname.me/redirects/support)", inline=False)
+            embed.add_field(name="My Prefix is `.`", value=f"[Support](https://links.enternewname.me/nebula)", inline=False)
             embed.add_field(name="Need Help?", value="[Click here](https://enternewname.me/nebula/commands)", inline=False)
             embed.add_field(name="Logging Channel Requirement", value="***#mod-log***", inline=False)
+            embed.add_field(name="Other Requirements:", value="Make Sure I have `external_emojis` so i can use my emojis\nfrom my [Support Server](https://links.enternewname.me/server)")
             await guild.system_channel.send(embed=embed)
         except:
             pass
@@ -51,7 +55,7 @@ class Nebula_Bot(commands.AutoShardedBot):
             print("\nConnecting To The API")
             super().run(config["bottoken"])
         except Exception as e:
-            print(f"\n{e}\n")
+            print(f"Internal Error While Booting Bot\n\n{e}\n")
 
 if __name__ == "__main__":
     Nebula_Bot().intiate_startup()

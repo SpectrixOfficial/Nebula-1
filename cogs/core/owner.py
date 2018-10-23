@@ -154,6 +154,16 @@ class Developers:
             await ctx.message.delete()
         except:
             pass
-    
+
+    @commands.command()
+    async def test(self, ctx):
+        embed = discord.Embed(color=discord.Color(value=0x1c407a))
+        embed.set_author(name="Thanks For Inviting Nebula")
+        embed.add_field(name="My Prefix is `.`", value=f"[Support](https://enternewname.me/redirects/support)", inline=False)
+        embed.add_field(name="Need Help?", value="[Click here](https://enternewname.me/nebula/commands)", inline=False)
+        embed.add_field(name="Logging Channel Requirement", value="***#mod-log***", inline=False)
+        embed.add_field(name="Other Requirements:", value="Make Sure I have `external_emojis` so i can use my emojis\nfrom my [Support Server](https://enternewname.me/redirects/support)")
+        await ctx.guild.system_channel.send(embed=embed)    
+        
 def setup(bot):
     bot.add_cog(Developers(bot))
