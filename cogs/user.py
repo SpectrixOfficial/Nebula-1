@@ -16,7 +16,7 @@ class UserManagement:
                 await ctx.send(f"**<:tickYes:490607182010777620> I have banned {user} from the server**")
             else:
                 await ctx.send(f"**<:tickYes:490607182010777620> I have banned {user} from the server because: {banReason}**")
-            embed = discord.Embed(timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0x1c407a))
+            embed = discord.Embed(timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0xBD5BFF))
             embed.set_author(name=f"Moderator Action: {ctx.command}")
             embed.add_field(name="Moderator: ", value=ctx.author, inline=False)
             embed.add_field(name="Accused User", value=user, inline=False)
@@ -36,7 +36,7 @@ class UserManagement:
             else:
                 await ctx.send(f"**<:tickYes:490607182010777620> I have kicked {user} from the server because: {kickReason}**")
             try:
-                embed = discord.Embed(timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0x1c407a))
+                embed = discord.Embed(timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0xBD5BFF))
                 embed.set_author(name=f"Moderator Action: {ctx.command}")
                 embed.add_field(name="Moderator: ", value=ctx.author, inline=False)
                 embed.add_field(name="Accused User", value=user, inline=False)
@@ -58,7 +58,7 @@ class UserManagement:
             else:
                 await ctx.send(f"**<:tickYes:490607182010777620> I have softbanned {user} from the server because: {softbanReason}**")
             try:
-                embed = discord.Embed(timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0x1c407a))
+                embed = discord.Embed(timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0xBD5BFF))
                 embed.set_author(name=f"Moderator Action: {ctx.command}")
                 embed.add_field(name="Moderator: ", value=ctx.author, inline=False)
                 embed.add_field(name="Accused User", value=user, inline=False)

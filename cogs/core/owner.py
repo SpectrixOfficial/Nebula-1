@@ -79,7 +79,7 @@ class Developers:
         import subprocess
         process = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         if process.stdout.decode('utf-8') == '':
-            return await ctx.send('Nothing To Send..')
+            return
         await ctx.send(f"```bash\n{process.stdout.decode('utf-8')}\n```")
 
 

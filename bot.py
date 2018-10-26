@@ -10,24 +10,23 @@ with open("database/data.json") as f:
 
 class Nebula_Bot(commands.Bot):
     def __init__(self):
-        super().__init__(command_prefix=commands.when_mentioned_or(config['prefix']),
-                         case_insensitive=True, owner_id=373256462211874836)
+        super().__init__(command_prefix=commands.when_mentioned_or(config['prefix']),case_insensitive=True, owner_id=373256462211874836)
 
     async def presencehandler(self):
-        #header = {"Authorization" : config["dbltoken"]}
-        #payload = {"server_count"  : len(self.guilds)}
+        if config['is_on_dbl'] is True:
+            header = {"Authorization" : config["dbltoken"]}
+            payload = {"server_count"  : len(self.guilds)}
+            async with aiohttp.ClientSession() as session:
+                await session.post("https://discordbots.org/bot/487164011683774464/stats", data=payload, headers=header)
         await self.change_presence(activity=discord.Activity(name=f".help in {len(self.guilds)} Servers!", url="https://www.twitch.tv/EnterNewName", type=1))
-        """async with aiohttp.ClientSession() as session:
-            await session.post("https://discordbots.org/bot/487164011683774464/stats", data=payload, headers=header)"""
 
     async def on_guild_remove(self, guild):
         await self.presencehandler()
 
     async def on_ready(self):
         await self.presencehandler()
-        print("========================\nConnected To Discord API")
-        print("========================\nStats:\n")
-        print("Discord.py Version : " + pkg_resources.get_distribution("discord.py").version)
+        print("Bot Is Successfully Connected")
+        print("Discord.py Version : {}".format(pkg_resources.get_distribution("discord.py").version))
         print(f"{self.user} Is Online")
         print(f"Guild Count : {len(self.guilds)}\n")
 
@@ -43,7 +42,7 @@ class Nebula_Bot(commands.Bot):
             await guild.system_channel.send(embed=embed)
         except:
             pass
-            
+           
 
     def intiate_startup(self):
         self.remove_command('help')

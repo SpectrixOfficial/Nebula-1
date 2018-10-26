@@ -18,13 +18,13 @@ class MainCommands:
     @commands.command()
     async def help(self, ctx):
         if not ctx.guild:
-            return await ctx.send("**Here's my website**\nhttp://enternewname.me/nebula/commands")
+            return await ctx.send("**Here's my website**\nhttps://enternewname.me/nebula/commands")
         else:
             try:
-                await ctx.author.send("**Here's my website**\nhttp://enternewname.me/nebula/commands")
+                await ctx.author.send("**Here's my website**\nhttps://enternewname.me/nebula/commands")
                 await ctx.send("***Check Your DMs For Help***")
             except:
-                await ctx.send("**Here's my website**\nhttp://enternewname.me/nebula/commands")
+                await ctx.send("**Here's my website**\nhttps://enternewname.me/nebula/commands")
 
     @commands.command()
     async def prefix(self, ctx):
@@ -35,7 +35,7 @@ class MainCommands:
     async def ping(self, ctx):
         counter = 0
         msg = await ctx.send("`Pinging 0/4...`")
-        embed = discord.Embed(timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0x1c407a))
+        embed = discord.Embed(timestamp=datetime.datetime.utcnow(), color=discord.Color(value=0xBD5BFF))
         embed.set_thumbnail(url=self.bot.user.avatar_url)
         average = []
         for _ in range(4):
@@ -78,7 +78,7 @@ class MainCommands:
     async def feedback(self, ctx, *, body : str):
         try:
             feedback = self.bot.get_channel(490608601950322702)
-            embed = discord.Embed(color=ctx.author.color)
+            embed = discord.Embed(color=discord.Color(value=0xBD5BF))
             embed.set_author(name="Feedback")
             embed.add_field(name="Guild ID And Name: ", value=f"ID: {ctx.guild.id}, Name: {ctx.guild}", inline=False)
             embed.add_field(name="User", value=f"Name: {ctx.author}, ID: {ctx.author.id}", inline=False)

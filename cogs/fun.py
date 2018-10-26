@@ -151,7 +151,7 @@ class FunCommands:
         except:
             activity = f"{user.name} isn't playing anything"
            
-        embed = discord.Embed(description=activity, color=discord.Color(value=0x1c407a))
+        embed = discord.Embed(description=activity, color=discord.Color(value=0xBD5BFF))
         if user.nick:
             embed.set_author(name=f"{username} ({user.nick})")
         else:
@@ -162,6 +162,6 @@ class FunCommands:
         embed.add_field(name="Roles", value=roles)
         embed.set_footer(text=f"User ID: {user.id}")
         await ctx.send(embed=embed)
-
+    
 def setup(bot):
     bot.add_cog(FunCommands(bot))
